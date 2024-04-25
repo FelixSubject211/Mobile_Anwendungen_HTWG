@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_anwendungen/ListHabits.dart';
 
 class MyTabBar extends StatelessWidget {
   const MyTabBar({super.key});
@@ -10,11 +11,8 @@ class MyTabBar extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Center(child: Text('Yusto')),
-        ),
         bottomNavigationBar: _menu(theme),
-        body: _tabBarView(),
+        body: _tabBarView()
       ),
     );
   }
@@ -46,7 +44,7 @@ Widget _tabBarView() {
   return const TabBarView(
     children: [
       Center(child: Text("Einstellungen")),
-      Center(child: Text("Gewohnheiten")),
+      Center(child: ListHabits()),
       Center(child: Text("Statistik")),
     ],
   );
