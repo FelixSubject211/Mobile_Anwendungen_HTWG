@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_anwendungen/AddHabit.dart';
 
-import 'Habit.dart';
+import 'Storage.dart';
+import 'domain/Habit.dart';
 
 class ListHabits extends StatefulWidget {
   const ListHabits({super.key});
@@ -10,13 +12,13 @@ class ListHabits extends StatefulWidget {
 }
 
 class _ListHabitsState extends State<ListHabits> {
-  final List<Habit> _habits = [];
 
-  void _action() {
-    setState(() {
-      Habit newHabit = Habit(id: 1, name: 'Neue Gewohnheit');
-      _habits.add(newHabit);
-    });
+  void _showAddHabit() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (BuildContext context) {
+        return const AddHabit();
+      }),
+    ).then((_) => setState(() {}));
   }
 
   @override
@@ -28,7 +30,7 @@ class _ListHabitsState extends State<ListHabits> {
       ),
       body: _buildList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _action,
+        onPressed: _showAddHabit,
         tooltip: 'Action',
         child: const Icon(Icons.add),
       ),
@@ -37,9 +39,9 @@ class _ListHabitsState extends State<ListHabits> {
 
   Widget _buildList() {
     return ListView.builder(
-      itemCount: _habits.length,
+      itemCount: Storage.habits.length,
       itemBuilder: (context, index) {
-        return _card(_habits, index);
+        return _card(Storage.habits, index);
       }
     );
   }

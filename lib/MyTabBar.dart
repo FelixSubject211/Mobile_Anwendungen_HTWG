@@ -16,36 +16,36 @@ class MyTabBar extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget _menu(ThemeData theme) {
-  return TabBar(
-    labelColor: theme.colorScheme.primary,
-    unselectedLabelColor: theme.colorScheme.onSurface,
-    indicatorColor: theme.colorScheme.primary,
-    tabs: const [
-      Tab(
-        icon: Icon(Icons.settings),
-        text: "Einstellungen",
-      ),
-      Tab(
-        icon: Icon(Icons.list),
-        text: "Gewohnheiten",
-      ),
-      Tab(
-        icon: Icon(Icons.show_chart),
-        text: "Statistik",
-      ),
-    ],
-  );
-}
+  Widget _menu(ThemeData theme) {
+    return TabBar(
+      labelColor: theme.colorScheme.primary,
+      unselectedLabelColor: theme.colorScheme.onSurface,
+      indicatorColor: theme.colorScheme.primary,
+      tabs: const [
+        Tab(
+          icon: Icon(Icons.settings),
+          text: "Einstellungen",
+        ),
+        Tab(
+          icon: Icon(Icons.list),
+          text: "Gewohnheiten",
+        ),
+        Tab(
+          icon: Icon(Icons.show_chart),
+          text: "Statistik",
+        ),
+      ],
+    );
+  }
 
-Widget _tabBarView() {
-  return const TabBarView(
-    children: [
-      Center(child: Text("Einstellungen")),
-      Center(child: ListHabits()),
-      Center(child: Text("Statistik")),
-    ],
-  );
+  Widget _tabBarView() {
+    return const TabBarView(
+      children: [
+        Center(child: Text("Einstellungen")),
+        Center(child: ListHabits()),
+        Center(child: Text("Statistik")),
+      ],
+    );
+  }
 }
