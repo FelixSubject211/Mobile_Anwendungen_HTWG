@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_anwendungen/Storage.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mobile_anwendungen/domain/habits/Habit.dart';
+import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 
-import 'common/DisableableButton.dart';
+import '../common/DisableableButton.dart';
 
 class AddHabit extends StatefulWidget {
   const AddHabit({super.key});
@@ -21,7 +23,7 @@ class _AddHabitState extends State<AddHabit> {
   }
 
   void _onSave() {
-    Storage.addHabit(name);
+    GetIt.instance.get<HabitRepository>().addHabit(Habit(name: name));
     Navigator.of(context).pop();
   }
 

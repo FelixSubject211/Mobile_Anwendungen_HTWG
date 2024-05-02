@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_anwendungen/ListHabits.dart';
+import 'package:mobile_anwendungen/screens/ListHabits.dart';
 
 class MyTabBar extends StatelessWidget {
   const MyTabBar({super.key});
