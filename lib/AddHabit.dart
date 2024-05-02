@@ -14,13 +14,13 @@ class _AddHabitState extends State<AddHabit> {
 
   String name = "";
 
-  void onNameChanged(String name) {
+  void _onNameChanged(String name) {
     setState(() {
       this.name = name;
     });
   }
 
-  void _save() {
+  void _onSave() {
     Storage.addHabit(name);
     Navigator.of(context).pop();
   }
@@ -53,7 +53,7 @@ class _AddHabitState extends State<AddHabit> {
   Widget _nameField() {
     return TextField(
       onChanged: (text) {
-        onNameChanged(text);
+        _onNameChanged(text);
       },
       decoration: const InputDecoration(
         labelText: 'Name',
@@ -64,9 +64,9 @@ class _AddHabitState extends State<AddHabit> {
 
   Widget _saveButton() {
     return DisableableButton(
-      isButtonEnabled: name.isNotEmpty,
+      isButtonEnabled: _isValid(),
       text: "Speichern",
-      onPressed: _save
+      onPressed: _onSave
     );
   }
 }
