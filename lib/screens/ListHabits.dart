@@ -16,13 +16,8 @@ class ListHabits extends StatefulWidget {
 }
 
 class _ListHabitsState extends State<ListHabits> {
-  late final Stream<List<Habit>> _habits;
 
-  @override
-  void initState() {
-    super.initState();
-    _habits = GetIt.instance.get<HabitRepository>().listHabits();
-  }
+  HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
 
   void _showAddHabit() {
     Navigator.of(context).push(
@@ -32,6 +27,14 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
+  void _onCompleteHabit(Habit habit) {
+    _habitRepository.completeHabit(habit);
+  }
+
+  void _onUnCompleteHabit(Habit habit) {
+    _habitRepository.unCompleteHabit(habit);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +42,7 @@ class _ListHabitsState extends State<ListHabits> {
         title: Text(LocaleKeys.listHabitsTitle.tr())
       ),
       body: yustoStreamBuilder(
-          stream: _habits,
+          stream: _habitRepository.listHabits(),
           onData: _buildList
       ),
       floatingActionButton: FloatingActionButton(
@@ -63,8 +66,16 @@ class _ListHabitsState extends State<ListHabits> {
     return Card(
       child: ListTile(
         title: Text(habit.name),
-        onTap: () {},
-        trailing: const Text(''),
+        trailing: Checkbox(
+          value: habit.isCompletedToday(),
+          onChanged: (isChecked) {
+            if (isChecked ?? false) {
+              _onCompleteHabit(habit);
+            } else {
+              _onUnCompleteHabit(habit);
+            }
+          },
+        ),
       ),
     );
   }

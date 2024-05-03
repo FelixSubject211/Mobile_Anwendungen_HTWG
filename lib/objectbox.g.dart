@@ -15,6 +15,7 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
+import 'domain/habits/CompletionDate.dart';
 import 'domain/habits/Habit.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -35,6 +36,30 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(2, 5251352729535817138),
             name: 'name',
             type: 9,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[
+        obx_int.ModelRelation(
+            id: const obx_int.IdUid(1, 3165293421844515969),
+            name: 'completionDates',
+            targetId: const obx_int.IdUid(3, 5768749410228167719))
+      ],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(3, 5768749410228167719),
+      name: 'CompletionDate',
+      lastPropertyId: const obx_int.IdUid(2, 2758452046988340640),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 5485435159034364373),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 2758452046988340640),
+            name: 'dateMillis',
+            type: 6,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -76,13 +101,13 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 4933774847501334240),
+      lastEntityId: const obx_int.IdUid(3, 5768749410228167719),
       lastIndexId: const obx_int.IdUid(0, 0),
-      lastRelationId: const obx_int.IdUid(0, 0),
+      lastRelationId: const obx_int.IdUid(1, 3165293421844515969),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [],
+      retiredEntityUids: const [2271560381588274515],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [5772066262068371116, 2849403198628120101],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -92,7 +117,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
     Habit: obx_int.EntityDefinition<Habit>(
         model: _entities[0],
         toOneRelations: (Habit object) => [],
-        toManyRelations: (Habit object) => {},
+        toManyRelations: (Habit object) => {
+              obx_int.RelInfo<Habit>.toMany(1, object.id):
+                  object.completionDates
+            },
         getId: (Habit object) => object.id,
         setId: (Habit object, int id) {
           object.id = id;
@@ -112,6 +140,32 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 6, '');
           final object = Habit(name: nameParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          obx_int.InternalToManyAccess.setRelInfo<Habit>(object.completionDates,
+              store, obx_int.RelInfo<Habit>.toMany(1, object.id));
+          return object;
+        }),
+    CompletionDate: obx_int.EntityDefinition<CompletionDate>(
+        model: _entities[1],
+        toOneRelations: (CompletionDate object) => [],
+        toManyRelations: (CompletionDate object) => {},
+        getId: (CompletionDate object) => object.id,
+        setId: (CompletionDate object, int id) {
+          object.id = id;
+        },
+        objectToFB: (CompletionDate object, fb.Builder fbb) {
+          fbb.startTable(3);
+          fbb.addInt64(0, object.id);
+          fbb.addInt64(1, object.dateMillis);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final dateMillisParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
+          final object = CompletionDate(dateMillis: dateMillisParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
         })
@@ -128,4 +182,19 @@ class Habit_ {
   /// see [Habit.name]
   static final name =
       obx.QueryStringProperty<Habit>(_entities[0].properties[1]);
+
+  /// see [Habit.completionDates]
+  static final completionDates =
+      obx.QueryRelationToMany<Habit, CompletionDate>(_entities[0].relations[0]);
+}
+
+/// [CompletionDate] entity fields to define ObjectBox queries.
+class CompletionDate_ {
+  /// see [CompletionDate.id]
+  static final id =
+      obx.QueryIntegerProperty<CompletionDate>(_entities[1].properties[0]);
+
+  /// see [CompletionDate.dateMillis]
+  static final dateMillis =
+      obx.QueryIntegerProperty<CompletionDate>(_entities[1].properties[1]);
 }
