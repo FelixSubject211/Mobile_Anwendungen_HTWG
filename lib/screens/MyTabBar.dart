@@ -9,7 +9,7 @@ class MyTabBar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         bottomNavigationBar: _menu(theme),
         body: _tabBarView()
@@ -23,10 +23,6 @@ class MyTabBar extends StatelessWidget {
       unselectedLabelColor: theme.colorScheme.onSurface,
       indicatorColor: theme.colorScheme.primary,
       tabs: const [
-        Tab(
-          icon: Icon(Icons.settings),
-          text: "Einstellungen",
-        ),
         Tab(
           icon: Icon(Icons.list),
           text: "Gewohnheiten",
@@ -42,9 +38,8 @@ class MyTabBar extends StatelessWidget {
   Widget _tabBarView() {
     return const TabBarView(
       children: [
-        Center(child: Text("Einstellungen")),
         Center(child: ListHabits()),
-        Center(child: Text("Statistik")),
+        Center(child: Text("Statistik"))
       ],
     );
   }
