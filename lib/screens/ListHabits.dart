@@ -17,7 +17,15 @@ class ListHabits extends StatefulWidget {
 
 class _ListHabitsState extends State<ListHabits> {
 
-  HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
+  final HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
+
+  bool _isEditing = false;
+
+  void _toggleEditing() {
+    setState(() {
+      _isEditing = !_isEditing;
+    });
+  }
 
   void _showAddHabit() {
     Navigator.of(context).push(
@@ -39,7 +47,15 @@ class _ListHabitsState extends State<ListHabits> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.listHabitsTitle.tr())
+        title: Text(LocaleKeys.listHabitsTitle.tr()),
+        actions: <Widget>[
+          TextButton(
+            onPressed: _toggleEditing,
+            child: Text(
+              _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr()
+            ),
+          ),
+        ],
       ),
       body: yustoStreamBuilder(
           stream: _habitRepository.listHabits(),
@@ -57,12 +73,14 @@ class _ListHabitsState extends State<ListHabits> {
     return ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
-        return _card(habits[index]);
+        return _isEditing
+            ? _editableCard(habits[index])
+            : _viewOnlyCard(habits[index]);
       },
     );
   }
 
-  Widget _card(Habit habit) {
+  Widget _viewOnlyCard(Habit habit) {
     return Card(
       child: ListTile(
         title: Text(habit.name),
@@ -76,6 +94,15 @@ class _ListHabitsState extends State<ListHabits> {
             }
           },
         ),
+      ),
+    );
+  }
+
+  Widget _editableCard(Habit habit) {
+    return Card(
+      child: ListTile(
+        title: Text(habit.name),
+        trailing: const Text("")
       ),
     );
   }

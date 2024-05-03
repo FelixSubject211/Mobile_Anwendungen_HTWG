@@ -18,6 +18,8 @@ class CodegenLoader extends AssetLoader{
   "save": "Speichern",
   "error": "Fehler",
   "noData": "Keine Daten",
+  "edit": "Bearbeiten",
+  "finish": "Fertig",
   "listHabitsTitle": "Gewohnheiten",
   "listHabitsFloatingActionButtonTooltip": "Gewohnheit hinzufügen",
   "addHabitTitle": "Gewohnheit Hinzufügen",
