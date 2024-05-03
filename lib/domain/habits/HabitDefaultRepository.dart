@@ -7,14 +7,15 @@ import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import '../../database/habits/HabitDatabaseDatasource.dart';
 
 class HabitDefaultRepository extends HabitRepository {
+
   final _habitsController = StreamController<List<Habit>>.broadcast();
   final _databaseDatasource = GetIt.instance.get<HabitDatabaseDatasource>();
 
   HabitDefaultRepository() {
-    _habitsController.onListen = updateStream;
+    _habitsController.onListen = _updateStream;
   }
 
-  void updateStream() {
+  void _updateStream() {
     List<Habit> habits = _databaseDatasource.listHabits();
     _habitsController.add(habits);
   }
@@ -27,7 +28,6 @@ class HabitDefaultRepository extends HabitRepository {
   @override
   void addHabit(Habit habit) {
     _databaseDatasource.addHabit(habit);
-    List<Habit> habits = _databaseDatasource.listHabits();
-    _habitsController.add(habits);
+    _updateStream();
   }
 }

@@ -7,11 +7,7 @@ import '../../objectbox.g.dart';
 
 class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
 
-  late Box<Habit> _habitBox;
-
-  HabitsDatabaseDefaultDatasource() {
-    _habitBox = GetIt.instance.get<ObjectBox>().store.box<Habit>();
-  }
+  final Box<Habit> _habitBox = GetIt.instance.get<ObjectBox>().store.box<Habit>();
 
   @override
   void addHabit(Habit habit) {
