@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
 Widget yustoStreamBuilder<T>({
   required Stream<T> stream,
@@ -19,11 +21,11 @@ Widget yustoStreamBuilder<T>({
         return onError != null
             ? onError(context, snapshot.error)
             : Center(
-          child: Text('Error: ${snapshot.error}'),
+          child: Text('${LocaleKeys.error.tr()}: ${snapshot.error}'),
         );
       } else if (!snapshot.hasData) {
-        return const Center(
-          child: Text('No Data'),
+        return Center(
+          child: Text(LocaleKeys.noData.tr()),
         );
       } else {
         return onData(context, snapshot.data!);

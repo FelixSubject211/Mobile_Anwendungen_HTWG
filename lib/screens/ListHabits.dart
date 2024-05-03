@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/common/YustoStreamBuilder.dart';
@@ -5,9 +6,10 @@ import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/screens/AddHabit.dart';
 
 import '../domain/habits/Habit.dart';
+import '../lang/locale_keys.g.dart';
 
 class ListHabits extends StatefulWidget {
-  const ListHabits({Key? key}) : super(key: key);
+  const ListHabits({super.key});
 
   @override
   _ListHabitsState createState() => _ListHabitsState();
@@ -34,8 +36,7 @@ class _ListHabitsState extends State<ListHabits> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gewohnheiten"),
-        centerTitle: true,
+        title: Text(LocaleKeys.listHabitsTitle.tr())
       ),
       body: yustoStreamBuilder(
           stream: _habits,
@@ -43,7 +44,7 @@ class _ListHabitsState extends State<ListHabits> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddHabit,
-        tooltip: 'Action',
+        tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
         child: const Icon(Icons.add),
       ),
     );

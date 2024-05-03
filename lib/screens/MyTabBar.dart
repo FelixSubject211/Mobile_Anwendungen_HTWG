@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 import 'package:mobile_anwendungen/screens/ListHabits.dart';
 
 class MyTabBar extends StatelessWidget {
@@ -22,12 +24,12 @@ class MyTabBar extends StatelessWidget {
       labelColor: theme.colorScheme.primary,
       unselectedLabelColor: theme.colorScheme.onSurface,
       indicatorColor: theme.colorScheme.primary,
-      tabs: const [
+      tabs: [
         Tab(
-          icon: Icon(Icons.list),
-          text: "Gewohnheiten",
+          icon: const Icon(Icons.list),
+          text: LocaleKeys.listHabitsTitle.tr(),
         ),
-        Tab(
+        const Tab(
           icon: Icon(Icons.show_chart),
           text: "Statistik",
         ),

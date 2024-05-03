@@ -1,0 +1,11 @@
+{
+  "save": "Speichern",
+  "error": "Fehler",
+  "noData": "Keine Daten",
+
+  "listHabitsTitle": "Gewohnheiten",
+  "listHabitsFloatingActionButtonTooltip": "Gewohnheit hinzufügen",
+
+  "addHabitTitle": "Gewohnheit Hinzufügen",
+  "addHabitNameLabelText": "Name"
+}

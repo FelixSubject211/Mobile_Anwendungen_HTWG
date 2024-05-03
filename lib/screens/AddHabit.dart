@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
 import '../common/DisableableButton.dart';
 
@@ -35,8 +37,7 @@ class _AddHabitState extends State<AddHabit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gewohnheiten Hinzufügen"),
-        centerTitle: true,
+        title: Text(LocaleKeys.addHabitTitle.tr())
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -57,8 +58,8 @@ class _AddHabitState extends State<AddHabit> {
       onChanged: (text) {
         _onNameChanged(text);
       },
-      decoration: const InputDecoration(
-        labelText: 'Name',
+      decoration: InputDecoration(
+        labelText: LocaleKeys.addHabitNameLabelText.tr(),
         filled: true,
       )
     );
@@ -67,7 +68,7 @@ class _AddHabitState extends State<AddHabit> {
   Widget _saveButton() {
     return DisableableButton(
       isButtonEnabled: _isValid(),
-      text: "Speichern",
+      text: LocaleKeys.save.tr(),
       onPressed: _onSave
     );
   }
