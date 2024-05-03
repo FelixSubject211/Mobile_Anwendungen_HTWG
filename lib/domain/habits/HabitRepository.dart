@@ -1,6 +1,6 @@
 import 'Habit.dart';
 
 abstract class HabitRepository {
-  Stream<List<Habit>> habits();
+  Stream<List<Habit>> listHabits();
   void addHabit(Habit habit);
 }

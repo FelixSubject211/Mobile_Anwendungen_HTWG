@@ -21,7 +21,7 @@ class HabitDefaultRepository extends HabitRepository {
   }
 
   @override
-  Stream<List<Habit>> habits() {
+  Stream<List<Habit>> listHabits() {
     return _habitsController.stream;
   }
 

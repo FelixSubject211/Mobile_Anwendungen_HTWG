@@ -12,7 +12,7 @@ class ListHabits extends StatefulWidget {
   const ListHabits({super.key});
 
   @override
-  _ListHabitsState createState() => _ListHabitsState();
+  State<StatefulWidget> createState() => _ListHabitsState();
 }
 
 class _ListHabitsState extends State<ListHabits> {
@@ -21,7 +21,7 @@ class _ListHabitsState extends State<ListHabits> {
   @override
   void initState() {
     super.initState();
-    _habits = GetIt.instance.get<HabitRepository>().habits();
+    _habits = GetIt.instance.get<HabitRepository>().listHabits();
   }
 
   void _showAddHabit() {
