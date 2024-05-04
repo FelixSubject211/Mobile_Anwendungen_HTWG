@@ -22,8 +22,9 @@ class CodegenLoader extends AssetLoader{
   "finish": "Fertig",
   "listHabitsTitle": "Gewohnheiten",
   "listHabitsFloatingActionButtonTooltip": "Gewohnheit hinzufügen",
-  "addHabitTitle": "Gewohnheit Hinzufügen",
-  "addHabitNameLabelText": "Name"
+  "upsertHabitAddTitle": "Gewohnheit Hinzufügen",
+  "upsertHabitEditTitle": "Gewohnheit Bearbeiten",
+  "upsertHabitNameLabelText": "Name"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de};
 }

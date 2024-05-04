@@ -8,6 +8,7 @@
   "listHabitsTitle": "Gewohnheiten",
   "listHabitsFloatingActionButtonTooltip": "Gewohnheit hinzufügen",
 
-  "addHabitTitle": "Gewohnheit Hinzufügen",
-  "addHabitNameLabelText": "Name"
+  "upsertHabitAddTitle": "Gewohnheit Hinzufügen",
+  "upsertHabitEditTitle": "Gewohnheit Bearbeiten",
+  "upsertHabitNameLabelText": "Name"
 }

@@ -10,7 +10,7 @@ class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
   final Box<Habit> _habitBox = GetIt.instance.get<ObjectBox>().store.box<Habit>();
 
   @override
-  void addHabit(Habit habit) {
+  void upsertHabit(Habit habit) {
     _habitBox.put(habit);
   }
 

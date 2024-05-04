@@ -7,16 +7,26 @@ import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
 import '../common/DisableableButton.dart';
 
-class AddHabit extends StatefulWidget {
-  const AddHabit({super.key});
+class UpsertHabit extends StatefulWidget {
+  final Habit? habit;
+
+  const UpsertHabit({super.key, this.habit});
 
   @override
-  State<StatefulWidget> createState() => _AddHabitState();
+  State<StatefulWidget> createState() => _UpsertHabitState();
 }
 
-class _AddHabitState extends State<AddHabit> {
+class _UpsertHabitState extends State<UpsertHabit> {
 
-  String name = "";
+  final HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
+
+  late String name;
+
+  @override
+  void initState() {
+    super.initState();
+    name = widget.habit?.name ?? "";
+  }
 
   void _onNameChanged(String name) {
     setState(() {
@@ -25,10 +35,12 @@ class _AddHabitState extends State<AddHabit> {
   }
 
   void _onSave() {
-    GetIt.instance.get<HabitRepository>().addHabit(Habit(
-        name: name,
-        index: Habit.newIndex()
-    ));
+    _habitRepository.upsertHabit(
+        widget.habit ?? Habit(
+            name: name,
+            index: Habit.newIndex()
+        )
+    );
     Navigator.of(context).pop();
   }
 
@@ -40,7 +52,10 @@ class _AddHabitState extends State<AddHabit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.addHabitTitle.tr())
+        title: Text(widget.habit == null
+            ? LocaleKeys.upsertHabitAddTitle.tr()
+            : LocaleKeys.upsertHabitEditTitle.tr()
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -57,12 +72,13 @@ class _AddHabitState extends State<AddHabit> {
   }
 
   Widget _nameField() {
-    return TextField(
+    return TextFormField(
+      initialValue: name,
       onChanged: (text) {
         _onNameChanged(text);
       },
       decoration: InputDecoration(
-        labelText: LocaleKeys.addHabitNameLabelText.tr(),
+        labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
         filled: true,
       )
     );

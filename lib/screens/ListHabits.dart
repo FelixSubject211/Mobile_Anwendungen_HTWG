@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/common/YustoStreamBuilder.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
-import 'package:mobile_anwendungen/screens/AddHabit.dart';
+import 'package:mobile_anwendungen/screens/UpsertHabit.dart';
 
 import '../domain/habits/Habit.dart';
 import '../lang/locale_keys.g.dart';
@@ -27,10 +27,10 @@ class _ListHabitsState extends State<ListHabits> {
     });
   }
 
-  void _showAddHabit() {
+  void _showUpsertHabit(Habit? habit) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => const AddHabit(),
+        builder: (BuildContext context) => UpsertHabit(habit: habit),
       ),
     );
   }
@@ -70,7 +70,7 @@ class _ListHabitsState extends State<ListHabits> {
           onData: _onData
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _showAddHabit,
+        onPressed: () { _showUpsertHabit(null); },
         tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
         child: const Icon(Icons.add),
       ),
@@ -132,6 +132,7 @@ class _ListHabitsState extends State<ListHabits> {
             const Icon(Icons.drag_handle),
           ],
         ),
+        onTap: () { _showUpsertHabit(habit); },
       ),
     );
   }

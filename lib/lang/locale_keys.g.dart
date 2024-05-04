@@ -8,7 +8,8 @@ abstract class  LocaleKeys {
   static const finish = 'finish';
   static const listHabitsTitle = 'listHabitsTitle';
   static const listHabitsFloatingActionButtonTooltip = 'listHabitsFloatingActionButtonTooltip';
-  static const addHabitTitle = 'addHabitTitle';
-  static const addHabitNameLabelText = 'addHabitNameLabelText';
+  static const upsertHabitAddTitle = 'upsertHabitAddTitle';
+  static const upsertHabitEditTitle = 'upsertHabitEditTitle';
+  static const upsertHabitNameLabelText = 'upsertHabitNameLabelText';
 
 }

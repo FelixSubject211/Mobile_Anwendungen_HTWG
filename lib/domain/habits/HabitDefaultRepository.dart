@@ -26,8 +26,8 @@ class HabitDefaultRepository extends HabitRepository {
   }
 
   @override
-  void addHabit(Habit habit) {
-    _databaseDatasource.addHabit(habit);
+  void upsertHabit(Habit habit) {
+    _databaseDatasource.upsertHabit(habit);
     _updateStream();
   }
 
