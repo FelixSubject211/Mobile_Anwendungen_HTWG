@@ -16,7 +16,9 @@ class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
 
   @override
   List<Habit> listHabits() {
-    return _habitBox.getAll();
+    final habits = _habitBox.getAll();
+    habits.sort((a, b) => a.index.compareTo(b.index));
+    return habits;
   }
 
   @override
@@ -34,5 +36,22 @@ class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
       habit.completionDates.removeAt(0);
       _habitBox.put(habit);
     }
+  }
+
+  @override
+  void reorderHabit(int oldIndex, int newIndex) {
+    final habits = listHabits();
+
+    if(newIndex > oldIndex){
+      newIndex -= 1;
+    }
+    final habitToMove = habits.removeAt(oldIndex);
+    habits.insert(newIndex, habitToMove);
+
+    habits.asMap().forEach((index, habit) {
+      habit.index = index;
+    });
+
+    _habitBox.putMany(habits);
   }
 }

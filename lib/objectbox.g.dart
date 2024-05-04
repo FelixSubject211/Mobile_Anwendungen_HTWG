@@ -24,7 +24,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(1, 4933774847501334240),
       name: 'Habit',
-      lastPropertyId: const obx_int.IdUid(2, 5251352729535817138),
+      lastPropertyId: const obx_int.IdUid(3, 5114650160825505742),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -36,6 +36,11 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(2, 5251352729535817138),
             name: 'name',
             type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 5114650160825505742),
+            name: 'index',
+            type: 6,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[
@@ -127,9 +132,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (Habit object, fb.Builder fbb) {
           final nameOffset = fbb.writeString(object.name);
-          fbb.startTable(3);
+          fbb.startTable(4);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
+          fbb.addInt64(2, object.index);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -138,7 +144,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
           final nameParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
-          final object = Habit(name: nameParam)
+          final indexParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
+          final object = Habit(name: nameParam, index: indexParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           obx_int.InternalToManyAccess.setRelInfo<Habit>(object.completionDates,
               store, obx_int.RelInfo<Habit>.toMany(1, object.id));
@@ -182,6 +190,10 @@ class Habit_ {
   /// see [Habit.name]
   static final name =
       obx.QueryStringProperty<Habit>(_entities[0].properties[1]);
+
+  /// see [Habit.index]
+  static final index =
+      obx.QueryIntegerProperty<Habit>(_entities[0].properties[2]);
 
   /// see [Habit.completionDates]
   static final completionDates =

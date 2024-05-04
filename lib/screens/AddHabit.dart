@@ -25,7 +25,10 @@ class _AddHabitState extends State<AddHabit> {
   }
 
   void _onSave() {
-    GetIt.instance.get<HabitRepository>().addHabit(Habit(name: name));
+    GetIt.instance.get<HabitRepository>().addHabit(Habit(
+        name: name,
+        index: Habit.newIndex()
+    ));
     Navigator.of(context).pop();
   }
 

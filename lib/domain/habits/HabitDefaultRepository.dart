@@ -42,4 +42,10 @@ class HabitDefaultRepository extends HabitRepository {
     _databaseDatasource.unCompleteHabit(habit);
     _updateStream();
   }
+
+  @override
+  void reorderHabit(int oldIndex, int newIndex) {
+    _databaseDatasource.reorderHabit(oldIndex, newIndex);
+    _updateStream();
+  }
 }

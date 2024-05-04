@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:4933774847501334240",
-      "lastPropertyId": "2:5251352729535817138",
+      "lastPropertyId": "3:5114650160825505742",
       "name": "Habit",
       "properties": [
         {
@@ -18,6 +18,11 @@
           "id": "2:5251352729535817138",
           "name": "name",
           "type": 9
+        },
+        {
+          "id": "3:5114650160825505742",
+          "name": "index",
+          "type": 6
         }
       ],
       "relations": [

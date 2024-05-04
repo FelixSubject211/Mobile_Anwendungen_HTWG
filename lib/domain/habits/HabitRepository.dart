@@ -5,4 +5,5 @@ abstract class HabitRepository {
   void addHabit(Habit habit);
   void completeHabit(Habit habit);
   void unCompleteHabit(Habit habit);
+  void reorderHabit(int oldIndex, int newIndex);
 }

@@ -43,6 +43,10 @@ class _ListHabitsState extends State<ListHabits> {
     _habitRepository.unCompleteHabit(habit);
   }
 
+  void _onReorder(int oldIndex, int newIndex) {
+    _habitRepository.reorderHabit(oldIndex, newIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +63,7 @@ class _ListHabitsState extends State<ListHabits> {
       ),
       body: yustoStreamBuilder(
           stream: _habitRepository.listHabits(),
-          onData: _buildList
+          onData: _onData
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddHabit,
@@ -69,18 +73,27 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
-  Widget _buildList(BuildContext context, List<Habit> habits) {
+  Widget _onData(BuildContext context, List<Habit> habits) {
+    return _isEditing ? _buildEditableList(habits) :_buildList(habits);
+  }
+
+  Widget _buildList(List<Habit> habits) {
     return ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
-        return _isEditing
-            ? _editableCard(habits[index])
-            : _viewOnlyCard(habits[index]);
+        return _card(habits[index]);
       },
     );
   }
 
-  Widget _viewOnlyCard(Habit habit) {
+  Widget _buildEditableList(List<Habit> habits) {
+    return ReorderableListView(
+      onReorder: _onReorder,
+      children: habits.map((habit) => _editableCard(habit)).toList(),
+    );
+  }
+
+  Widget _card(Habit habit) {
     return Card(
       child: ListTile(
         title: Text(habit.name),
@@ -100,9 +113,10 @@ class _ListHabitsState extends State<ListHabits> {
 
   Widget _editableCard(Habit habit) {
     return Card(
+      key: ValueKey(habit.id),
       child: ListTile(
         title: Text(habit.name),
-        trailing: const Text("")
+        trailing: const Icon(Icons.drag_handle),
       ),
     );
   }
