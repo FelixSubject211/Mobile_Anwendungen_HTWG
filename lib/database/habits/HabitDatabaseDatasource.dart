@@ -6,4 +6,5 @@ abstract class HabitDatabaseDatasource {
     void completeHabit(Habit habit);
     void unCompleteHabit(Habit habit);
     void reorderHabit(int oldIndex, int newIndex);
+    void deleteHabit(Habit habit);
 }

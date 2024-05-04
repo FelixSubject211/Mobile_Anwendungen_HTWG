@@ -47,6 +47,10 @@ class _ListHabitsState extends State<ListHabits> {
     _habitRepository.reorderHabit(oldIndex, newIndex);
   }
 
+  void _onDeleteHabit(habit) {
+    _habitRepository.deleteHabit(habit);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +120,18 @@ class _ListHabitsState extends State<ListHabits> {
       key: ValueKey(habit.id),
       child: ListTile(
         title: Text(habit.name),
-        trailing: const Icon(Icons.drag_handle),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () {
+                _onDeleteHabit(habit);
+              },
+            ),
+            const Icon(Icons.drag_handle),
+          ],
+        ),
       ),
     );
   }

@@ -54,4 +54,9 @@ class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
 
     _habitBox.putMany(habits);
   }
+
+  @override
+  void deleteHabit(Habit habit) {
+    _habitBox.remove(habit.id);
+  }
 }

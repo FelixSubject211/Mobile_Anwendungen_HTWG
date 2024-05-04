@@ -48,4 +48,10 @@ class HabitDefaultRepository extends HabitRepository {
     _databaseDatasource.reorderHabit(oldIndex, newIndex);
     _updateStream();
   }
+
+  @override
+  void deleteHabit(Habit habit) {
+    _databaseDatasource.deleteHabit(habit);
+    _updateStream();
+  }
 }
