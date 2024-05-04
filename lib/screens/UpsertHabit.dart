@@ -35,12 +35,15 @@ class _UpsertHabitState extends State<UpsertHabit> {
   }
 
   void _onSave() {
-    _habitRepository.upsertHabit(
-        widget.habit ?? Habit(
-            name: name,
-            index: Habit.newIndex()
-        )
-    );
+    if (widget.habit != null) {
+      widget.habit?.name = name;
+      _habitRepository.upsertHabit(widget.habit!);
+    } else {
+      _habitRepository.upsertHabit(Habit(
+          name: name,
+          index: Habit.newIndex()
+      ));
+    }
     Navigator.of(context).pop();
   }
 

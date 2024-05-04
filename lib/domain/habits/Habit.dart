@@ -15,10 +15,8 @@ class Habit {
 
   Habit({
     required this.name,
-    required this.index
+    required this.index,
   });
-
-
 
   bool isCompletedToday() {
     final today = DateTime.now();
