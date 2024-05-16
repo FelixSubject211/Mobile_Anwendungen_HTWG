@@ -11,5 +11,9 @@
 
   "upsertHabitAddTitle": "Gewohnheit Hinzufügen",
   "upsertHabitEditTitle": "Gewohnheit Bearbeiten",
-  "upsertHabitNameLabelText": "Name"
+  "upsertHabitNameLabelText": "Name",
+
+  "statisticsTitle": "Statistik",
+  "statisticsWeekSelection": "Woche",
+  "statisticsMonthSelection": "Monat"
 }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 import 'package:mobile_anwendungen/screens/ListHabits.dart';
+import 'package:mobile_anwendungen/screens/Statistics.dart';
 
 class MyTabBar extends StatelessWidget {
   const MyTabBar({super.key});
@@ -28,7 +29,7 @@ class MyTabBar extends StatelessWidget {
         ),
         const Tab(
           icon: Icon(Icons.show_chart),
-          text: "Statistik",
+          text: LocaleKeys.statisticsTitle,
         ),
       ],
     );
@@ -36,7 +37,7 @@ class MyTabBar extends StatelessWidget {
 
   Widget _tabBarView() {
     return const TabBarView(
-      children: [Center(child: ListHabits()), Center(child: Text("Statistik"))],
+      children: [Center(child: ListHabits()), Center(child: Statistics())],
     );
   }
 }

@@ -12,5 +12,8 @@ abstract class  LocaleKeys {
   static const upsertHabitAddTitle = 'upsertHabitAddTitle';
   static const upsertHabitEditTitle = 'upsertHabitEditTitle';
   static const upsertHabitNameLabelText = 'upsertHabitNameLabelText';
+  static const statisticsTitle = 'statisticsTitle';
+  static const statisticsWeekSelection = 'statisticsWeekSelection';
+  static const statisticsMonthSelection = 'statisticsMonthSelection';
 
 }
