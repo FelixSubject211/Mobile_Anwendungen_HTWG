@@ -18,7 +18,7 @@ class Statistics extends StatefulWidget {
 class _StatisticsState extends State<Statistics> {
   final HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
 
-  String _selectedButton = LocaleKeys.statisticsMonthSelection.tr();
+  String _selectedButton = LocaleKeys.statisticsWeekSelection.tr();
 
   void _onButtonPressed(String label) {
     setState(() {
