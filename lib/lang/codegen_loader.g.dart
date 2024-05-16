@@ -6,7 +6,7 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 
-class CodegenLoader extends AssetLoader {
+class CodegenLoader extends AssetLoader{
   const CodegenLoader();
 
   @override
@@ -14,17 +14,18 @@ class CodegenLoader extends AssetLoader {
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String, dynamic> de = {
-    "save": "Speichern",
-    "error": "Fehler",
-    "noData": "Keine Daten",
-    "edit": "Bearbeiten",
-    "finish": "Fertig",
-    "listHabitsTitle": "Gewohnheiten",
-    "listHabitsFloatingActionButtonTooltip": "Gewohnheit hinzufügen",
-    "upsertHabitAddTitle": "Gewohnheit Hinzufügen",
-    "upsertHabitEditTitle": "Gewohnheit Bearbeiten",
-    "upsertHabitNameLabelText": "Name"
-  };
-  static const Map<String, Map<String, dynamic>> mapLocales = {"de": de};
+  static const Map<String,dynamic> de = {
+  "save": "Speichern",
+  "error": "Fehler",
+  "noData": "Keine Daten",
+  "edit": "Bearbeiten",
+  "finish": "Fertig",
+  "cancel": "Abbrechen",
+  "listHabitsTitle": "Gewohnheiten",
+  "listHabitsFloatingActionButtonTooltip": "Gewohnheit hinzufügen",
+  "upsertHabitAddTitle": "Gewohnheit Hinzufügen",
+  "upsertHabitEditTitle": "Gewohnheit Bearbeiten",
+  "upsertHabitNameLabelText": "Name"
+};
+static const Map<String, Map<String,dynamic>> mapLocales = {"de": de};
 }

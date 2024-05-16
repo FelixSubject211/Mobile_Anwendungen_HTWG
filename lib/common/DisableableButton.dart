@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DisableableButton extends StatelessWidget {
-  final bool isButtonEnabled;
+class DisableButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
-  const DisableableButton({
+  const DisableButton({
     super.key,
-    required this.isButtonEnabled,
     required this.text,
     required this.onPressed,
   });
@@ -17,11 +15,12 @@ class DisableableButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     return ElevatedButton(
-      onPressed: isButtonEnabled ? onPressed : null,
+      onPressed: onPressed,
       style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all<Color>(
-        isButtonEnabled ? theme.primaryColor : theme.shadowColor,
-      )),
+        foregroundColor: MaterialStateProperty.all<Color>(
+          onPressed != null ? theme.primaryColor : theme.shadowColor,
+        ),
+      ),
       child: Text(text),
     );
   }

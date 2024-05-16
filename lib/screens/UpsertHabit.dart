@@ -44,6 +44,10 @@ class _UpsertHabitState extends State<UpsertHabit> {
     Navigator.of(context).pop();
   }
 
+  void _onCancel() {
+    Navigator.of(context).pop();
+  }
+
   bool _isValid() {
     return name.isNotEmpty;
   }
@@ -63,7 +67,7 @@ class _UpsertHabitState extends State<UpsertHabit> {
           children: [
             _nameField(),
             const SizedBox(height: 20),
-            _saveButton(),
+            _buttonRow(),
           ],
         ),
       ),
@@ -82,10 +86,19 @@ class _UpsertHabitState extends State<UpsertHabit> {
         ));
   }
 
-  Widget _saveButton() {
-    return DisableableButton(
-        isButtonEnabled: _isValid(),
-        text: LocaleKeys.save.tr(),
-        onPressed: _onSave);
+  Widget _buttonRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: _onCancel,
+          child: Text(LocaleKeys.cancel.tr()),
+        ),
+        DisableButton(
+          text: LocaleKeys.save.tr(),
+          onPressed: _isValid() ? _onSave : null,
+        ),
+      ],
+    );
   }
 }
