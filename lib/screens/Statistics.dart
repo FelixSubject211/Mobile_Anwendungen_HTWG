@@ -1,9 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobile_anwendungen/database/habits/HabitDatabaseDatasource.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
@@ -19,8 +16,7 @@ class Statistics extends StatefulWidget {
 }
 
 class _StatisticsState extends State<Statistics> {
-  // TODO eig nicth aus Datenbank
-  final HabitDatabaseDatasource _habitDatabaseDatasource = GetIt.instance.get<HabitDatabaseDatasource>();
+  final HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
 
   String _selectedButton = LocaleKeys.statisticsMonthSelection.tr();
 
@@ -46,8 +42,8 @@ class _StatisticsState extends State<Statistics> {
             _segmentedControl(theme),
             const SizedBox(height: 20),
             _selectedButton == LocaleKeys.statisticsWeekSelection.tr() ?
-              _weekStatistic(_habitDatabaseDatasource.listHabits()) :
-              _monthStatistic(_habitDatabaseDatasource.listHabits())
+            _weekStatisticStreamBuilder() :
+            _monthStatisticStreamBuilder()
           ],
         ),
       ),
@@ -76,7 +72,6 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-  /*
   Widget _weekStatisticStreamBuilder() {
     return yustoStreamBuilder(
         stream: _habitRepository.listHabits(), onData: _weekStatistic
@@ -89,9 +84,7 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-   */
-
-  Widget _weekStatistic(List<Habit> habits) {
+  Widget _weekStatistic(BuildContext context, List<Habit> habits) {
     final startOfWeek = DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
     return Column(
@@ -118,7 +111,7 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-  Widget _monthStatistic(List<Habit> habits) {
+  Widget _monthStatistic(BuildContext context, List<Habit> habits) {
     return Text(habits.toString());
   }
 }

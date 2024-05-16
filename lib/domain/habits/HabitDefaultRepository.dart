@@ -3,25 +3,24 @@ import 'dart:async';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../database/habits/HabitDatabaseDatasource.dart';
 
 class HabitDefaultRepository extends HabitRepository {
-  final _habitsController = StreamController<List<Habit>>.broadcast();
+  final _habitsSubject = BehaviorSubject<List<Habit>>();
   final _databaseDatasource = GetIt.instance.get<HabitDatabaseDatasource>();
 
-  HabitDefaultRepository() {
-    _habitsController.onListen = _updateStream;
-  }
 
   void _updateStream() {
     List<Habit> habits = _databaseDatasource.listHabits();
-    _habitsController.add(habits);
+    _habitsSubject.add(habits);
   }
 
   @override
   Stream<List<Habit>> listHabits() {
-    return _habitsController.stream;
+    _updateStream();
+    return _habitsSubject.stream;
   }
 
   @override

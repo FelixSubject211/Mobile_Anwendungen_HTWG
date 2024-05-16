@@ -37,6 +37,7 @@ dependencies:
   objectbox: ^2.5.1
   objectbox_flutter_libs: any
   easy_localization: ^3.0.1
+  rxdart: ^0.27.0
 
 
 
