@@ -17,16 +17,25 @@ class Habit {
     required this.index,
   });
 
-  bool isCompletedToday() {
-    final today = DateTime.now();
-    final todayDate = DateTime(today.year, today.month, today.day);
-
+  bool isCompletedOn(DateTime date) {
+    final dateStart = DateTime(date.year, date.month, date.day);
+    final dateEnd = dateStart.add(Duration(days: 1));
     return completionDates.any((completionDate) {
       final completionDateTime =
-          DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
-      final completionDateDate = DateTime(completionDateTime.year,
-          completionDateTime.month, completionDateTime.day);
-      return completionDateDate.isAtSameMomentAs(todayDate);
+      DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
+      return completionDateTime.isAfter(dateStart) &&
+          completionDateTime.isBefore(dateEnd);
+    });
+  }
+
+  bool isCompletedToday() {
+    return isCompletedOn(DateTime.now());
+  }
+
+  List<bool> getCompletionForWeek(DateTime startOfWeek) {
+    return List.generate(7, (index) {
+      final date = startOfWeek.add(Duration(days: index));
+      return isCompletedOn(date);
     });
   }
 

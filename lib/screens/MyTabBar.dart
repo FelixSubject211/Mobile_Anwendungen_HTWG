@@ -27,9 +27,9 @@ class MyTabBar extends StatelessWidget {
           icon: const Icon(Icons.list),
           text: LocaleKeys.listHabitsTitle.tr(),
         ),
-        const Tab(
-          icon: Icon(Icons.show_chart),
-          text: LocaleKeys.statisticsTitle,
+        Tab(
+          icon: const Icon(Icons.show_chart),
+          text: LocaleKeys.statisticsTitle.tr(),
         ),
       ],
     );
