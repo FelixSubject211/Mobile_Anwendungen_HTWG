@@ -16,7 +16,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   GetIt.instance.registerSingleton<ObjectBox>(await ObjectBox.create());
-  GetIt.instance.registerSingleton<HabitDatabaseDatasource>(HabitsDatabaseDefaultDatasource());
+  GetIt.instance.registerSingleton<HabitDatabaseDatasource>(
+      HabitsDatabaseDefaultDatasource());
   GetIt.instance.registerSingleton<HabitRepository>(HabitDefaultRepository());
 
   await EasyLocalization.ensureInitialized();

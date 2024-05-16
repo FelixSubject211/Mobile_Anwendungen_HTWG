@@ -19,12 +19,10 @@ class DisableableButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isButtonEnabled ? onPressed : null,
       style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(
-          isButtonEnabled ? theme.primaryColor : theme.shadowColor,
-        )
-      ),
+          foregroundColor: MaterialStateProperty.all<Color>(
+        isButtonEnabled ? theme.primaryColor : theme.shadowColor,
+      )),
       child: Text(text),
     );
   }
 }
-

@@ -16,8 +16,8 @@ class ListHabits extends StatefulWidget {
 }
 
 class _ListHabitsState extends State<ListHabits> {
-
-  final HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
+  final HabitRepository _habitRepository =
+      GetIt.instance.get<HabitRepository>();
 
   bool _isEditing = false;
 
@@ -60,17 +60,16 @@ class _ListHabitsState extends State<ListHabits> {
           TextButton(
             onPressed: _toggleEditing,
             child: Text(
-              _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr()
-            ),
+                _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr()),
           ),
         ],
       ),
       body: yustoStreamBuilder(
-          stream: _habitRepository.listHabits(),
-          onData: _onData
-      ),
+          stream: _habitRepository.listHabits(), onData: _onData),
       floatingActionButton: FloatingActionButton(
-        onPressed: () { _showUpsertHabit(null); },
+        onPressed: () {
+          _showUpsertHabit(null);
+        },
         tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
         child: const Icon(Icons.add),
       ),
@@ -78,7 +77,7 @@ class _ListHabitsState extends State<ListHabits> {
   }
 
   Widget _onData(BuildContext context, List<Habit> habits) {
-    return _isEditing ? _buildEditableList(habits) :_buildList(habits);
+    return _isEditing ? _buildEditableList(habits) : _buildList(habits);
   }
 
   Widget _buildList(List<Habit> habits) {
@@ -132,7 +131,9 @@ class _ListHabitsState extends State<ListHabits> {
             const Icon(Icons.drag_handle),
           ],
         ),
-        onTap: () { _showUpsertHabit(habit); },
+        onTap: () {
+          _showUpsertHabit(habit);
+        },
       ),
     );
   }

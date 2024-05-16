@@ -7,7 +7,8 @@ import '../../domain/habits/CompletionDate.dart';
 import '../../objectbox.g.dart';
 
 class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
-  final Box<Habit> _habitBox = GetIt.instance.get<ObjectBox>().store.box<Habit>();
+  final Box<Habit> _habitBox =
+      GetIt.instance.get<ObjectBox>().store.box<Habit>();
 
   @override
   void upsertHabit(Habit habit) {
@@ -32,7 +33,8 @@ class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
   @override
   void unCompleteHabit(Habit habit) {
     if (habit.completionDates.isNotEmpty) {
-      habit.completionDates.sort((a, b) => b.dateMillis.compareTo(a.dateMillis));
+      habit.completionDates
+          .sort((a, b) => b.dateMillis.compareTo(a.dateMillis));
       habit.completionDates.removeAt(0);
       _habitBox.put(habit);
     }
@@ -42,7 +44,7 @@ class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
   void reorderHabit(int oldIndex, int newIndex) {
     final habits = listHabits();
 
-    if(newIndex > oldIndex){
+    if (newIndex > oldIndex) {
       newIndex -= 1;
     }
     final habitToMove = habits.removeAt(oldIndex);

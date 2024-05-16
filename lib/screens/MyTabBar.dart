@@ -12,10 +12,7 @@ class MyTabBar extends StatelessWidget {
 
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        bottomNavigationBar: _menu(theme),
-        body: _tabBarView()
-      ),
+      child: Scaffold(bottomNavigationBar: _menu(theme), body: _tabBarView()),
     );
   }
 
@@ -39,10 +36,7 @@ class MyTabBar extends StatelessWidget {
 
   Widget _tabBarView() {
     return const TabBarView(
-      children: [
-        Center(child: ListHabits()),
-        Center(child: Text("Statistik"))
-      ],
+      children: [Center(child: ListHabits()), Center(child: Text("Statistik"))],
     );
   }
 }

@@ -17,8 +17,8 @@ class UpsertHabit extends StatefulWidget {
 }
 
 class _UpsertHabitState extends State<UpsertHabit> {
-
-  final HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
+  final HabitRepository _habitRepository =
+      GetIt.instance.get<HabitRepository>();
 
   late String name;
 
@@ -39,10 +39,7 @@ class _UpsertHabitState extends State<UpsertHabit> {
       widget.habit?.name = name;
       _habitRepository.upsertHabit(widget.habit!);
     } else {
-      _habitRepository.upsertHabit(Habit(
-          name: name,
-          index: Habit.newIndex()
-      ));
+      _habitRepository.upsertHabit(Habit(name: name, index: Habit.newIndex()));
     }
     Navigator.of(context).pop();
   }
@@ -57,8 +54,7 @@ class _UpsertHabitState extends State<UpsertHabit> {
       appBar: AppBar(
         title: Text(widget.habit == null
             ? LocaleKeys.upsertHabitAddTitle.tr()
-            : LocaleKeys.upsertHabitEditTitle.tr()
-        ),
+            : LocaleKeys.upsertHabitEditTitle.tr()),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -76,22 +72,20 @@ class _UpsertHabitState extends State<UpsertHabit> {
 
   Widget _nameField() {
     return TextFormField(
-      initialValue: name,
-      onChanged: (text) {
-        _onNameChanged(text);
-      },
-      decoration: InputDecoration(
-        labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
-        filled: true,
-      )
-    );
+        initialValue: name,
+        onChanged: (text) {
+          _onNameChanged(text);
+        },
+        decoration: InputDecoration(
+          labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
+          filled: true,
+        ));
   }
 
   Widget _saveButton() {
     return DisableableButton(
-      isButtonEnabled: _isValid(),
-      text: LocaleKeys.save.tr(),
-      onPressed: _onSave
-    );
+        isButtonEnabled: _isValid(),
+        text: LocaleKeys.save.tr(),
+        onPressed: _onSave);
   }
 }

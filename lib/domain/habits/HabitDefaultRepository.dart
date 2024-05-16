@@ -7,7 +7,6 @@ import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import '../../database/habits/HabitDatabaseDatasource.dart';
 
 class HabitDefaultRepository extends HabitRepository {
-
   final _habitsController = StreamController<List<Habit>>.broadcast();
   final _databaseDatasource = GetIt.instance.get<HabitDatabaseDatasource>();
 
