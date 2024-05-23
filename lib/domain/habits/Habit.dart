@@ -22,7 +22,7 @@ class Habit {
     final dateEnd = dateStart.add(Duration(days: 1));
     return completionDates.any((completionDate) {
       final completionDateTime =
-      DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
+          DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
       return completionDateTime.isAfter(dateStart) &&
           completionDateTime.isBefore(dateEnd);
     });

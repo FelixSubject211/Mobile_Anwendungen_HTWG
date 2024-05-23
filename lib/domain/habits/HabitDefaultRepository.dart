@@ -11,7 +11,6 @@ class HabitDefaultRepository extends HabitRepository {
   final _habitsSubject = BehaviorSubject<List<Habit>>();
   final _databaseDatasource = GetIt.instance.get<HabitDatabaseDatasource>();
 
-
   void _updateStream() {
     List<Habit> habits = _databaseDatasource.listHabits();
     _habitsSubject.add(habits);

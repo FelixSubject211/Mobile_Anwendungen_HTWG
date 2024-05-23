@@ -16,7 +16,8 @@ class Statistics extends StatefulWidget {
 }
 
 class _StatisticsState extends State<Statistics> {
-  final HabitRepository _habitRepository = GetIt.instance.get<HabitRepository>();
+  final HabitRepository _habitRepository =
+      GetIt.instance.get<HabitRepository>();
 
   String _selectedButton = LocaleKeys.statisticsWeekSelection.tr();
 
@@ -41,9 +42,9 @@ class _StatisticsState extends State<Statistics> {
           children: [
             _segmentedControl(theme),
             const SizedBox(height: 20),
-            _selectedButton == LocaleKeys.statisticsWeekSelection.tr() ?
-            _weekStatisticStreamBuilder() :
-            _monthStatisticStreamBuilder()
+            _selectedButton == LocaleKeys.statisticsWeekSelection.tr()
+                ? _weekStatisticStreamBuilder()
+                : _monthStatisticStreamBuilder()
           ],
         ),
       ),
@@ -74,18 +75,17 @@ class _StatisticsState extends State<Statistics> {
 
   Widget _weekStatisticStreamBuilder() {
     return yustoStreamBuilder(
-        stream: _habitRepository.listHabits(), onData: _weekStatistic
-    );
+        stream: _habitRepository.listHabits(), onData: _weekStatistic);
   }
 
   Widget _monthStatisticStreamBuilder() {
     return yustoStreamBuilder(
-        stream: _habitRepository.listHabits(), onData: _monthStatistic
-    );
+        stream: _habitRepository.listHabits(), onData: _monthStatistic);
   }
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {
-    final startOfWeek = DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+    final startOfWeek =
+        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
     return Column(
       children: habits.map((habit) {

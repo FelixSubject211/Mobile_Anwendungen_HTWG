@@ -6,7 +6,8 @@ class SelectionButton extends StatelessWidget {
   final Function(String) onButtonPressed;
   final ThemeData theme;
 
-  const SelectionButton({super.key,
+  const SelectionButton({
+    super.key,
     required this.label,
     required this.selectedButton,
     required this.onButtonPressed,
@@ -19,8 +20,11 @@ class SelectionButton extends StatelessWidget {
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        foregroundColor: isSelected ? theme.colorScheme.onPrimary : theme.colorScheme.primary,
-        backgroundColor: isSelected ? theme.colorScheme.primary : theme.colorScheme.surface,
+        foregroundColor: isSelected
+            ? theme.colorScheme.onPrimary
+            : theme.colorScheme.primary,
+        backgroundColor:
+            isSelected ? theme.colorScheme.primary : theme.colorScheme.surface,
       ),
       onPressed: () => onButtonPressed(label),
       child: Text(label),
