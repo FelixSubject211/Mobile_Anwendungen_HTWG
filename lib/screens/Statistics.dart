@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 import 'package:mobile_anwendungen/widgets/CalendarView.dart';
+import 'package:mobile_anwendungen/widgets/CalendarWeekView.dart';
 
 import '../common/SelectionButton.dart';
 import '../common/YustoStreamBuilder.dart';
-import 'package:intl/intl.dart';
 
 class Statistics extends StatefulWidget {
   const Statistics({super.key});
@@ -87,9 +86,11 @@ class _StatisticsState extends State<Statistics> {
   }
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {
-    final startOfWeek = DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+    final startOfWeek =
+        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
-    return Expanded(child: ListView.builder(
+    return Expanded(
+        child: ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
         return _weekCard(habits[index], startOfWeek);
@@ -98,22 +99,23 @@ class _StatisticsState extends State<Statistics> {
   }
 
   Widget _weekCard(Habit habit, DateTime startOfWeek) {
-    final completionForWeek = habit.getCompletionForWeek(startOfWeek);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(habit.name),
-        Row(
-          children: List.generate(7, (index) {
-            return Container(
-              width: 24,
-              height: 24,
-              margin: const EdgeInsets.all(4),
-              color: completionForWeek[index] ? Colors.green : Colors.red,
-            );
-          }),
-        ),
+        Text(habit.name, style: Theme.of(context).textTheme.titleLarge),
+        CalendarWeekView(
+          dayBuilder: (date, isSelected) {
+            return _dayBuilder(date, isSelected);
+          },
+          headerBuilder: (weekLabel) {
+            return _headerBuilderWeek(weekLabel);
+          },
+          dayOfWeekLabelBuilder: (dayOfWeek) {
+            return _dayOfWeekLabelBuilder(dayOfWeek);
+          },
+          selectedDate: DateTime.now(),
+          displayedWeekStart: startOfWeek,
+        )
       ],
     );
   }
@@ -122,56 +124,82 @@ class _StatisticsState extends State<Statistics> {
     final now = DateTime.now();
     final startOfMonth = DateTime(now.year, now.month, 1);
 
-    return Column(
-      children: habits.map((habit) {
-        final completionForMonth = habit.getCompletionForMonth(startOfMonth);
+    return Expanded(
+        child: ListView.builder(
+      itemCount: habits.length,
+      itemBuilder: (context, index) {
+        return _monthCard(habits[index], startOfMonth);
+      },
+    ));
+  }
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(habit.name, style: Theme.of(context).textTheme.subtitle1),
-            CalendarView(
-              dayBuilder: (date, isSelected) {
-                return Container(
-                  margin: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: isSelected ? Colors.green : Colors.red,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Center(
-                    child: Text(
-                      date.day.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                );
-              },
-              headerBuilder: (month, year) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '$month $year',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                );
-              },
-              dayOfWeekLabelBuilder: (dayOfWeek) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    dayOfWeek,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                );
-              },
-              displayedMonth: startOfMonth,
-              selectedDate: now,
-            ),
-          ],
-        );
-      }).toList(),
+  Widget _monthCard(Habit habit, DateTime startOfMonth) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(habit.name, style: Theme.of(context).textTheme.subtitle1),
+        CalendarMonthView(
+          dayBuilder: (date, isSelected) {
+            return _dayBuilder(date, isSelected);
+          },
+          headerBuilder: (month, year) {
+            return _headerBuilderMonth(month, year);
+          },
+          dayOfWeekLabelBuilder: (dayOfWeek) {
+            return _dayOfWeekLabelBuilder(dayOfWeek);
+          },
+          displayedMonth: startOfMonth,
+          selectedDate: DateTime.now(),
+        ),
+      ],
+    );
+  }
+
+  Widget _dayBuilder(DateTime date, bool isSelected) {
+    return Container(
+      margin: const EdgeInsets.all(1),
+      decoration: BoxDecoration(
+        color: isSelected ? Colors.green : Colors.red,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Center(
+        child: Text(
+          date.day.toString(),
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _headerBuilderMonth(String month, int year) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        '$month $year',
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _headerBuilderWeek(String weekLabel) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        weekLabel,
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _dayOfWeekLabelBuilder(String dayOfWeek) {
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Text(
+        dayOfWeek,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
