@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:objectbox/objectbox.dart';
+
 import '../../database/ObjectBox.dart';
 import 'CompletionDate.dart';
 
@@ -19,10 +20,10 @@ class Habit {
 
   bool isCompletedOn(DateTime date) {
     final dateStart = DateTime(date.year, date.month, date.day);
-    final dateEnd = dateStart.add(Duration(days: 1));
+    final dateEnd = dateStart.add(const Duration(days: 1));
     return completionDates.any((completionDate) {
       final completionDateTime =
-      DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
+          DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
       return completionDateTime.isAfter(dateStart) &&
           completionDateTime.isBefore(dateEnd);
     });

@@ -8,9 +8,7 @@ import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/screens/MyTabBar.dart';
 
 import 'database/ObjectBox.dart';
-import 'domain/habits/Habit.dart';
 import 'lang/codegen_loader.g.dart';
-import 'objectbox.g.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

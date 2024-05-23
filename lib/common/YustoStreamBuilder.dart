@@ -23,12 +23,19 @@ Widget yustoStreamBuilder<T>({
             : Center(
                 child: Text('${LocaleKeys.error.tr()}: ${snapshot.error}'),
               );
-      } else if (!snapshot.hasData) {
+      } else if (!snapshot.hasData || snapshot.data == null) {
         return Center(
           child: Text(LocaleKeys.noData.tr()),
         );
       } else {
-        return onData(context, snapshot.data!);
+        final data = snapshot.data;
+        if (data != null) {
+          return onData(context, data);
+        } else {
+          return Center(
+            child: Text(LocaleKeys.noData.tr()),
+          );
+        }
       }
     },
   );

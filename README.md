@@ -7,4 +7,7 @@ flutter pub run easy_localization:generate -S ./assets/lang -O ./lib/lang -o loc
 // db
 dart run build_runner build  
 
+// vor den pushen
+- "Dart format ." ausführen
+- "flutter analyze" ausführen und fehler beheben
 
