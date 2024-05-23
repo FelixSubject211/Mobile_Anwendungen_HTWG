@@ -4,9 +4,11 @@ import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
+import 'package:mobile_anwendungen/widgets/CalendarView.dart';
 
 import '../common/SelectionButton.dart';
 import '../common/YustoStreamBuilder.dart';
+import 'package:intl/intl.dart';
 
 class Statistics extends StatefulWidget {
   const Statistics({super.key});
@@ -112,6 +114,59 @@ class _StatisticsState extends State<Statistics> {
   }
 
   Widget _monthStatistic(BuildContext context, List<Habit> habits) {
-    return Text(habits.toString());
+    final now = DateTime.now();
+    final startOfMonth = DateTime(now.year, now.month, 1);
+
+    return Column(
+      children: habits.map((habit) {
+        final completionForMonth = habit.getCompletionForMonth(startOfMonth);
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(habit.name, style: Theme.of(context).textTheme.subtitle1),
+            CalendarView(
+              dayBuilder: (date, isSelected) {
+                return Container(
+                  margin: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: isSelected ? Colors.green : Colors.red,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Center(
+                    child: Text(
+                      date.day.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                );
+              },
+              headerBuilder: (month, year) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '$month $year',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                );
+              },
+              dayOfWeekLabelBuilder: (dayOfWeek) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    dayOfWeek,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                );
+              },
+              displayedMonth: startOfMonth,
+              selectedDate: now,
+            ),
+          ],
+        );
+      }).toList(),
+    );
   }
 }

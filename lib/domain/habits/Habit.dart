@@ -39,6 +39,14 @@ class Habit {
     });
   }
 
+  List<bool> getCompletionForMonth(DateTime startOfMonth) {
+    final daysInMonth = DateTime(startOfMonth.year, startOfMonth.month + 1, 0).day;
+    return List.generate(daysInMonth, (index) {
+      final date = DateTime(startOfMonth.year, startOfMonth.month, index + 1);
+      return isCompletedOn(date);
+    });
+  }
+
   static int newIndex() {
     final Box<Habit> habitBox =
         GetIt.instance.get<ObjectBox>().store.box<Habit>();
