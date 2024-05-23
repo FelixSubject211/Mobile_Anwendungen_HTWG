@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
@@ -86,30 +87,34 @@ class _StatisticsState extends State<Statistics> {
   }
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {
-    final startOfWeek =
-        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+    final startOfWeek = DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+
+    return Expanded(child: ListView.builder(
+      itemCount: habits.length,
+      itemBuilder: (context, index) {
+        return _weekCard(habits[index], startOfWeek);
+      },
+    ));
+  }
+
+  Widget _weekCard(Habit habit, DateTime startOfWeek) {
+    final completionForWeek = habit.getCompletionForWeek(startOfWeek);
 
     return Column(
-      children: habits.map((habit) {
-        final completionForWeek = habit.getCompletionForWeek(startOfWeek);
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(habit.name),
-            Row(
-              children: List.generate(7, (index) {
-                return Container(
-                  width: 24,
-                  height: 24,
-                  margin: const EdgeInsets.all(4),
-                  color: completionForWeek[index] ? Colors.green : Colors.red,
-                );
-              }),
-            ),
-          ],
-        );
-      }).toList(),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(habit.name),
+        Row(
+          children: List.generate(7, (index) {
+            return Container(
+              width: 24,
+              height: 24,
+              margin: const EdgeInsets.all(4),
+              color: completionForWeek[index] ? Colors.green : Colors.red,
+            );
+          }),
+        ),
+      ],
     );
   }
 
