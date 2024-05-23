@@ -15,20 +15,27 @@ Widget yustoStreamBuilder<T>({
         return onLoading != null
             ? onLoading(context)
             : const Center(
-          child: CircularProgressIndicator(),
-        );
+                child: CircularProgressIndicator(),
+              );
       } else if (snapshot.hasError) {
         return onError != null
             ? onError(context, snapshot.error)
             : Center(
-          child: Text('${LocaleKeys.error.tr()}: ${snapshot.error}'),
-        );
+                child: Text('${LocaleKeys.error.tr()}: ${snapshot.error}'),
+              );
       } else if (!snapshot.hasData || snapshot.data == null) {
         return Center(
           child: Text(LocaleKeys.noData.tr()),
         );
       } else {
-        return onData(context, snapshot.data!);
+        final data = snapshot.data;
+        if (data != null) {
+          return onData(context, data);
+        } else {
+          return Center(
+            child: Text(LocaleKeys.noData.tr()),
+          );
+        }
       }
     },
   );

@@ -20,7 +20,7 @@ class Habit {
 
   bool isCompletedOn(DateTime date) {
     final dateStart = DateTime(date.year, date.month, date.day);
-    final dateEnd = dateStart.add(Duration(days: 1));
+    final dateEnd = dateStart.add(const Duration(days: 1));
     return completionDates.any((completionDate) {
       final completionDateTime =
           DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
