@@ -47,7 +47,7 @@ class _ListHabitsState extends State<ListHabits> {
     _habitRepository.reorderHabit(oldIndex, newIndex);
   }
 
-  void _onDeleteHabit(habit) {
+  void _onDeleteHabit(Habit habit) {
     _habitRepository.deleteHabit(habit);
   }
 

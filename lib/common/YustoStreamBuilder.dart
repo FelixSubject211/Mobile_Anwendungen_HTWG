@@ -15,15 +15,15 @@ Widget yustoStreamBuilder<T>({
         return onLoading != null
             ? onLoading(context)
             : const Center(
-                child: CircularProgressIndicator(),
-              );
+          child: CircularProgressIndicator(),
+        );
       } else if (snapshot.hasError) {
         return onError != null
             ? onError(context, snapshot.error)
             : Center(
-                child: Text('${LocaleKeys.error.tr()}: ${snapshot.error}'),
-              );
-      } else if (!snapshot.hasData) {
+          child: Text('${LocaleKeys.error.tr()}: ${snapshot.error}'),
+        );
+      } else if (!snapshot.hasData || snapshot.data == null) {
         return Center(
           child: Text(LocaleKeys.noData.tr()),
         );
