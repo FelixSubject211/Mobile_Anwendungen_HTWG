@@ -30,20 +30,24 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
 
   void _goToNextMonth() {
     setState(() {
-      displayedMonth = DateTime(displayedMonth.year, displayedMonth.month + 1, 1);
+      displayedMonth =
+          DateTime(displayedMonth.year, displayedMonth.month + 1, 1);
     });
   }
 
   void _goToPreviousMonth() {
     setState(() {
-      displayedMonth = DateTime(displayedMonth.year, displayedMonth.month - 1, 1);
+      displayedMonth =
+          DateTime(displayedMonth.year, displayedMonth.month - 1, 1);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final daysInCurrentMonth = _monthLength(displayedMonth.month, displayedMonth.year);
-    final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(displayedMonth.month, displayedMonth.year);
+    final daysInCurrentMonth =
+        _monthLength(displayedMonth.month, displayedMonth.year);
+    final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
+        displayedMonth.month, displayedMonth.year);
 
     return Column(
       children: [
@@ -69,7 +73,8 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
     );
   }
 
-  Widget _buildCalendar(int daysInCurrentMonth, int previousMonthDays, DateTime displayedMonth) {
+  Widget _buildCalendar(
+      int daysInCurrentMonth, int previousMonthDays, DateTime displayedMonth) {
     final totalItems = daysInCurrentMonth + previousMonthDays + 7;
 
     return SizedBox(
@@ -83,20 +88,26 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
           mainAxisSpacing: 4,
         ),
         itemBuilder: (context, index) {
-          return _buildItem(index, previousMonthDays, daysInCurrentMonth, displayedMonth, widget.selectedDate);
+          return _buildItem(index, previousMonthDays, daysInCurrentMonth,
+              displayedMonth, widget.selectedDate);
         },
       ),
     );
   }
 
-  Widget _buildItem(int iteration, int previousMonthDays, int daysInCurrentMonth, DateTime displayedMonth, DateTime selectedDate) {
+  Widget _buildItem(int iteration, int previousMonthDays,
+      int daysInCurrentMonth, DateTime displayedMonth, DateTime selectedDate) {
     if (iteration < 7) {
       return widget.dayOfWeekLabelBuilder(
-          DateFormat.E((context.locale.toString())).format(DateTime(2021, 1, iteration + 4))
-      );
-    } else if (iteration >= previousMonthDays + 7 && iteration < previousMonthDays + 7 + daysInCurrentMonth) {
-      final date = DateTime(displayedMonth.year, displayedMonth.month, iteration - (previousMonthDays + 6));
-      final isSelected = date.year == selectedDate.year && date.month == selectedDate.month && date.day == selectedDate.day;
+          DateFormat.E((context.locale.toString()))
+              .format(DateTime(2021, 1, iteration + 4)));
+    } else if (iteration >= previousMonthDays + 7 &&
+        iteration < previousMonthDays + 7 + daysInCurrentMonth) {
+      final date = DateTime(displayedMonth.year, displayedMonth.month,
+          iteration - (previousMonthDays + 6));
+      final isSelected = date.year == selectedDate.year &&
+          date.month == selectedDate.month &&
+          date.day == selectedDate.day;
       return widget.dayBuilder(date, isSelected);
     } else {
       return Container();
