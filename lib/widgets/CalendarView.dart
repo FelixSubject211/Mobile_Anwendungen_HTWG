@@ -56,13 +56,13 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: _goToPreviousMonth,
             ),
             widget.headerBuilder(
-                DateFormat.MMMM().format(displayedMonth), displayedMonth.year),
+                DateFormat.MMMM(context.locale.toString()).format(displayedMonth), displayedMonth.year),
             IconButton(
-              icon: Icon(Icons.arrow_forward),
+              icon: const Icon(Icons.arrow_forward),
               onPressed: _goToNextMonth,
             ),
           ],
@@ -111,7 +111,7 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
   ) {
     if (iteration < 7) {
       return widget.dayOfWeekLabelBuilder(
-          DateFormat.E().format(DateTime(2021, 1, iteration + 4)));
+          DateFormat.E((context.locale.toString())).format(DateTime(2021, 1, iteration + 4)));
     } else if (iteration >= previousMonthDays + 7 &&
         iteration < previousMonthDays + 7 + daysInCurrentMonth) {
       final date = DateTime(displayedMonth.year, displayedMonth.month,

@@ -95,7 +95,7 @@ class _CalendarWeekViewState extends State<CalendarWeekView> {
         date.day == selectedDate.day;
     return Column(
       children: [
-        widget.dayOfWeekLabelBuilder(DateFormat.E().format(date)),
+        widget.dayOfWeekLabelBuilder(DateFormat.E((context.locale.toString())).format(date)),
         widget.dayBuilder(date, isSelected),
       ],
     );
@@ -106,6 +106,6 @@ class _CalendarWeekViewState extends State<CalendarWeekView> {
   }
 
   String _formatWeekLabel(DateTime startOfWeek) {
-    return DateFormat.MMM().format(startOfWeek);
+    return DateFormat.MMM((context.locale.toString())).format(startOfWeek);
   }
 }
