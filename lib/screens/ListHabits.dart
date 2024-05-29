@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/common/YustoStreamBuilder.dart';
+import 'package:mobile_anwendungen/domain/habits/DayState.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/screens/UpsertHabit.dart';
 
@@ -101,7 +102,7 @@ class _ListHabitsState extends State<ListHabits> {
       child: ListTile(
         title: Text(habit.name),
         trailing: Checkbox(
-          value: habit.isCompletedToday(),
+          value: habit.isCompletedToday() == DayState.Done,
           onChanged: (isChecked) {
             if (isChecked ?? false) {
               _onCompleteHabit(habit);

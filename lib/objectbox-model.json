@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:4933774847501334240",
-      "lastPropertyId": "3:5114650160825505742",
+      "lastPropertyId": "5:7831590582768626053",
       "name": "Habit",
       "properties": [
         {
@@ -22,6 +22,11 @@
         {
           "id": "3:5114650160825505742",
           "name": "index",
+          "type": 6
+        },
+        {
+          "id": "5:7831590582768626053",
+          "name": "creationDate",
           "type": 6
         }
       ],
@@ -54,7 +59,7 @@
     }
   ],
   "lastEntityId": "3:5768749410228167719",
-  "lastIndexId": "0:0",
+  "lastIndexId": "1:1373669356522302806",
   "lastRelationId": "1:3165293421844515969",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
@@ -62,10 +67,13 @@
   "retiredEntityUids": [
     2271560381588274515
   ],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    1373669356522302806
+  ],
   "retiredPropertyUids": [
     5772066262068371116,
-    2849403198628120101
+    2849403198628120101,
+    6188093224734784656
   ],
   "retiredRelationUids": [],
   "version": 1

@@ -1,61 +1,57 @@
 import 'package:get_it/get_it.dart';
 import 'package:objectbox/objectbox.dart';
-
 import '../../database/ObjectBox.dart';
 import 'CompletionDate.dart';
+import 'DayState.dart';
 
 @Entity()
 class Habit {
   int id = 0;
   String name;
-
   int index;
+  int creationDate;
 
   final completionDates = ToMany<CompletionDate>();
 
   Habit({
     required this.name,
     required this.index,
+    required this.creationDate,
   });
 
-  bool isCompletedOn(DateTime date) {
+  DayState dayStateOn(DateTime date) {
     final dateStart = DateTime(date.year, date.month, date.day);
     final dateEnd = dateStart.add(const Duration(days: 1));
-    return completionDates.any((completionDate) {
-      final completionDateTime =
-          DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
-      return completionDateTime.isAfter(dateStart) &&
-          completionDateTime.isBefore(dateEnd);
-    });
+
+    final currentDate = DateTime.now();
+    final currentDateStart = DateTime(currentDate.year, currentDate.month, currentDate.day);
+
+    if (dateStart.isAfter(currentDateStart)) {
+      return DayState.FutureDate;
+    }
+
+    if (date.isBefore(DateTime.fromMillisecondsSinceEpoch(creationDate))) {
+      return DayState.HabitNotCreatedYet;
+    }
+
+    if (completionDates.any((completionDate) {
+      final completionDateTime = DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
+      return completionDateTime.isAfter(dateStart) && completionDateTime.isBefore(dateEnd);
+    })) {
+      return DayState.Done;
+    } else {
+      return DayState.NotDone;
+    }
   }
 
-  bool isCompletedToday() {
-    return isCompletedOn(DateTime.now());
-  }
-
-  List<bool> getCompletionForWeek(DateTime startOfWeek) {
-    return List.generate(7, (index) {
-      final date = startOfWeek.add(Duration(days: index));
-      return isCompletedOn(date);
-    });
-  }
-
-  List<bool> getCompletionForMonth(DateTime startOfMonth) {
-    final daysInMonth =
-        DateTime(startOfMonth.year, startOfMonth.month + 1, 0).day;
-    return List.generate(daysInMonth, (index) {
-      final date = DateTime(startOfMonth.year, startOfMonth.month, index + 1);
-      return isCompletedOn(date);
-    });
+  DayState isCompletedToday() {
+    return dayStateOn(DateTime.now());
   }
 
   static int newIndex() {
-    final Box<Habit> habitBox =
-        GetIt.instance.get<ObjectBox>().store.box<Habit>();
+    final Box<Habit> habitBox = GetIt.instance.get<ObjectBox>().store.box<Habit>();
     final habits = habitBox.getAll();
-    final maxIndex = habits
-        .map((habit) => habit.index)
-        .fold(0, (prev, curr) => prev > curr ? prev : curr);
+    final maxIndex = habits.map((habit) => habit.index).fold(0, (prev, curr) => prev > curr ? prev : curr);
     return maxIndex + 1;
   }
 }

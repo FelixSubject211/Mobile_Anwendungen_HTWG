@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mobile_anwendungen/domain/habits/DayState.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
@@ -105,7 +106,7 @@ class _StatisticsState extends State<Statistics> {
         Text(habit.name, style: Theme.of(context).textTheme.titleLarge),
         CalendarWeekView(
           dayBuilder: (date, isSelected) {
-            return _dayBuilder(date, isSelected);
+            return _dayBuilder(date, isSelected, habit);
           },
           headerBuilder: (weekLabel) {
             return _headerBuilderWeek(weekLabel);
@@ -140,7 +141,7 @@ class _StatisticsState extends State<Statistics> {
         Text(habit.name, style: Theme.of(context).textTheme.subtitle1),
         CalendarMonthView(
           dayBuilder: (date, isSelected) {
-            return _dayBuilder(date, isSelected);
+            return _dayBuilder(date, isSelected, habit);
           },
           headerBuilder: (month, year) {
             return _headerBuilderMonth(month, year);
@@ -155,11 +156,11 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-  Widget _dayBuilder(DateTime date, bool isSelected) {
+  Widget _dayBuilder(DateTime date, bool isSelected, Habit habit) {
     return Container(
       margin: const EdgeInsets.all(1),
       decoration: BoxDecoration(
-        color: isSelected ? Colors.green : Colors.red,
+        color: habit.dayStateOn(date).getColor(),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Center(
