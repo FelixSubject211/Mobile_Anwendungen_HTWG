@@ -206,7 +206,7 @@ class _StatisticsState extends State<Statistics> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/empty.png'),
+          Image.asset('assets/images/emptyStatistics.png'),
           Text(
             LocaleKeys.textIfItIsEmpty.tr(),
             style: const TextStyle(fontSize: 24),
