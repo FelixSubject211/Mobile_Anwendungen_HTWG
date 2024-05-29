@@ -149,7 +149,7 @@ class _StatisticsState extends State<Statistics> {
           dayOfWeekLabelBuilder: (dayOfWeek) {
             return _dayOfWeekLabelBuilder(dayOfWeek);
           },
-          initialDisplayedMonth: startOfMonth,
+          displayedMonth: startOfMonth,
           selectedDate: DateTime.now(),
         ),
       ],
