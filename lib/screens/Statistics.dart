@@ -103,7 +103,7 @@ class _StatisticsState extends State<Statistics> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(habit.name, style: Theme.of(context).textTheme.titleLarge),
+        Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
         CalendarWeekView(
           dayBuilder: (date, isSelected) {
             return _dayBuilder(date, isSelected, habit);
@@ -138,7 +138,7 @@ class _StatisticsState extends State<Statistics> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(habit.name, style: Theme.of(context).textTheme.subtitle1),
+        Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
         CalendarMonthView(
           dayBuilder: (date, isSelected) {
             return _dayBuilder(date, isSelected, habit);
@@ -179,7 +179,7 @@ class _StatisticsState extends State<Statistics> {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         '$month $year',
-        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -189,7 +189,7 @@ class _StatisticsState extends State<Statistics> {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         weekLabel,
-        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -199,7 +199,7 @@ class _StatisticsState extends State<Statistics> {
       padding: const EdgeInsets.all(1.0),
       child: Text(
         dayOfWeek,
-        style: const TextStyle(fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 14),
       ),
     );
   }
