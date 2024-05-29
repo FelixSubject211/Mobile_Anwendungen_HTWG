@@ -2,50 +2,82 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class CalendarMonthView extends StatelessWidget {
+class CalendarMonthView extends StatefulWidget {
   final Widget Function(DateTime date, bool isSelected) dayBuilder;
   final Widget Function(String month, int year) headerBuilder;
   final Widget Function(String dayOfWeek) dayOfWeekLabelBuilder;
+  final DateTime initialDisplayedMonth;
   final DateTime selectedDate;
-  final DateTime displayedMonth;
 
   const CalendarMonthView({
     super.key,
     required this.dayBuilder,
     required this.headerBuilder,
     required this.dayOfWeekLabelBuilder,
-    required this.displayedMonth,
+    required this.initialDisplayedMonth,
     required this.selectedDate,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final daysInCurrentMonth =
-        _monthLength(displayedMonth.month, displayedMonth.year);
-    final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
-        displayedMonth.month, displayedMonth.year);
+  _CalendarMonthViewState createState() => _CalendarMonthViewState();
+}
 
+class _CalendarMonthViewState extends State<CalendarMonthView> {
+  late DateTime displayedMonth;
+
+  @override
+  void initState() {
+    super.initState();
+    displayedMonth = widget.initialDisplayedMonth;
+  }
+
+  void _previousMonth() {
+    setState(() {
+      displayedMonth = DateTime(displayedMonth.year, displayedMonth.month - 1, 1);
+    });
+  }
+
+  void _nextMonth() {
+    setState(() {
+      displayedMonth = DateTime(displayedMonth.year, displayedMonth.month + 1, 1);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
-        headerBuilder(
-            DateFormat.MMMM().format(displayedMonth), displayedMonth.year),
-        _buildCalendar(daysInCurrentMonth, previousMonthDays, displayedMonth),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_left),
+              onPressed: _previousMonth,
+            ),
+            widget.headerBuilder(
+                DateFormat.MMMM().format(displayedMonth), displayedMonth.year),
+            IconButton(
+              icon: Icon(Icons.arrow_right),
+              onPressed: _nextMonth,
+            ),
+          ],
+        ),
+        Expanded(
+          child: _buildCalendar(displayedMonth),
+        ),
       ],
     );
   }
 
-  Widget _buildCalendar(
-    int daysInCurrentMonth,
-    int previousMonthDays,
-    DateTime displayedMonth,
-  ) {
-    final totalItems = daysInCurrentMonth + previousMonthDays + 7;
+  Widget _buildCalendar(DateTime monthToShow) {
+    final daysInCurrentMonth = _monthLength(monthToShow.month, monthToShow.year);
+    final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(monthToShow.month, monthToShow.year);
 
     return SizedBox(
       height: 400,
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: totalItems,
+        itemCount: daysInCurrentMonth + previousMonthDays + 7,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 7,
           crossAxisSpacing: 4,
@@ -56,8 +88,8 @@ class CalendarMonthView extends StatelessWidget {
             index,
             previousMonthDays,
             daysInCurrentMonth,
-            displayedMonth,
-            selectedDate,
+            monthToShow,
+            widget.selectedDate,
           );
         },
       ),
@@ -65,14 +97,14 @@ class CalendarMonthView extends StatelessWidget {
   }
 
   Widget _buildItem(
-    int iteration,
-    int previousMonthDays,
-    int daysInCurrentMonth,
-    DateTime displayedMonth,
-    DateTime selectedDate,
-  ) {
+      int iteration,
+      int previousMonthDays,
+      int daysInCurrentMonth,
+      DateTime displayedMonth,
+      DateTime selectedDate,
+      ) {
     if (iteration < 7) {
-      return dayOfWeekLabelBuilder(
+      return widget.dayOfWeekLabelBuilder(
           DateFormat.E().format(DateTime(2021, 1, iteration + 4)));
     } else if (iteration >= previousMonthDays + 7 &&
         iteration < previousMonthDays + 7 + daysInCurrentMonth) {
@@ -81,7 +113,7 @@ class CalendarMonthView extends StatelessWidget {
       final isSelected = date.year == selectedDate.year &&
           date.month == selectedDate.month &&
           date.day == selectedDate.day;
-      return dayBuilder(date, isSelected);
+      return widget.dayBuilder(date, isSelected);
     } else {
       return Container();
     }
