@@ -80,20 +80,10 @@ class _ListHabitsState extends State<ListHabits> {
 
   Widget _onData(BuildContext context, List<Habit> habits) {
     if (habits.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/empty.png'),
-            Text(
-              LocaleKeys.textIfItIsEmpty.tr(),
-              style: const TextStyle(fontSize: 24),
-            ),
-          ],
-        ),
-      );
+      return _emptyState();
+    } else {
+      return _isEditing ? _buildEditableList(habits) : _buildList(habits);
     }
-    return _isEditing ? _buildEditableList(habits) : _buildList(habits);
   }
 
   Widget _buildList(List<Habit> habits) {
@@ -165,6 +155,21 @@ class _ListHabitsState extends State<ListHabits> {
         onTap: () {
           _showUpsertHabit(habit);
         },
+      ),
+    );
+  }
+
+  Widget _emptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/images/empty.png'),
+          Text(
+            LocaleKeys.textIfItIsEmpty.tr(),
+            style: const TextStyle(fontSize: 24),
+          ),
+        ],
       ),
     );
   }
