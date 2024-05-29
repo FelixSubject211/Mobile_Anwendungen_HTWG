@@ -21,7 +21,7 @@ class CalendarMonthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final daysInCurrentMonth =
-    _monthLength(displayedMonth.month, displayedMonth.year);
+        _monthLength(displayedMonth.month, displayedMonth.year);
     final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
         displayedMonth.month, displayedMonth.year);
 
@@ -35,10 +35,10 @@ class CalendarMonthView extends StatelessWidget {
   }
 
   Widget _buildCalendar(
-      int daysInCurrentMonth,
-      int previousMonthDays,
-      DateTime displayedMonth,
-      ) {
+    int daysInCurrentMonth,
+    int previousMonthDays,
+    DateTime displayedMonth,
+  ) {
     final totalItems = daysInCurrentMonth + previousMonthDays + 7;
 
     return SizedBox(
@@ -65,12 +65,12 @@ class CalendarMonthView extends StatelessWidget {
   }
 
   Widget _buildItem(
-      int iteration,
-      int previousMonthDays,
-      int daysInCurrentMonth,
-      DateTime displayedMonth,
-      DateTime selectedDate,
-      ) {
+    int iteration,
+    int previousMonthDays,
+    int daysInCurrentMonth,
+    DateTime displayedMonth,
+    DateTime selectedDate,
+  ) {
     if (iteration < 7) {
       return dayOfWeekLabelBuilder(
           DateFormat.E().format(DateTime(2021, 1, iteration + 4)));

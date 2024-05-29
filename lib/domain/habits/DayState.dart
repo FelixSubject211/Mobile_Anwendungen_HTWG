@@ -3,23 +3,23 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 enum DayState {
-  Done,
-  NotDone,
-  HabitNotCreatedYet,
-  FutureDate,
+  done,
+  notDone,
+  habitNotCreatedYet,
+  futureDate,
 }
 
 extension DayStateExtension on DayState {
   Color getColor() {
     switch (this) {
-      case DayState.Done:
+      case DayState.done:
         return Colors.green;
-      case DayState.NotDone:
+      case DayState.notDone:
         return Colors.red;
-      case DayState.HabitNotCreatedYet:
+      case DayState.habitNotCreatedYet:
         return Colors.grey;
-      case DayState.FutureDate:
-        return Colors.black;
+      case DayState.futureDate:
+        return Colors.grey;
       default:
         return Colors.white;
     }

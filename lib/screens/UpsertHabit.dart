@@ -39,12 +39,10 @@ class _UpsertHabitState extends State<UpsertHabit> {
       widget.habit?.name = name;
       _habitRepository.upsertHabit(widget.habit!);
     } else {
-      _habitRepository.upsertHabit(
-          Habit(
-              name: name,
-              index: Habit.newIndex(),
-              creationDate: DateTime.now().millisecondsSinceEpoch
-          ));
+      _habitRepository.upsertHabit(Habit(
+          name: name,
+          index: Habit.newIndex(),
+          creationDate: DateTime.now().millisecondsSinceEpoch));
     }
     Navigator.of(context).pop();
   }

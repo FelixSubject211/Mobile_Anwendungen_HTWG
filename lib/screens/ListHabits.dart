@@ -102,7 +102,7 @@ class _ListHabitsState extends State<ListHabits> {
       child: ListTile(
         title: Text(habit.name),
         trailing: Checkbox(
-          value: habit.isCompletedToday() == DayState.Done,
+          value: habit.isCompletedToday() == DayState.done,
           onChanged: (isChecked) {
             if (isChecked ?? false) {
               _onCompleteHabit(habit);

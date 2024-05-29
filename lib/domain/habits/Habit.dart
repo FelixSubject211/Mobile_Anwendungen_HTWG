@@ -24,23 +24,26 @@ class Habit {
     final dateEnd = dateStart.add(const Duration(days: 1));
 
     final currentDate = DateTime.now();
-    final currentDateStart = DateTime(currentDate.year, currentDate.month, currentDate.day);
+    final currentDateStart =
+        DateTime(currentDate.year, currentDate.month, currentDate.day);
 
     if (dateStart.isAfter(currentDateStart)) {
-      return DayState.FutureDate;
+      return DayState.futureDate;
     }
 
-    if (date.isBefore(DateTime.fromMillisecondsSinceEpoch(creationDate))) {
-      return DayState.HabitNotCreatedYet;
+    if (dateEnd.isBefore(DateTime.fromMillisecondsSinceEpoch(creationDate))) {
+      return DayState.habitNotCreatedYet;
     }
 
     if (completionDates.any((completionDate) {
-      final completionDateTime = DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
-      return completionDateTime.isAfter(dateStart) && completionDateTime.isBefore(dateEnd);
+      final completionDateTime =
+          DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
+      return completionDateTime.isAfter(dateStart) &&
+          completionDateTime.isBefore(dateEnd);
     })) {
-      return DayState.Done;
+      return DayState.done;
     } else {
-      return DayState.NotDone;
+      return DayState.notDone;
     }
   }
 
@@ -49,9 +52,12 @@ class Habit {
   }
 
   static int newIndex() {
-    final Box<Habit> habitBox = GetIt.instance.get<ObjectBox>().store.box<Habit>();
+    final Box<Habit> habitBox =
+        GetIt.instance.get<ObjectBox>().store.box<Habit>();
     final habits = habitBox.getAll();
-    final maxIndex = habits.map((habit) => habit.index).fold(0, (prev, curr) => prev > curr ? prev : curr);
+    final maxIndex = habits
+        .map((habit) => habit.index)
+        .fold(0, (prev, curr) => prev > curr ? prev : curr);
     return maxIndex + 1;
   }
 }
