@@ -19,7 +19,7 @@ extension DayStateExtension on DayState {
       case DayState.HabitNotCreatedYet:
         return Colors.grey;
       case DayState.FutureDate:
-        return Colors.grey;
+        return Colors.black;
       default:
         return Colors.white;
     }
