@@ -32,25 +32,11 @@ class _StatisticsState extends State<Statistics> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.statisticsTitle.tr()),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _segmentedControl(theme),
-            const SizedBox(height: 20),
-            _selectedButton == LocaleKeys.statisticsWeekSelection.tr()
-                ? _weekStatisticStreamBuilder()
-                : _monthStatisticStreamBuilder()
-          ],
-        ),
-      ),
+      body: _streamBuilder(),
     );
   }
 
@@ -76,17 +62,34 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-  Widget _weekStatisticStreamBuilder() {
+  Widget _streamBuilder() {
     return yustoStreamBuilder(
-        stream: _habitRepository.listHabits(), onData: _weekStatistic);
+        stream: _habitRepository.listHabits(), onData: _onData);
   }
 
-  Widget _monthStatisticStreamBuilder() {
-    return yustoStreamBuilder(
-        stream: _habitRepository.listHabits(), onData: _monthStatistic);
+  Widget _onData(BuildContext context, List<Habit> habits) {
+    if (habits.isEmpty) {
+      return _emptyState();
+    } else {
+      final theme = Theme.of(context);
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _segmentedControl(theme),
+            const SizedBox(height: 20),
+            _selectedButton == LocaleKeys.statisticsWeekSelection.tr()
+                ? _weekStatistic(habits)
+                : _monthStatistic(habits)
+          ],
+        ),
+      );
+    }
   }
 
-  Widget _weekStatistic(BuildContext context, List<Habit> habits) {
+  Widget _weekStatistic(List<Habit> habits) {
     final startOfWeek =
         DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
@@ -105,24 +108,21 @@ class _StatisticsState extends State<Statistics> {
       children: [
         Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
         CalendarWeekView(
-          dayBuilder: (date, isSelected) {
-            return _dayBuilder(date, isSelected, habit);
-          },
-          headerBuilder: (weekLabel) {
-            return _headerBuilderWeek(weekLabel);
-          },
-          dayOfWeekLabelBuilder: (dayOfWeek) {
-            return _dayOfWeekLabelBuilder(dayOfWeek);
-          },
-          selectedDate: DateTime.now()
-        )
+            dayBuilder: (date, isSelected) {
+              return _dayBuilder(date, isSelected, habit);
+            },
+            headerBuilder: (weekLabel) {
+              return _headerBuilderWeek(weekLabel);
+            },
+            dayOfWeekLabelBuilder: (dayOfWeek) {
+              return _dayOfWeekLabelBuilder(dayOfWeek);
+            },
+            selectedDate: DateTime.now())
       ],
     );
   }
 
-  Widget _monthStatistic(BuildContext context, List<Habit> habits) {
-    final now = DateTime.now();
-
+  Widget _monthStatistic(List<Habit> habits) {
     return Expanded(
         child: ListView.builder(
       itemCount: habits.length,
@@ -176,7 +176,7 @@ class _StatisticsState extends State<Statistics> {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         '$month $year',
-          style: const TextStyle(fontSize: 14),
+        style: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -197,6 +197,21 @@ class _StatisticsState extends State<Statistics> {
       child: Text(
         dayOfWeek,
         style: const TextStyle(fontSize: 14),
+      ),
+    );
+  }
+
+  Widget _emptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/images/empty.png'),
+          Text(
+            LocaleKeys.textIfItIsEmpty.tr(),
+            style: const TextStyle(fontSize: 24),
+          ),
+        ],
       ),
     );
   }

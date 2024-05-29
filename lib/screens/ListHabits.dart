@@ -17,7 +17,7 @@ class ListHabits extends StatefulWidget {
 
 class _ListHabitsState extends State<ListHabits> {
   final HabitRepository _habitRepository =
-  GetIt.instance.get<HabitRepository>();
+      GetIt.instance.get<HabitRepository>();
 
   bool _isEditing = false;
 
@@ -98,7 +98,8 @@ class _ListHabitsState extends State<ListHabits> {
   Widget _buildEditableList(List<Habit> habits) {
     return ReorderableListView(
       onReorder: _onReorder,
-      padding: const EdgeInsets.symmetric(vertical: 0), // Anpassung des Innenabstands
+      padding: const EdgeInsets.symmetric(
+          vertical: 0), // Anpassung des Innenabstands
       children: habits.map((habit) => _editableCard(habit)).toList(),
     );
   }
@@ -138,7 +139,8 @@ class _ListHabitsState extends State<ListHabits> {
         border: Border.all(color: Colors.grey.shade300),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0), // Anpassung des Innenabstands
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16.0, vertical: 0.0), // Anpassung des Innenabstands
         title: Text(habit.name),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

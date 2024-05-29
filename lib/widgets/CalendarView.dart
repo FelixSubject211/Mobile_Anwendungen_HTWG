@@ -31,20 +31,24 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
 
   void _goToNextMonth() {
     setState(() {
-      displayedMonth = DateTime(displayedMonth.year, displayedMonth.month + 1, 1);
+      displayedMonth =
+          DateTime(displayedMonth.year, displayedMonth.month + 1, 1);
     });
   }
 
   void _goToPreviousMonth() {
     setState(() {
-      displayedMonth = DateTime(displayedMonth.year, displayedMonth.month - 1, 1);
+      displayedMonth =
+          DateTime(displayedMonth.year, displayedMonth.month - 1, 1);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final daysInCurrentMonth = _monthLength(displayedMonth.month, displayedMonth.year);
-    final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(displayedMonth.month, displayedMonth.year);
+    final daysInCurrentMonth =
+        _monthLength(displayedMonth.month, displayedMonth.year);
+    final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
+        displayedMonth.month, displayedMonth.year);
 
     return Column(
       children: [
@@ -55,7 +59,8 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
               icon: Icon(Icons.arrow_back),
               onPressed: _goToPreviousMonth,
             ),
-            widget.headerBuilder(DateFormat.MMMM().format(displayedMonth), displayedMonth.year),
+            widget.headerBuilder(
+                DateFormat.MMMM().format(displayedMonth), displayedMonth.year),
             IconButton(
               icon: Icon(Icons.arrow_forward),
               onPressed: _goToNextMonth,
@@ -68,10 +73,10 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
   }
 
   Widget _buildCalendar(
-      int daysInCurrentMonth,
-      int previousMonthDays,
-      DateTime displayedMonth,
-      ) {
+    int daysInCurrentMonth,
+    int previousMonthDays,
+    DateTime displayedMonth,
+  ) {
     final totalItems = daysInCurrentMonth + previousMonthDays + 7;
 
     return SizedBox(
@@ -98,12 +103,12 @@ class _CalendarMonthViewState extends State<CalendarMonthView> {
   }
 
   Widget _buildItem(
-      int iteration,
-      int previousMonthDays,
-      int daysInCurrentMonth,
-      DateTime displayedMonth,
-      DateTime selectedDate,
-      ) {
+    int iteration,
+    int previousMonthDays,
+    int daysInCurrentMonth,
+    DateTime displayedMonth,
+    DateTime selectedDate,
+  ) {
     if (iteration < 7) {
       return widget.dayOfWeekLabelBuilder(
           DateFormat.E().format(DateTime(2021, 1, iteration + 4)));
