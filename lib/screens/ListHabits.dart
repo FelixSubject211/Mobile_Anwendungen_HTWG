@@ -17,7 +17,7 @@ class ListHabits extends StatefulWidget {
 
 class _ListHabitsState extends State<ListHabits> {
   final HabitRepository _habitRepository =
-  GetIt.instance.get<HabitRepository>();
+      GetIt.instance.get<HabitRepository>();
 
   bool _isEditing = false;
 
@@ -70,7 +70,9 @@ class _ListHabitsState extends State<ListHabits> {
                 return IconButton(
                   icon: Icon(_isEditing ? Icons.check : Icons.edit),
                   onPressed: _toggleEditing,
-                  tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+                  tooltip: _isEditing
+                      ? LocaleKeys.finish.tr()
+                      : LocaleKeys.edit.tr(),
                 );
               }
               return Container();
@@ -157,7 +159,8 @@ class _ListHabitsState extends State<ListHabits> {
         border: Border.all(color: Colors.grey.shade300),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
         title: Text(habit.name),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
