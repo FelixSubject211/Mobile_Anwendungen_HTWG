@@ -17,16 +17,18 @@ class ListHabits extends StatefulWidget {
 
 class _ListHabitsState extends State<ListHabits> {
   final HabitRepository _habitRepository =
-      GetIt.instance.get<HabitRepository>();
+  GetIt.instance.get<HabitRepository>();
 
   bool _isEditing = false;
 
+  // Toggle between editing and viewing mode
   void _toggleEditing() {
     setState(() {
       _isEditing = !_isEditing;
     });
   }
 
+  // Navigate to the UpsertHabit screen to add or edit a habit
   void _showUpsertHabit(Habit? habit) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -35,18 +37,22 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
+  // Mark habit as completed
   void _onCompleteHabit(Habit habit) {
     _habitRepository.completeHabit(habit);
   }
 
+  // Mark habit as not completed
   void _onUnCompleteHabit(Habit habit) {
     _habitRepository.unCompleteHabit(habit);
   }
 
+  // Handle reordering of habits
   void _onReorder(int oldIndex, int newIndex) {
     _habitRepository.reorderHabit(oldIndex, newIndex);
   }
 
+  // Delete a habit
   void _onDeleteHabit(Habit habit) {
     _habitRepository.deleteHabit(habit);
   }
@@ -57,10 +63,18 @@ class _ListHabitsState extends State<ListHabits> {
       appBar: AppBar(
         title: Text(LocaleKeys.listHabitsTitle.tr()),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(_isEditing ? Icons.check : Icons.edit),
-            onPressed: _toggleEditing,
-            tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+          yustoStreamBuilder(
+            stream: _habitRepository.listHabits(),
+            onData: (context, habits) {
+              if (habits.isNotEmpty) {
+                return IconButton(
+                  icon: Icon(_isEditing ? Icons.check : Icons.edit),
+                  onPressed: _toggleEditing,
+                  tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+                );
+              }
+              return Container();
+            },
           ),
         ],
       ),
@@ -68,16 +82,25 @@ class _ListHabitsState extends State<ListHabits> {
         stream: _habitRepository.listHabits(),
         onData: _onData,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showUpsertHabit(null);
+      floatingActionButton: yustoStreamBuilder(
+        stream: _habitRepository.listHabits(),
+        onData: (context, habits) {
+          if (habits.isNotEmpty) {
+            return FloatingActionButton(
+              onPressed: () {
+                _showUpsertHabit(null);
+              },
+              tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
+              child: const Icon(Icons.add),
+            );
+          }
+          return Container();
         },
-        tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
-        child: const Icon(Icons.add),
       ),
     );
   }
 
+  // Handle data received from the stream
   Widget _onData(BuildContext context, List<Habit> habits) {
     if (habits.isEmpty) {
       return _emptyState();
@@ -86,6 +109,7 @@ class _ListHabitsState extends State<ListHabits> {
     }
   }
 
+  // Build the normal list of habits
   Widget _buildList(List<Habit> habits) {
     return ListView.builder(
       itemCount: habits.length,
@@ -95,15 +119,16 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
+  // Build the editable list of habits
   Widget _buildEditableList(List<Habit> habits) {
     return ReorderableListView(
       onReorder: _onReorder,
-      padding: const EdgeInsets.symmetric(
-          vertical: 0), // Anpassung des Innenabstands
+      padding: const EdgeInsets.symmetric(vertical: 0),
       children: habits.map((habit) => _editableCard(habit)).toList(),
     );
   }
 
+  // Build the card for each habit in the normal list
   Widget _card(Habit habit) {
     return Container(
       key: ValueKey(habit.id),
@@ -129,6 +154,7 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
+  // Build the card for each habit in the editable list
   Widget _editableCard(Habit habit) {
     return Container(
       key: ValueKey(habit.id),
@@ -139,8 +165,7 @@ class _ListHabitsState extends State<ListHabits> {
         border: Border.all(color: Colors.grey.shade300),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16.0, vertical: 0.0), // Anpassung des Innenabstands
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
         title: Text(habit.name),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
@@ -161,6 +186,7 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
+  // Display empty state when there are no habits
   Widget _emptyState() {
     return Center(
       child: Column(
