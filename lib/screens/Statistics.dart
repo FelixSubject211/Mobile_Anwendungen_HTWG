@@ -114,8 +114,7 @@ class _StatisticsState extends State<Statistics> {
           dayOfWeekLabelBuilder: (dayOfWeek) {
             return _dayOfWeekLabelBuilder(dayOfWeek);
           },
-          selectedDate: DateTime.now(),
-          displayedWeekStart: startOfWeek,
+          selectedDate: DateTime.now()
         )
       ],
     );
@@ -123,18 +122,17 @@ class _StatisticsState extends State<Statistics> {
 
   Widget _monthStatistic(BuildContext context, List<Habit> habits) {
     final now = DateTime.now();
-    final startOfMonth = DateTime(now.year, now.month, 1);
 
     return Expanded(
         child: ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
-        return _monthCard(habits[index], startOfMonth);
+        return _monthCard(habits[index]);
       },
     ));
   }
 
-  Widget _monthCard(Habit habit, DateTime startOfMonth) {
+  Widget _monthCard(Habit habit) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -149,7 +147,6 @@ class _StatisticsState extends State<Statistics> {
           dayOfWeekLabelBuilder: (dayOfWeek) {
             return _dayOfWeekLabelBuilder(dayOfWeek);
           },
-          displayedMonth: startOfMonth,
           selectedDate: DateTime.now(),
         ),
       ],

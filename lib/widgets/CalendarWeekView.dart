@@ -2,21 +2,49 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class CalendarWeekView extends StatelessWidget {
+class CalendarWeekView extends StatefulWidget {
   final Widget Function(DateTime date, bool isSelected) dayBuilder;
   final Widget Function(String weekLabel) headerBuilder;
   final Widget Function(String dayOfWeek) dayOfWeekLabelBuilder;
   final DateTime selectedDate;
-  final DateTime displayedWeekStart;
 
   const CalendarWeekView({
     super.key,
     required this.dayBuilder,
     required this.headerBuilder,
     required this.dayOfWeekLabelBuilder,
-    required this.displayedWeekStart,
     required this.selectedDate,
   });
+
+  @override
+  _CalendarWeekViewState createState() => _CalendarWeekViewState();
+}
+
+class _CalendarWeekViewState extends State<CalendarWeekView> {
+  late DateTime displayedWeekStart;
+
+  @override
+  void initState() {
+    super.initState();
+    displayedWeekStart = _findStartOfWeek(widget.selectedDate);
+  }
+
+  void _goToNextWeek() {
+    setState(() {
+      displayedWeekStart = displayedWeekStart.add(Duration(days: 7));
+    });
+  }
+
+  void _goToPreviousWeek() {
+    setState(() {
+      displayedWeekStart = displayedWeekStart.subtract(Duration(days: 7));
+    });
+  }
+
+  DateTime _findStartOfWeek(DateTime date) {
+    int daysToSubtract = date.weekday % 7;
+    return date.subtract(Duration(days: daysToSubtract));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +52,21 @@ class CalendarWeekView extends StatelessWidget {
 
     return Column(
       children: [
-        headerBuilder(_formatWeekLabel(displayedWeekStart)),
-        _buildCalendar(daysOfWeek, selectedDate),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: _goToPreviousWeek,
+            ),
+            widget.headerBuilder(_formatWeekLabel(displayedWeekStart)),
+            IconButton(
+              icon: Icon(Icons.arrow_forward),
+              onPressed: _goToNextWeek,
+            ),
+          ],
+        ),
+        _buildCalendar(daysOfWeek, widget.selectedDate),
       ],
     );
   }
@@ -54,8 +95,8 @@ class CalendarWeekView extends StatelessWidget {
         date.day == selectedDate.day;
     return Column(
       children: [
-        dayOfWeekLabelBuilder(DateFormat.E().format(date)),
-        dayBuilder(date, isSelected),
+        widget.dayOfWeekLabelBuilder(DateFormat.E().format(date)),
+        widget.dayBuilder(date, isSelected),
       ],
     );
   }
@@ -65,7 +106,6 @@ class CalendarWeekView extends StatelessWidget {
   }
 
   String _formatWeekLabel(DateTime startOfWeek) {
-    final endOfWeek = startOfWeek.add(const Duration(days: 6));
-    return '${DateFormat.MMMd().format(startOfWeek)} - ${DateFormat.MMMd().format(endOfWeek)}';
+    return DateFormat.MMM().format(startOfWeek);
   }
 }
