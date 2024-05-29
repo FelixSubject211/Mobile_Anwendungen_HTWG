@@ -15,5 +15,6 @@
 
   "statisticsTitle": "Statistik",
   "statisticsWeekSelection": "Woche",
-  "statisticsMonthSelection": "Monat"
+  "statisticsMonthSelection": "Monat",
+  "textIfItIsEmpty": "Du hast noch keine Gewohnheiten"
 }

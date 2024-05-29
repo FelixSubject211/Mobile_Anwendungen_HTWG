@@ -5,7 +5,6 @@ import 'package:mobile_anwendungen/common/YustoStreamBuilder.dart';
 import 'package:mobile_anwendungen/domain/habits/DayState.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/screens/UpsertHabit.dart';
-
 import '../domain/habits/Habit.dart';
 import '../lang/locale_keys.g.dart';
 
@@ -18,7 +17,7 @@ class ListHabits extends StatefulWidget {
 
 class _ListHabitsState extends State<ListHabits> {
   final HabitRepository _habitRepository =
-      GetIt.instance.get<HabitRepository>();
+  GetIt.instance.get<HabitRepository>();
 
   bool _isEditing = false;
 
@@ -58,15 +57,17 @@ class _ListHabitsState extends State<ListHabits> {
       appBar: AppBar(
         title: Text(LocaleKeys.listHabitsTitle.tr()),
         actions: <Widget>[
-          TextButton(
+          IconButton(
+            icon: Icon(_isEditing ? Icons.check : Icons.edit),
             onPressed: _toggleEditing,
-            child: Text(
-                _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr()),
+            tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
           ),
         ],
       ),
       body: yustoStreamBuilder(
-          stream: _habitRepository.listHabits(), onData: _onData),
+        stream: _habitRepository.listHabits(),
+        onData: _onData,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showUpsertHabit(null);
@@ -78,6 +79,20 @@ class _ListHabitsState extends State<ListHabits> {
   }
 
   Widget _onData(BuildContext context, List<Habit> habits) {
+    if (habits.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/empty.png'),
+            Text(
+              LocaleKeys.textIfItIsEmpty.tr(),
+              style: const TextStyle(fontSize: 24),
+            ),
+          ],
+        ),
+      );
+    }
     return _isEditing ? _buildEditableList(habits) : _buildList(habits);
   }
 
@@ -93,12 +108,20 @@ class _ListHabitsState extends State<ListHabits> {
   Widget _buildEditableList(List<Habit> habits) {
     return ReorderableListView(
       onReorder: _onReorder,
+      padding: const EdgeInsets.symmetric(vertical: 0), // Anpassung des Innenabstands
       children: habits.map((habit) => _editableCard(habit)).toList(),
     );
   }
 
   Widget _card(Habit habit) {
-    return Card(
+    return Container(
+      key: ValueKey(habit.id),
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
       child: ListTile(
         title: Text(habit.name),
         trailing: Checkbox(
@@ -116,9 +139,16 @@ class _ListHabitsState extends State<ListHabits> {
   }
 
   Widget _editableCard(Habit habit) {
-    return Card(
+    return Container(
       key: ValueKey(habit.id),
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
       child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0), // Anpassung des Innenabstands
         title: Text(habit.name),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

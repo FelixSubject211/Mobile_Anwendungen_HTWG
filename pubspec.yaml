@@ -39,5 +39,6 @@ flutter:
 
   assets:
     - assets/lang/
+    - assets/images/
   uses-material-design: true
 
