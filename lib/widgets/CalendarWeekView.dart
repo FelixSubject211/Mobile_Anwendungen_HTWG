@@ -25,22 +25,26 @@ class CalendarWeekView extends StatelessWidget {
     return Column(
       children: [
         headerBuilder(_formatWeekLabel(displayedWeekStart)),
-        GridView.builder(
-          shrinkWrap: true,
-          itemCount: 7,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 7,
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
-          ),
-          itemBuilder: (context, index) {
-            return _buildItem(
-              daysOfWeek[index],
-              selectedDate,
-            );
-          },
-        ),
+        _buildCalendar(daysOfWeek, selectedDate),
       ],
+    );
+  }
+
+  Widget _buildCalendar(List<DateTime> daysOfWeek, DateTime selectedDate) {
+    return SizedBox(
+      height: 100,
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: 7,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 7,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
+        ),
+        itemBuilder: (context, index) {
+          return _buildItem(daysOfWeek[index], selectedDate);
+        },
+      ),
     );
   }
 
@@ -61,10 +65,7 @@ class CalendarWeekView extends StatelessWidget {
   }
 
   String _formatWeekLabel(DateTime startOfWeek) {
-    final endOfWeek = startOfWeek.add(Duration(days: 6));
-    final dateFormat = DateFormat.MMMd().format(startOfWeek) +
-        ' - ' +
-        DateFormat.MMMd().format(endOfWeek);
-    return dateFormat;
+    final endOfWeek = startOfWeek.add(const Duration(days: 6));
+    return '${DateFormat.MMMd().format(startOfWeek)} - ${DateFormat.MMMd().format(endOfWeek)}';
   }
 }

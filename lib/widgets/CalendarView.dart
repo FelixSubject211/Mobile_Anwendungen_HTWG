@@ -21,7 +21,7 @@ class CalendarMonthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final daysInCurrentMonth =
-        _monthLength(displayedMonth.month, displayedMonth.year);
+    _monthLength(displayedMonth.month, displayedMonth.year);
     final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
         displayedMonth.month, displayedMonth.year);
 
@@ -29,35 +29,48 @@ class CalendarMonthView extends StatelessWidget {
       children: [
         headerBuilder(
             DateFormat.MMMM().format(displayedMonth), displayedMonth.year),
-        GridView.builder(
-          shrinkWrap: true,
-          itemCount: daysInCurrentMonth + previousMonthDays + 7,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 7,
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
-          ),
-          itemBuilder: (context, index) {
-            return _buildItem(
-              index,
-              previousMonthDays,
-              daysInCurrentMonth,
-              displayedMonth,
-              selectedDate,
-            );
-          },
-        ),
+        _buildCalendar(daysInCurrentMonth, previousMonthDays, displayedMonth),
       ],
     );
   }
 
+  Widget _buildCalendar(
+      int daysInCurrentMonth,
+      int previousMonthDays,
+      DateTime displayedMonth,
+      ) {
+    final totalItems = daysInCurrentMonth + previousMonthDays + 7;
+
+    return SizedBox(
+      height: 400,
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: totalItems,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 7,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
+        ),
+        itemBuilder: (context, index) {
+          return _buildItem(
+            index,
+            previousMonthDays,
+            daysInCurrentMonth,
+            displayedMonth,
+            selectedDate,
+          );
+        },
+      ),
+    );
+  }
+
   Widget _buildItem(
-    int iteration,
-    int previousMonthDays,
-    int daysInCurrentMonth,
-    DateTime displayedMonth,
-    DateTime selectedDate,
-  ) {
+      int iteration,
+      int previousMonthDays,
+      int daysInCurrentMonth,
+      DateTime displayedMonth,
+      DateTime selectedDate,
+      ) {
     if (iteration < 7) {
       return dayOfWeekLabelBuilder(
           DateFormat.E().format(DateTime(2021, 1, iteration + 4)));
