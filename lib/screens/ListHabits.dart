@@ -82,20 +82,12 @@ class _ListHabitsState extends State<ListHabits> {
         stream: _habitRepository.listHabits(),
         onData: _onData,
       ),
-      floatingActionButton: yustoStreamBuilder(
-        stream: _habitRepository.listHabits(),
-        onData: (context, habits) {
-          if (habits.isNotEmpty) {
-            return FloatingActionButton(
-              onPressed: () {
-                _showUpsertHabit(null);
-              },
-              tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
-              child: const Icon(Icons.add),
-            );
-          }
-          return Container();
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showUpsertHabit(null);
         },
+        tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
+        child: const Icon(Icons.add),
       ),
     );
   }

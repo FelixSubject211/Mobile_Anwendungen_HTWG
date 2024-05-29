@@ -192,12 +192,9 @@ class _StatisticsState extends State<Statistics> {
   }
 
   Widget _dayOfWeekLabelBuilder(String dayOfWeek) {
-    return Padding(
-      padding: const EdgeInsets.all(1.0),
-      child: Text(
-        dayOfWeek,
-        style: const TextStyle(fontSize: 14),
-      ),
+    return Text(
+      dayOfWeek,
+      style: const TextStyle(fontSize: 14),
     );
   }
 
