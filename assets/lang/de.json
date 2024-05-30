@@ -5,16 +5,19 @@
   "edit": "Bearbeiten",
   "finish": "Fertig",
   "cancel": "Abbrechen",
-
   "listHabitsTitle": "Gewohnheiten",
   "listHabitsFloatingActionButtonTooltip": "Gewohnheit hinzufügen",
-
   "upsertHabitAddTitle": "Gewohnheit Hinzufügen",
   "upsertHabitEditTitle": "Gewohnheit Bearbeiten",
   "upsertHabitNameLabelText": "Name",
-
   "statisticsTitle": "Statistik",
   "statisticsWeekSelection": "Woche",
   "statisticsMonthSelection": "Monat",
-  "textIfItIsEmpty": "Du hast noch keine Gewohnheiten"
+  "textIfItIsEmpty": "Du hast noch keine Gewohnheiten",
+  "daily": "Täglich",
+  "weekly": "Wöchentlich",
+  "monthly": "Monatlich",
+  "frequency": "Häufigkeit",
+  "remind": "Erinnern",
+  "remindHelperText": "Legt die Häufigkeit der Erinnerung fest"
 }

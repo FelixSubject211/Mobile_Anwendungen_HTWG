@@ -2,10 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/Habit.dart';
+import 'package:mobile_anwendungen/domain/habits/HabitFrequency.dart';
 import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
-
-import '../common/DisableableButton.dart';
 
 class UpsertHabit extends StatefulWidget {
   final Habit? habit;
@@ -21,6 +20,8 @@ class _UpsertHabitState extends State<UpsertHabit> {
       GetIt.instance.get<HabitRepository>();
 
   late String name;
+  HabitFrequency frequency = HabitFrequency.daily;
+  bool reminding = true;
 
   @override
   void initState() {
@@ -39,10 +40,14 @@ class _UpsertHabitState extends State<UpsertHabit> {
       widget.habit?.name = name;
       _habitRepository.upsertHabit(widget.habit!);
     } else {
-      _habitRepository.upsertHabit(Habit(
+      Habit habit = Habit(
           name: name,
+          reminding: reminding,
           index: Habit.newIndex(),
-          creationDate: DateTime.now().millisecondsSinceEpoch));
+          creationDate: DateTime.now().millisecondsSinceEpoch);
+
+      habit.habitFrequency = frequency.value;
+      _habitRepository.upsertHabit(habit);
     }
     Navigator.of(context).pop();
   }
@@ -63,15 +68,27 @@ class _UpsertHabitState extends State<UpsertHabit> {
             ? LocaleKeys.upsertHabitAddTitle.tr()
             : LocaleKeys.upsertHabitEditTitle.tr()),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _nameField(),
-            const SizedBox(height: 20),
-            _buttonRow(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0, top: 4.0),
+                child: _nameField(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: _frequencySelect(),
+              ),
+              _remindingSwitch(),
+              const Divider(
+                height: 20,
+              ),
+              _buttonRow(),
+            ],
+          ),
         ),
       ),
     );
@@ -84,22 +101,58 @@ class _UpsertHabitState extends State<UpsertHabit> {
           _onNameChanged(text);
         },
         decoration: InputDecoration(
-          labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
-          filled: true,
-        ));
+            labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
+            border: const OutlineInputBorder()));
+  }
+
+  DropdownMenu<HabitFrequency> _frequencySelect() {
+    return DropdownMenu<HabitFrequency>(
+      initialSelection: HabitFrequency.daily,
+      expandedInsets: const EdgeInsets.all(0),
+      helperText: LocaleKeys.remindHelperText.tr(),
+      label: Text(LocaleKeys.frequency.tr()),
+      onSelected: (HabitFrequency? value) {
+        setState(() {
+          frequency = value!;
+        });
+      },
+      dropdownMenuEntries: HabitFrequency.values
+          .map<DropdownMenuEntry<HabitFrequency>>((HabitFrequency value) {
+        return DropdownMenuEntry<HabitFrequency>(
+            value: value, label: value.toString());
+      }).toList(),
+    );
+  }
+
+  SwitchListTile _remindingSwitch() {
+    return SwitchListTile(
+      title: Text(LocaleKeys.remind.tr()),
+      value: reminding,
+      dense: false,
+      visualDensity: VisualDensity.compact,
+      contentPadding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+      onChanged: (bool value) {
+        setState(() {
+          reminding = value;
+        });
+      },
+    );
   }
 
   Widget _buttonRow() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        ElevatedButton(
-          onPressed: _onCancel,
-          child: Text(LocaleKeys.cancel.tr()),
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: TextButton(
+            onPressed: _onCancel,
+            child: Text(LocaleKeys.cancel.tr()),
+          ),
         ),
-        DisableButton(
-          text: LocaleKeys.save.tr(),
+        ElevatedButton(
           onPressed: _isValid() ? _onSave : null,
+          child: Text(LocaleKeys.save.tr()),
         ),
       ],
     );

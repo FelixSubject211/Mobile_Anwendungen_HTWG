@@ -208,7 +208,7 @@ class _StatisticsState extends State<Statistics> {
           Image.asset('assets/images/emptyStatistics.png'),
           Text(
             LocaleKeys.textIfItIsEmpty.tr(),
-            style: const TextStyle(fontSize: 24),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ],
       ),

@@ -63,27 +63,32 @@ class _ListHabitsState extends State<ListHabits> {
       appBar: AppBar(
         title: Text(LocaleKeys.listHabitsTitle.tr()),
         actions: <Widget>[
-          yustoStreamBuilder(
-            stream: _habitRepository.listHabits(),
-            onData: (context, habits) {
-              if (habits.isNotEmpty) {
-                return IconButton(
-                  icon: Icon(_isEditing ? Icons.check : Icons.edit),
-                  onPressed: _toggleEditing,
-                  tooltip: _isEditing
-                      ? LocaleKeys.finish.tr()
-                      : LocaleKeys.edit.tr(),
-                );
-              }
-              return Container();
-            },
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: yustoStreamBuilder(
+              stream: _habitRepository.listHabits(),
+              onData: (context, habits) {
+                if (habits.isNotEmpty) {
+                  return IconButton(
+                    icon: Icon(_isEditing ? Icons.check : Icons.edit),
+                    onPressed: _toggleEditing,
+                    tooltip: _isEditing
+                        ? LocaleKeys.finish.tr()
+                        : LocaleKeys.edit.tr(),
+                  );
+                }
+                return Container();
+              },
+            ),
           ),
         ],
       ),
-      body: yustoStreamBuilder(
-        stream: _habitRepository.listHabits(),
-        onData: _onData,
-      ),
+      body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: yustoStreamBuilder(
+            stream: _habitRepository.listHabits(),
+            onData: _onData,
+          )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showUpsertHabit(null);
@@ -108,7 +113,8 @@ class _ListHabitsState extends State<ListHabits> {
     return ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
-        return _card(habits[index]);
+        Habit habit = habits[index];
+        return _habit(habit, _habitCheckbox(habit), null);
       },
     );
   }
@@ -117,67 +123,67 @@ class _ListHabitsState extends State<ListHabits> {
   Widget _buildEditableList(List<Habit> habits) {
     return ReorderableListView(
       onReorder: _onReorder,
+      proxyDecorator: (child, index, animation) => child,
       padding: const EdgeInsets.symmetric(vertical: 0),
-      children: habits.map((habit) => _editableCard(habit)).toList(),
+      children: habits
+          .map((habit) => _habit(habit, _habitEditActions(habit), () {
+                _showUpsertHabit(habit);
+              }))
+          .toList(),
     );
   }
 
-  // Build the card for each habit in the normal list
-  Widget _card(Habit habit) {
-    return Container(
-      key: ValueKey(habit.id),
-      margin: const EdgeInsets.symmetric(vertical: 4.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: Colors.grey.shade300),
-      ),
-      child: ListTile(
-        title: Text(habit.name),
-        trailing: Checkbox(
-          value: habit.isCompletedToday() == DayState.done,
-          onChanged: (isChecked) {
-            if (isChecked ?? false) {
-              _onCompleteHabit(habit);
-            } else {
-              _onUnCompleteHabit(habit);
-            }
-          },
-        ),
-      ),
-    );
+  Material _habit(Habit habit, Widget trailing, void Function()? onTap) {
+    return Material(
+        color: Colors.transparent,
+        key: ValueKey(habit.id),
+        child: ListTile(
+          title: Text(
+            habit.name,
+            style: habit.isCompletedToday() == DayState.done
+                ? const TextStyle(decoration: TextDecoration.lineThrough)
+                : null,
+          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+          trailing: trailing,
+          onTap: onTap,
+          enabled: habit.isCompletedToday() != DayState.done,
+          shape: const Border(
+            bottom: BorderSide(),
+          ),
+        ));
   }
 
-  // Build the card for each habit in the editable list
-  Widget _editableCard(Habit habit) {
-    return Container(
-      key: ValueKey(habit.id),
-      margin: const EdgeInsets.symmetric(vertical: 4.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: Colors.grey.shade300),
-      ),
-      child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
-        title: Text(habit.name),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.delete),
-              onPressed: () {
-                _onDeleteHabit(habit);
-              },
-            ),
-            const Icon(Icons.drag_handle),
-          ],
-        ),
-        onTap: () {
-          _showUpsertHabit(habit);
+  SizedBox _habitCheckbox(Habit habit) {
+    return SizedBox(
+      width: 24,
+      height: 24,
+      child: Checkbox(
+        visualDensity: VisualDensity.compact,
+        value: habit.isCompletedToday() == DayState.done,
+        onChanged: (isChecked) {
+          if (isChecked ?? false) {
+            _onCompleteHabit(habit);
+          } else {
+            _onUnCompleteHabit(habit);
+          }
         },
       ),
+    );
+  }
+
+  Row _habitEditActions(Habit habit) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          icon: const Icon(Icons.delete_outline),
+          onPressed: () {
+            _onDeleteHabit(habit);
+          },
+        ),
+        const Icon(Icons.drag_handle_sharp)
+      ],
     );
   }
 
@@ -190,7 +196,7 @@ class _ListHabitsState extends State<ListHabits> {
           Image.asset('assets/images/empty.png'),
           Text(
             LocaleKeys.textIfItIsEmpty.tr(),
-            style: const TextStyle(fontSize: 24),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ],
       ),

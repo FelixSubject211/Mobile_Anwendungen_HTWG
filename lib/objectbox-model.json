@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:4933774847501334240",
-      "lastPropertyId": "5:7831590582768626053",
+      "lastPropertyId": "7:1519975166456393104",
       "name": "Habit",
       "properties": [
         {
@@ -27,6 +27,16 @@
         {
           "id": "5:7831590582768626053",
           "name": "creationDate",
+          "type": 6
+        },
+        {
+          "id": "6:2427150203127901892",
+          "name": "reminding",
+          "type": 1
+        },
+        {
+          "id": "7:1519975166456393104",
+          "name": "habitFrequency",
           "type": 6
         }
       ],

@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   path_provider: ^2.0.0
   path: ^1.8.0
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:
@@ -41,4 +42,9 @@ flutter:
     - assets/lang/
     - assets/images/
   uses-material-design: true
+
+  fonts:
+    - family: RobotoFlex
+      fonts:
+        - asset: assets/fonts/RobotoFlex-Regular.ttf
 
