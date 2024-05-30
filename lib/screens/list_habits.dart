@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobile_anwendungen/common/YustoStreamBuilder.dart';
-import 'package:mobile_anwendungen/domain/habits/DayState.dart';
-import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
-import 'package:mobile_anwendungen/screens/UpsertHabit.dart';
-import '../domain/habits/Habit.dart';
+import 'package:mobile_anwendungen/common/yusto_stream_builder.dart';
+import 'package:mobile_anwendungen/domain/habits/day_state.dart';
+import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
+import 'package:mobile_anwendungen/screens/upsert_habit.dart';
+import '../domain/habits/habit.dart';
 import '../lang/locale_keys.g.dart';
 
 class ListHabits extends StatefulWidget {

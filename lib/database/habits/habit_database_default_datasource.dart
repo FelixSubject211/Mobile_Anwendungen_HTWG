@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
-import 'package:mobile_anwendungen/database/ObjectBox.dart';
-import 'package:mobile_anwendungen/database/habits/HabitDatabaseDatasource.dart';
-import 'package:mobile_anwendungen/domain/habits/Habit.dart';
+import 'package:mobile_anwendungen/database/object_box.dart';
+import 'package:mobile_anwendungen/database/habits/habit_database_datasource.dart';
+import 'package:mobile_anwendungen/domain/habits/habit.dart';
 
-import '../../domain/habits/CompletionDate.dart';
+import '../../domain/habits/completion_date.dart';
 import '../../objectbox.g.dart';
 
 class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {

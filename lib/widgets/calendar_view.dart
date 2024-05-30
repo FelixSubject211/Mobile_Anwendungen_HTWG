@@ -16,10 +16,10 @@ class CalendarMonthView extends StatefulWidget {
   });
 
   @override
-  _CalendarMonthViewState createState() => _CalendarMonthViewState();
+  CalendarMonthViewState createState() => CalendarMonthViewState();
 }
 
-class _CalendarMonthViewState extends State<CalendarMonthView> {
+class CalendarMonthViewState extends State<CalendarMonthView> {
   late DateTime displayedMonth;
 
   @override

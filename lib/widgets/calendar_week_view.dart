@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class CalendarWeekView extends StatefulWidget {
   final Widget Function(DateTime date, bool isSelected) dayBuilder;
@@ -17,10 +16,10 @@ class CalendarWeekView extends StatefulWidget {
   });
 
   @override
-  _CalendarWeekViewState createState() => _CalendarWeekViewState();
+  CalendarWeekViewState createState() => CalendarWeekViewState();
 }
 
-class _CalendarWeekViewState extends State<CalendarWeekView> {
+class CalendarWeekViewState extends State<CalendarWeekView> {
   late DateTime displayedWeekStart;
 
   @override
@@ -31,13 +30,13 @@ class _CalendarWeekViewState extends State<CalendarWeekView> {
 
   void _goToNextWeek() {
     setState(() {
-      displayedWeekStart = displayedWeekStart.add(Duration(days: 7));
+      displayedWeekStart = displayedWeekStart.add(const Duration(days: 7));
     });
   }
 
   void _goToPreviousWeek() {
     setState(() {
-      displayedWeekStart = displayedWeekStart.subtract(Duration(days: 7));
+      displayedWeekStart = displayedWeekStart.subtract(const Duration(days: 7));
     });
   }
 
@@ -56,12 +55,12 @@ class _CalendarWeekViewState extends State<CalendarWeekView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: _goToPreviousWeek,
             ),
             widget.headerBuilder(_formatWeekLabel(displayedWeekStart)),
             IconButton(
-              icon: Icon(Icons.arrow_forward),
+              icon: const Icon(Icons.arrow_forward),
               onPressed: _goToNextWeek,
             ),
           ],

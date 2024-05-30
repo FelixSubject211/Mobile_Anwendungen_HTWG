@@ -1,10 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:collection/collection.dart';
-import 'package:mobile_anwendungen/domain/habits/HabitFrequency.dart';
+import 'package:mobile_anwendungen/domain/habits/habit_frequency.dart';
 import 'package:objectbox/objectbox.dart';
-import '../../database/ObjectBox.dart';
-import 'CompletionDate.dart';
-import 'DayState.dart';
+import '../../database/object_box.dart';
+import 'completion_date.dart';
+import 'day_state.dart';
 
 @Entity()
 class Habit {

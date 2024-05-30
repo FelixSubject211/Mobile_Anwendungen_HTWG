@@ -1,4 +1,4 @@
-import '../../domain/habits/Habit.dart';
+import '../../domain/habits/habit.dart';
 
 abstract class HabitDatabaseDatasource {
   List<Habit> listHabits();

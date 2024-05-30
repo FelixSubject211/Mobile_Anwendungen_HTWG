@@ -1,4 +1,4 @@
-import 'Habit.dart';
+import 'habit.dart';
 
 abstract class HabitRepository {
   Stream<List<Habit>> listHabits();

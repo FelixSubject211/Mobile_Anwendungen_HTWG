@@ -1,15 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobile_anwendungen/domain/habits/DayState.dart';
-import 'package:mobile_anwendungen/domain/habits/Habit.dart';
-import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
+import 'package:mobile_anwendungen/domain/habits/day_state.dart';
+import 'package:mobile_anwendungen/domain/habits/habit.dart';
+import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
-import 'package:mobile_anwendungen/widgets/CalendarView.dart';
-import 'package:mobile_anwendungen/widgets/CalendarWeekView.dart';
+import 'package:mobile_anwendungen/widgets/calendar_view.dart';
+import 'package:mobile_anwendungen/widgets/calendar_week_view.dart';
 
-import '../common/SelectionButton.dart';
-import '../common/YustoStreamBuilder.dart';
+import '../common/selection_button.dart';
+import '../common/yusto_stream_builder.dart';
 
 class Statistics extends StatefulWidget {
   const Statistics({super.key});

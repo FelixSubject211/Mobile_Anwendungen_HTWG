@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:get_it/get_it.dart';
-import 'package:mobile_anwendungen/domain/habits/Habit.dart';
-import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
+import 'package:mobile_anwendungen/domain/habits/habit.dart';
+import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../database/habits/HabitDatabaseDatasource.dart';
+import '../../database/habits/habit_database_datasource.dart';
 
 class HabitDefaultRepository extends HabitRepository {
   final _habitsSubject = BehaviorSubject<List<Habit>>();

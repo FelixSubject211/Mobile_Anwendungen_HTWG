@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobile_anwendungen/database/habits/HabitDatabaseDatasource.dart';
-import 'package:mobile_anwendungen/database/habits/HabitDatabaseDefaultDatasource.dart';
-import 'package:mobile_anwendungen/domain/habits/HabitDefaultRepository.dart';
-import 'package:mobile_anwendungen/domain/habits/HabitRepository.dart';
-import 'package:mobile_anwendungen/screens/Navigation.dart';
+import 'package:mobile_anwendungen/database/habits/habit_database_datasource.dart';
+import 'package:mobile_anwendungen/database/habits/habit_database_default_datasource.dart';
+import 'package:mobile_anwendungen/domain/habits/habit_default_repository.dart';
+import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
+import 'package:mobile_anwendungen/screens/navigation.dart';
 
-import 'database/ObjectBox.dart';
+import 'database/object_box.dart';
 import 'lang/codegen_loader.g.dart';
 
 Future<void> main() async {
