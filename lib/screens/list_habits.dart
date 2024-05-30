@@ -21,14 +21,12 @@ class _ListHabitsState extends State<ListHabits> {
 
   bool _isEditing = false;
 
-  // Toggle between editing and viewing mode
   void _toggleEditing() {
     setState(() {
       _isEditing = !_isEditing;
     });
   }
 
-  // Navigate to the UpsertHabit screen to add or edit a habit
   void _showUpsertHabit(Habit? habit) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -37,22 +35,18 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
-  // Mark habit as completed
   void _onCompleteHabit(Habit habit) {
     _habitRepository.completeHabit(habit);
   }
 
-  // Mark habit as not completed
   void _onUnCompleteHabit(Habit habit) {
     _habitRepository.unCompleteHabit(habit);
   }
 
-  // Handle reordering of habits
   void _onReorder(int oldIndex, int newIndex) {
     _habitRepository.reorderHabit(oldIndex, newIndex);
   }
 
-  // Delete a habit
   void _onDeleteHabit(Habit habit) {
     _habitRepository.deleteHabit(habit);
   }
@@ -99,7 +93,6 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
-  // Handle data received from the stream
   Widget _onData(BuildContext context, List<Habit> habits) {
     if (habits.isEmpty) {
       return _emptyState();
@@ -108,7 +101,6 @@ class _ListHabitsState extends State<ListHabits> {
     }
   }
 
-  // Build the normal list of habits
   Widget _buildList(List<Habit> habits) {
     return ListView.builder(
       itemCount: habits.length,
@@ -119,7 +111,6 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
-  // Build the editable list of habits
   Widget _buildEditableList(List<Habit> habits) {
     return ReorderableListView(
       onReorder: _onReorder,
@@ -187,7 +178,6 @@ class _ListHabitsState extends State<ListHabits> {
     );
   }
 
-  // Display empty state when there are no habits
   Widget _emptyState() {
     return Center(
       child: Column(
