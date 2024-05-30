@@ -104,7 +104,7 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
     } else if (iteration >= previousMonthDays + 7 &&
         iteration < previousMonthDays + 7 + daysInCurrentMonth) {
       final date = DateTime(displayedMonth.year, displayedMonth.month,
-          iteration - (previousMonthDays + 6));
+          iteration - (previousMonthDays + 5));
       final isSelected = date.year == selectedDate.year &&
           date.month == selectedDate.month &&
           date.day == selectedDate.day;

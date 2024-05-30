@@ -41,7 +41,7 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
   }
 
   DateTime _findStartOfWeek(DateTime date) {
-    int daysToSubtract = date.weekday % 7;
+    int daysToSubtract = (date.weekday + 6) % 7; // Montag = 0, Sonntag = 6
     return date.subtract(Duration(days: daysToSubtract));
   }
 
@@ -106,6 +106,7 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
   }
 
   String _formatWeekLabel(DateTime startOfWeek) {
-    return DateFormat.MMM((context.locale.toString())).format(startOfWeek);
+    final endOfWeek = startOfWeek.add(const Duration(days: 6));
+    return '${DateFormat.MMMd((context.locale.toString())).format(startOfWeek)} - ${DateFormat.MMMd((context.locale.toString())).format(endOfWeek)}';
   }
 }
