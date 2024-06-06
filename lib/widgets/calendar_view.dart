@@ -48,6 +48,8 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
         _monthLength(displayedMonth.month, displayedMonth.year);
     final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
         displayedMonth.month, displayedMonth.year);
+    final totalItems = daysInCurrentMonth + previousMonthDays + 7;
+    final rows = (totalItems / 7).ceil();
 
     return Column(
       children: [
@@ -68,17 +70,18 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
             ),
           ],
         ),
-        _buildCalendar(daysInCurrentMonth, previousMonthDays, displayedMonth),
+        _buildCalendar(
+            daysInCurrentMonth, previousMonthDays, displayedMonth, rows),
       ],
     );
   }
 
-  Widget _buildCalendar(
-      int daysInCurrentMonth, int previousMonthDays, DateTime displayedMonth) {
+  Widget _buildCalendar(int daysInCurrentMonth, int previousMonthDays,
+      DateTime displayedMonth, int rows) {
     final totalItems = daysInCurrentMonth + previousMonthDays + 7;
 
     return SizedBox(
-      height: 400,
+      height: rows * 50.0, // Adjust the height based on the number of rows
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         itemCount: totalItems,
@@ -104,7 +107,7 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
     } else if (iteration >= previousMonthDays + 7 &&
         iteration < previousMonthDays + 7 + daysInCurrentMonth) {
       final date = DateTime(displayedMonth.year, displayedMonth.month,
-          iteration - (previousMonthDays + 5));
+          iteration - (previousMonthDays + 6));
       final isSelected = date.year == selectedDate.year &&
           date.month == selectedDate.month &&
           date.day == selectedDate.day;

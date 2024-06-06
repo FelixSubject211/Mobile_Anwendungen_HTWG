@@ -94,62 +94,80 @@ class _StatisticsState extends State<Statistics> {
         DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
     return Expanded(
-        child: ListView.builder(
-      itemCount: habits.length,
-      itemBuilder: (context, index) {
-        return _weekCard(habits[index], startOfWeek);
-      },
-    ));
+      child: ListView.builder(
+        itemCount: habits.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: _weekCard(habits[index], startOfWeek),
+          );
+        },
+      ),
+    );
   }
 
   Widget _weekCard(Habit habit, DateTime startOfWeek) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
-        CalendarWeekView(
-            dayBuilder: (date, isSelected) {
-              return _dayBuilder(date, isSelected, habit);
-            },
-            headerBuilder: (weekLabel) {
-              return _headerBuilderWeek(weekLabel);
-            },
-            dayOfWeekLabelBuilder: (dayOfWeek) {
-              return _dayOfWeekLabelBuilder(dayOfWeek);
-            },
-            selectedDate: DateTime.now())
-      ],
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
+            CalendarWeekView(
+                dayBuilder: (date, isSelected) {
+                  return _dayBuilder(date, isSelected, habit);
+                },
+                headerBuilder: (weekLabel) {
+                  return _headerBuilderWeek(weekLabel);
+                },
+                dayOfWeekLabelBuilder: (dayOfWeek) {
+                  return _dayOfWeekLabelBuilder(dayOfWeek);
+                },
+                selectedDate: DateTime.now())
+          ],
+        ),
+      ),
     );
   }
 
   Widget _monthStatistic(List<Habit> habits) {
     return Expanded(
-        child: ListView.builder(
-      itemCount: habits.length,
-      itemBuilder: (context, index) {
-        return _monthCard(habits[index]);
-      },
-    ));
+      child: ListView.builder(
+        itemCount: habits.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: _monthCard(habits[index]),
+          );
+        },
+      ),
+    );
   }
 
   Widget _monthCard(Habit habit) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
-        CalendarMonthView(
-          dayBuilder: (date, isSelected) {
-            return _dayBuilder(date, isSelected, habit);
-          },
-          headerBuilder: (month, year) {
-            return _headerBuilderMonth(month, year);
-          },
-          dayOfWeekLabelBuilder: (dayOfWeek) {
-            return _dayOfWeekLabelBuilder(dayOfWeek);
-          },
-          selectedDate: DateTime.now(),
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
+            CalendarMonthView(
+              dayBuilder: (date, isSelected) {
+                return _dayBuilder(date, isSelected, habit);
+              },
+              headerBuilder: (month, year) {
+                return _headerBuilderMonth(month, year);
+              },
+              dayOfWeekLabelBuilder: (dayOfWeek) {
+                return _dayOfWeekLabelBuilder(dayOfWeek);
+              },
+              selectedDate: DateTime.now(),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

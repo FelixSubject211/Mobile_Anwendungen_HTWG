@@ -41,7 +41,7 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
   }
 
   DateTime _findStartOfWeek(DateTime date) {
-    int daysToSubtract = (date.weekday + 6) % 7; // Montag = 0, Sonntag = 6
+    int daysToSubtract = (date.weekday + 6) % 7;
     return date.subtract(Duration(days: daysToSubtract));
   }
 
@@ -72,7 +72,7 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
 
   Widget _buildCalendar(List<DateTime> daysOfWeek, DateTime selectedDate) {
     return SizedBox(
-      height: 100,
+      height: 70,
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         itemCount: 7,
