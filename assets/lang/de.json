@@ -13,11 +13,5 @@
   "statisticsTitle": "Statistik",
   "statisticsWeekSelection": "Woche",
   "statisticsMonthSelection": "Monat",
-  "textIfItIsEmpty": "Du hast noch keine Gewohnheiten",
-  "daily": "Täglich",
-  "weekly": "Wöchentlich",
-  "monthly": "Monatlich",
-  "frequency": "Häufigkeit",
-  "remind": "Erinnern",
-  "remindHelperText": "Legt die Häufigkeit der Erinnerung fest"
+  "textIfItIsEmpty": "Du hast noch keine Gewohnheiten"
 }

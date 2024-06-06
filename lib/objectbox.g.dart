@@ -46,16 +46,6 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(5, 7831590582768626053),
             name: 'creationDate',
             type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 2427150203127901892),
-            name: 'reminding',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 1519975166456393104),
-            name: 'habitFrequency',
-            type: 6,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[
@@ -130,7 +120,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
       retiredPropertyUids: const [
         5772066262068371116,
         2849403198628120101,
-        6188093224734784656
+        6188093224734784656,
+        2427150203127901892,
+        1519975166456393104
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -156,8 +148,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addOffset(1, nameOffset);
           fbb.addInt64(2, object.index);
           fbb.addInt64(4, object.creationDate);
-          fbb.addBool(5, object.reminding);
-          fbb.addInt64(6, object.habitFrequency);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -170,16 +160,11 @@ obx_int.ModelDefinition getObjectBoxModel() {
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
           final creationDateParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
-          final remindingParam =
-              const fb.BoolReader().vTableGet(buffer, rootOffset, 14, false);
           final object = Habit(
               name: nameParam,
               index: indexParam,
-              creationDate: creationDateParam,
-              reminding: remindingParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..habitFrequency = const fb.Int64Reader()
-                .vTableGetNullable(buffer, rootOffset, 16);
+              creationDate: creationDateParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           obx_int.InternalToManyAccess.setRelInfo<Habit>(object.completionDates,
               store, obx_int.RelInfo<Habit>.toMany(1, object.id));
           return object;
@@ -230,14 +215,6 @@ class Habit_ {
   /// see [Habit.creationDate]
   static final creationDate =
       obx.QueryIntegerProperty<Habit>(_entities[0].properties[3]);
-
-  /// see [Habit.reminding]
-  static final reminding =
-      obx.QueryBooleanProperty<Habit>(_entities[0].properties[4]);
-
-  /// see [Habit.habitFrequency]
-  static final habitFrequency =
-      obx.QueryIntegerProperty<Habit>(_entities[0].properties[5]);
 
   /// see [Habit.completionDates]
   static final completionDates =

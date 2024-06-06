@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_frequency.dart';
 import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
@@ -20,7 +19,6 @@ class _UpsertHabitState extends State<UpsertHabit> {
       GetIt.instance.get<HabitRepository>();
 
   late String name;
-  HabitFrequency frequency = HabitFrequency.daily;
 
   @override
   void initState() {
@@ -44,7 +42,6 @@ class _UpsertHabitState extends State<UpsertHabit> {
           index: Habit.newIndex(),
           creationDate: DateTime.now().millisecondsSinceEpoch);
 
-      habit.habitFrequency = frequency.value;
       _habitRepository.upsertHabit(habit);
     }
     Navigator.of(context).pop();
