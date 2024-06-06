@@ -78,11 +78,6 @@ class _UpsertHabitState extends State<UpsertHabit> {
                 padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
                 child: _nameField(),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: _remindingSwitch(),
-              ),
-              if (reminding) _frequencySelect(),
               const Divider(
                 height: 20,
               ),
@@ -103,40 +98,6 @@ class _UpsertHabitState extends State<UpsertHabit> {
         decoration: InputDecoration(
             labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
             border: const OutlineInputBorder()));
-  }
-
-  DropdownMenu<HabitFrequency> _frequencySelect() {
-    return DropdownMenu<HabitFrequency>(
-      initialSelection: HabitFrequency.daily,
-      expandedInsets: const EdgeInsets.all(0),
-      helperText: LocaleKeys.remindHelperText.tr(),
-      label: Text(LocaleKeys.frequency.tr()),
-      onSelected: (HabitFrequency? value) {
-        setState(() {
-          frequency = value!;
-        });
-      },
-      dropdownMenuEntries: HabitFrequency.values
-          .map<DropdownMenuEntry<HabitFrequency>>((HabitFrequency value) {
-        return DropdownMenuEntry<HabitFrequency>(
-            value: value, label: value.toString());
-      }).toList(),
-    );
-  }
-
-  SwitchListTile _remindingSwitch() {
-    return SwitchListTile(
-      title: Text(LocaleKeys.remind.tr()),
-      value: reminding,
-      dense: false,
-      visualDensity: VisualDensity.compact,
-      contentPadding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-      onChanged: (bool value) {
-        setState(() {
-          reminding = value;
-        });
-      },
-    );
   }
 
   Widget _buttonRow() {
