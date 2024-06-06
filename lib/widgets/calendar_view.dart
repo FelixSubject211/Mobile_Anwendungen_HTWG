@@ -80,21 +80,21 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
       DateTime displayedMonth, int rows) {
     final totalItems = daysInCurrentMonth + previousMonthDays + 7;
 
-    return SizedBox(
-      height: rows * 50.0, // Adjust the height based on the number of rows
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: totalItems,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 7,
-          crossAxisSpacing: 4,
-          mainAxisSpacing: 4,
-        ),
-        itemBuilder: (context, index) {
-          return _buildItem(index, previousMonthDays, daysInCurrentMonth,
-              displayedMonth, widget.selectedDate);
-        },
-      ),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        double itemWidth = constraints.maxWidth / 7;
+
+        return Wrap(
+          children: List.generate(totalItems, (index) {
+            return SizedBox(
+              width: itemWidth,
+              height: itemWidth,
+              child: _buildItem(index, previousMonthDays, daysInCurrentMonth,
+                  displayedMonth, widget.selectedDate),
+            );
+          }),
+        );
+      },
     );
   }
 

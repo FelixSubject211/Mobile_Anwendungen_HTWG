@@ -71,20 +71,19 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
   }
 
   Widget _buildCalendar(List<DateTime> daysOfWeek, DateTime selectedDate) {
-    return SizedBox(
-      height: 70,
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 7,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 7,
-          crossAxisSpacing: 4,
-          mainAxisSpacing: 4,
-        ),
-        itemBuilder: (context, index) {
-          return _buildItem(daysOfWeek[index], selectedDate);
-        },
-      ),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        double itemWidth = constraints.maxWidth / 7;
+
+        return Wrap(
+          children: List.generate(7, (index) {
+            return SizedBox(
+              width: itemWidth,
+              child: _buildItem(daysOfWeek[index], selectedDate),
+            );
+          }),
+        );
+      },
     );
   }
 

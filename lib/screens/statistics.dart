@@ -109,7 +109,7 @@ class _StatisticsState extends State<Statistics> {
   Widget _weekCard(Habit habit, DateTime startOfWeek) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -148,7 +148,7 @@ class _StatisticsState extends State<Statistics> {
   Widget _monthCard(Habit habit) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
