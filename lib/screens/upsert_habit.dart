@@ -21,7 +21,6 @@ class _UpsertHabitState extends State<UpsertHabit> {
 
   late String name;
   HabitFrequency frequency = HabitFrequency.daily;
-  bool reminding = true;
 
   @override
   void initState() {
@@ -42,7 +41,6 @@ class _UpsertHabitState extends State<UpsertHabit> {
     } else {
       Habit habit = Habit(
           name: name,
-          reminding: reminding,
           index: Habit.newIndex(),
           creationDate: DateTime.now().millisecondsSinceEpoch);
 

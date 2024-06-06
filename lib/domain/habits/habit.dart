@@ -14,7 +14,6 @@ class Habit {
   int creationDate;
   @Transient()
   HabitFrequency? frequency;
-  bool reminding;
 
   final completionDates = ToMany<CompletionDate>();
 
@@ -22,7 +21,6 @@ class Habit {
     required this.name,
     required this.index,
     required this.creationDate,
-    required this.reminding,
   });
 
   DayState dayStateOn(DateTime date) {
