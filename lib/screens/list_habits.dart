@@ -106,7 +106,7 @@ class _ListHabitsState extends State<ListHabits> {
       itemCount: habits.length,
       itemBuilder: (context, index) {
         Habit habit = habits[index];
-        return _habit(habit, _habitCheckbox(habit), null);
+        return _habit(habit, _habitCheckbox(habit));
       },
     );
   }
@@ -117,14 +117,12 @@ class _ListHabitsState extends State<ListHabits> {
       proxyDecorator: (child, index, animation) => child,
       padding: const EdgeInsets.symmetric(vertical: 0),
       children: habits
-          .map((habit) => _habit(habit, _habitEditActions(habit), () {
-                _showUpsertHabit(habit);
-              }))
+          .map((habit) => _habit(habit, _habitEditActions(habit)))
           .toList(),
     );
   }
 
-  Material _habit(Habit habit, Widget trailing, void Function()? onTap) {
+  Material _habit(Habit habit, Widget trailing) {
     return Material(
         color: Colors.transparent,
         key: ValueKey(habit.id),
@@ -137,12 +135,11 @@ class _ListHabitsState extends State<ListHabits> {
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 0),
           trailing: trailing,
-          onTap: onTap ??
-              () {
-                if (_isEditing) {
-                  _showUpsertHabit(habit);
-                }
-              },
+          onTap: () {
+            if (_isEditing) {
+              _showUpsertHabit(habit);
+            }
+          },
           enabled: _isEditing || habit.isCompletedToday() != DayState.done,
           shape: const Border(
             bottom: BorderSide(),
