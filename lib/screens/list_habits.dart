@@ -137,8 +137,13 @@ class _ListHabitsState extends State<ListHabits> {
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 0),
           trailing: trailing,
-          onTap: onTap,
-          enabled: habit.isCompletedToday() != DayState.done,
+          onTap: onTap ??
+              () {
+                if (_isEditing) {
+                  _showUpsertHabit(habit);
+                }
+              },
+          enabled: _isEditing || habit.isCompletedToday() != DayState.done,
           shape: const Border(
             bottom: BorderSide(),
           ),
