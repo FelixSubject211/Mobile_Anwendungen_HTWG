@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/database/habits/habit_database_datasource.dart';
@@ -6,8 +7,11 @@ import 'package:mobile_anwendungen/database/habits/habit_database_default_dataso
 import 'package:mobile_anwendungen/domain/habits/habit_default_repository.dart';
 import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
 import 'package:mobile_anwendungen/screens/navigation.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mobile_anwendungen/screens/upsert_habit.dart';
 
 import 'database/object_box.dart';
+import 'domain/habits/habit.dart';
 import 'lang/codegen_loader.g.dart';
 
 Future<void> main() async {
@@ -37,7 +41,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final goRouter = GoRouter(
+      debugLogDiagnostics: kDebugMode,
+      onException:
+          (BuildContext context, GoRouterState state, GoRouter router) {
+        debugPrint('GoRouter exception: ${state.error}');
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: '/',
+          builder: (BuildContext context, GoRouterState state) {
+            return const Navigation();
+          },
+        ),
+        GoRoute(
+          path: '/upsertHabit',
+          builder: (BuildContext context, GoRouterState state) {
+            final habit = state.extra as Habit?;
+            return UpsertHabit(habit: habit);
+          },
+        ),
+      ],
+    );
+
+    return MaterialApp.router(
+      routerConfig: goRouter,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
       locale: context.locale,
@@ -66,7 +94,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const Navigation(),
     );
   }
 }

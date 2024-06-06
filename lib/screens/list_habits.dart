@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_anwendungen/common/yusto_stream_builder.dart';
 import 'package:mobile_anwendungen/domain/habits/day_state.dart';
 import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
-import 'package:mobile_anwendungen/screens/upsert_habit.dart';
 import '../domain/habits/habit.dart';
 import '../lang/locale_keys.g.dart';
 
@@ -28,11 +28,7 @@ class _ListHabitsState extends State<ListHabits> {
   }
 
   void _showUpsertHabit(Habit? habit) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) => UpsertHabit(habit: habit),
-      ),
-    );
+    context.push('/upsertHabit', extra: habit);
   }
 
   void _onCompleteHabit(Habit habit) {
