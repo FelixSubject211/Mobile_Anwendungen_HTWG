@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const save = 'save';
   static const error = 'error';
   static const noData = 'noData';
@@ -8,8 +8,7 @@ abstract class LocaleKeys {
   static const finish = 'finish';
   static const cancel = 'cancel';
   static const listHabitsTitle = 'listHabitsTitle';
-  static const listHabitsFloatingActionButtonTooltip =
-      'listHabitsFloatingActionButtonTooltip';
+  static const listHabitsFloatingActionButtonTooltip = 'listHabitsFloatingActionButtonTooltip';
   static const upsertHabitAddTitle = 'upsertHabitAddTitle';
   static const upsertHabitEditTitle = 'upsertHabitEditTitle';
   static const upsertHabitNameLabelText = 'upsertHabitNameLabelText';
@@ -23,4 +22,5 @@ abstract class LocaleKeys {
   static const frequency = 'frequency';
   static const remind = 'remind';
   static const remindHelperText = 'remindHelperText';
+
 }

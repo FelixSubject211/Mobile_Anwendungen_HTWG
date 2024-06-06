@@ -75,14 +75,14 @@ class _UpsertHabitState extends State<UpsertHabit> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 20.0, top: 4.0),
+                padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
                 child: _nameField(),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: _frequencySelect(),
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: _remindingSwitch(),
               ),
-              _remindingSwitch(),
+              if (reminding) _frequencySelect(),
               const Divider(
                 height: 20,
               ),
