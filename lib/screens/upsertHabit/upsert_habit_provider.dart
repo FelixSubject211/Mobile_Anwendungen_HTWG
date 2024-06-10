@@ -9,11 +9,11 @@ part 'upsert_habit_provider.g.dart';
 
 @riverpod
 UpsertHabitController upsertHabitController(final UpsertHabitControllerRef ref) => ref.watch(
-  upsertHabitControllerProvider
+  UpsertHabitDefaultControllerProvider(null).notifier
 );
 
 
 @riverpod
 UpsertHabitModel upsertHabitModel(final UpsertHabitModelRef ref) => ref.watch(
-    upsertHabitModelProvider
+    UpsertHabitDefaultControllerProvider(null)
 );
