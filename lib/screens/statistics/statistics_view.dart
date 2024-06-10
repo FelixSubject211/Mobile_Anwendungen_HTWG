@@ -1,16 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/domain/habits/day_state.dart';
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
+import 'package:mobile_anwendungen/screens/statistics/statistics_model.dart';
+import 'package:mobile_anwendungen/screens/statistics/statistics_provider.dart';
 import 'package:mobile_anwendungen/widgets/calendar_view.dart';
 import 'package:mobile_anwendungen/widgets/calendar_week_view.dart';
 
 import '../../common/selection_button.dart';
-import '../../common/yusto_stream_builder.dart';
 
 
 
@@ -19,51 +18,36 @@ class Statistics extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    return Text("");
-  }
-}
+    final StatisticsController controller = ref.read(statisticsControllerProvider);
+    final StatisticsModel model = ref.watch(statisticsModelProvider);
 
-abstract class StatisticController {
-  void onSegmentedControlPressed(String label);
-}
-
-class _StatisticsState extends State<Statistics> {
-  final HabitRepository _habitRepository =
-  GetIt.instance.get<HabitRepository>();
-
-  String _selectedButton = LocaleKeys.statisticsWeekSelection.tr();
-
-  void _onButtonPressed(String label) {
-    setState(() {
-      _selectedButton = label;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.statisticsTitle.tr()),
       ),
-      body: _streamBuilder(),
+      body: _onData(context, controller, model),
     );
   }
 
-  Widget _segmentedControl(ThemeData theme) {
+  Widget _segmentedControl(
+      ThemeData theme,
+      StatisticsController controller,
+      StatisticsModel model
+      ) {
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SelectionButton(
             label: LocaleKeys.statisticsWeekSelection.tr(),
-            selectedButton: _selectedButton,
-            onButtonPressed: _onButtonPressed,
+            selectedButton: model.selectedButton,
+            onButtonPressed: controller.onSegmentedControlPressed,
             theme: theme,
           ),
           SelectionButton(
             label: LocaleKeys.statisticsMonthSelection.tr(),
-            selectedButton: _selectedButton,
-            onButtonPressed: _onButtonPressed,
+            selectedButton: model.selectedButton,
+            onButtonPressed: controller.onSegmentedControlPressed,
             theme: theme,
           ),
         ],
@@ -71,14 +55,13 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-  Widget _streamBuilder() {
-    return yustoStreamBuilder(
-        stream: _habitRepository.listHabits(), onData: _onData);
-  }
-
-  Widget _onData(BuildContext context, List<Habit> habits) {
-    if (habits.isEmpty) {
-      return _emptyState();
+  Widget _onData(
+      BuildContext context,
+      StatisticsController controller,
+      StatisticsModel model
+      ) {
+    if (model.habits.isEmpty) {
+      return _emptyState(context);
     } else {
       final theme = Theme.of(context);
 
@@ -87,18 +70,18 @@ class _StatisticsState extends State<Statistics> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            _segmentedControl(theme),
+            _segmentedControl(theme, controller, model),
             const SizedBox(height: 20),
-            _selectedButton == LocaleKeys.statisticsWeekSelection.tr()
-                ? _weekStatistic(habits)
-                : _monthStatistic(habits)
+            model.selectedButton == LocaleKeys.statisticsWeekSelection.tr()
+                ? _weekStatistic(context, model.habits)
+                : _monthStatistic(context, model.habits)
           ],
         ),
       );
     }
   }
 
-  Widget _weekStatistic(List<Habit> habits) {
+  Widget _weekStatistic(BuildContext context, List<Habit> habits) {
     final startOfWeek =
     DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
@@ -108,14 +91,14 @@ class _StatisticsState extends State<Statistics> {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: _weekCard(habits[index], startOfWeek),
+            child: _weekCard(context, habits[index], startOfWeek),
           );
         },
       ),
     );
   }
 
-  Widget _weekCard(Habit habit, DateTime startOfWeek) {
+  Widget _weekCard(BuildContext context ,Habit habit, DateTime startOfWeek) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -140,21 +123,21 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-  Widget _monthStatistic(List<Habit> habits) {
+  Widget _monthStatistic(BuildContext context,List<Habit> habits) {
     return Expanded(
       child: ListView.builder(
         itemCount: habits.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: _monthCard(habits[index]),
+            child: _monthCard(context, habits[index]),
           );
         },
       ),
     );
   }
 
-  Widget _monthCard(Habit habit) {
+  Widget _monthCard(BuildContext context,Habit habit) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -227,7 +210,7 @@ class _StatisticsState extends State<Statistics> {
     );
   }
 
-  Widget _emptyState() {
+  Widget _emptyState(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -241,4 +224,8 @@ class _StatisticsState extends State<Statistics> {
       ),
     );
   }
+}
+
+abstract class StatisticsController {
+  void onSegmentedControlPressed(String label);
 }

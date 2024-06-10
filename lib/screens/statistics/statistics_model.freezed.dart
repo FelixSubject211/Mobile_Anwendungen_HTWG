@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$StatisticsModel {
   String get selectedButton => throw _privateConstructorUsedError;
+  List<Habit> get habits => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StatisticsModelCopyWith<StatisticsModel> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $StatisticsModelCopyWith<$Res> {
           StatisticsModel value, $Res Function(StatisticsModel) then) =
       _$StatisticsModelCopyWithImpl<$Res, StatisticsModel>;
   @useResult
-  $Res call({String selectedButton});
+  $Res call({String selectedButton, List<Habit> habits});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$StatisticsModelCopyWithImpl<$Res, $Val extends StatisticsModel>
   @override
   $Res call({
     Object? selectedButton = null,
+    Object? habits = null,
   }) {
     return _then(_value.copyWith(
       selectedButton: null == selectedButton
           ? _value.selectedButton
           : selectedButton // ignore: cast_nullable_to_non_nullable
               as String,
+      habits: null == habits
+          ? _value.habits
+          : habits // ignore: cast_nullable_to_non_nullable
+              as List<Habit>,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$StatisticsModelImplCopyWith<$Res>
       __$$StatisticsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String selectedButton});
+  $Res call({String selectedButton, List<Habit> habits});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$StatisticsModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedButton = null,
+    Object? habits = null,
   }) {
     return _then(_$StatisticsModelImpl(
       selectedButton: null == selectedButton
           ? _value.selectedButton
           : selectedButton // ignore: cast_nullable_to_non_nullable
               as String,
+      habits: null == habits
+          ? _value._habits
+          : habits // ignore: cast_nullable_to_non_nullable
+              as List<Habit>,
     ));
   }
 }
@@ -92,14 +103,23 @@ class __$$StatisticsModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StatisticsModelImpl implements _StatisticsModel {
-  _$StatisticsModelImpl({required this.selectedButton});
+  _$StatisticsModelImpl(
+      {required this.selectedButton, required final List<Habit> habits})
+      : _habits = habits;
 
   @override
   final String selectedButton;
+  final List<Habit> _habits;
+  @override
+  List<Habit> get habits {
+    if (_habits is EqualUnmodifiableListView) return _habits;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_habits);
+  }
 
   @override
   String toString() {
-    return 'StatisticsModel(selectedButton: $selectedButton)';
+    return 'StatisticsModel(selectedButton: $selectedButton, habits: $habits)';
   }
 
   @override
@@ -108,11 +128,13 @@ class _$StatisticsModelImpl implements _StatisticsModel {
         (other.runtimeType == runtimeType &&
             other is _$StatisticsModelImpl &&
             (identical(other.selectedButton, selectedButton) ||
-                other.selectedButton == selectedButton));
+                other.selectedButton == selectedButton) &&
+            const DeepCollectionEquality().equals(other._habits, _habits));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedButton);
+  int get hashCode => Object.hash(runtimeType, selectedButton,
+      const DeepCollectionEquality().hash(_habits));
 
   @JsonKey(ignore: true)
   @override
@@ -123,11 +145,14 @@ class _$StatisticsModelImpl implements _StatisticsModel {
 }
 
 abstract class _StatisticsModel implements StatisticsModel {
-  factory _StatisticsModel({required final String selectedButton}) =
-      _$StatisticsModelImpl;
+  factory _StatisticsModel(
+      {required final String selectedButton,
+      required final List<Habit> habits}) = _$StatisticsModelImpl;
 
   @override
   String get selectedButton;
+  @override
+  List<Habit> get habits;
   @override
   @JsonKey(ignore: true)
   _$$StatisticsModelImplCopyWith<_$StatisticsModelImpl> get copyWith =>
