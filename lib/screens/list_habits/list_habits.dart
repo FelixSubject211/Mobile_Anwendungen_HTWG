@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:mobile_anwendungen/common/yusto_stream_builder.dart';
 import 'package:mobile_anwendungen/domain/habits/day_state.dart';
 import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
-import '../domain/habits/habit.dart';
-import '../lang/locale_keys.g.dart';
+import '../../domain/habits/habit.dart';
+import '../../lang/locale_keys.g.dart';
 
 class ListHabits extends StatefulWidget {
   const ListHabits({super.key});
