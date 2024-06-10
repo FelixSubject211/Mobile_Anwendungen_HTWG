@@ -1,6 +1,6 @@
-import '../../domain/habits/habit.dart';
+import '../domain/habits/habit.dart';
 
-abstract class HabitDatabaseDatasource {
+abstract class Database {
   List<Habit> listHabits();
   void upsertHabit(Habit habit);
   void completeHabit(Habit habit);

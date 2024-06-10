@@ -1,14 +1,25 @@
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/database/object_box.dart';
-import 'package:mobile_anwendungen/database/habits/habit_database_datasource.dart';
+import 'package:mobile_anwendungen/database/database.dart';
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../domain/habits/completion_date.dart';
-import '../../objectbox.g.dart';
+import '../domain/habits/completion_date.dart';
+import '../objectbox.g.dart';
 
-class HabitsDatabaseDefaultDatasource extends HabitDatabaseDatasource {
+part 'object_box_database.g.dart';
+
+@Riverpod(keepAlive: true)
+Database objectBoxDatabase(
+  final ObjectBoxDatabaseRef ref,
+) =>
+    ObjectBoxDatabase();
+
+class ObjectBoxDatabase extends Database {
   final Box<Habit> _habitBox =
       GetIt.instance.get<ObjectBox>().store.box<Habit>();
+
+  ObjectBoxDatabase();
 
   @override
   void upsertHabit(Habit habit) {
