@@ -11,3 +11,10 @@ dart run build_runner build
 - "Dart format ." ausführen
 - "flutter analyze" ausführen und fehler beheben
 
+
+// 
+- flutter clean
+- flutter pub get
+- flutter pub run build_runner build --delete-conflicting-outputs
+
+

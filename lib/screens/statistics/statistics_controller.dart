@@ -7,8 +7,10 @@ part 'statistics_controller.g.dart';
 @riverpod
 class StatisticDefaultController extends _$StatisticDefaultController implements StatisticController {
 
-  StatisticModel build() {
-    return StatisticModel();
+  StatisticsModel build({
+    required final String selectedButton
+  }) {
+
   }
 
   @override
