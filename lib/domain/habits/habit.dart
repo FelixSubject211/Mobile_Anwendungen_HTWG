@@ -1,3 +1,4 @@
+import 'package:mobile_anwendungen/main.dart';
 import 'package:objectbox/objectbox.dart';
 import '../../database/object_box.dart';
 import 'completion_date.dart';
@@ -51,7 +52,7 @@ class Habit {
   }
 
   static int newIndex() {
-    final Box<Habit> habitBox = throw Exception("TODO"); // TODO
+    final Box<Habit> habitBox = objectBox.store.box<Habit>();
     final habits = habitBox.getAll();
     final maxIndex = habits
         .map((habit) => habit.index)

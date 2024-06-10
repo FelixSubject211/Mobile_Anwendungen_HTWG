@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile_anwendungen/database/object_box.dart';
 import 'go_router.dart';
 import 'lang/codegen_loader.g.dart';
+
+late ObjectBox objectBox;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  objectBox = await ObjectBox.create();
 
   await EasyLocalization.ensureInitialized();
   runApp(

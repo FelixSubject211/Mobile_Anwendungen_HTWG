@@ -4,6 +4,7 @@ import 'package:mobile_anwendungen/domain/habits/habit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../domain/habits/completion_date.dart';
+import '../main.dart';
 import '../objectbox.g.dart';
 
 part 'object_box_database.g.dart';
@@ -15,7 +16,7 @@ Database objectBoxDatabase(
     ObjectBoxDatabase();
 
 class ObjectBoxDatabase extends Database {
-  final Box<Habit> _habitBox = throw Exception("TODO"); // TODO
+  final Box<Habit> _habitBox = objectBox.store.box<Habit>();
 
   ObjectBoxDatabase();
 
