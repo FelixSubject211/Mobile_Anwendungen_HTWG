@@ -1,4 +1,3 @@
-import 'package:mobile_anwendungen/database/object_box.dart';
 import 'package:mobile_anwendungen/database/database.dart';
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

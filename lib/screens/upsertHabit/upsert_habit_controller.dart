@@ -6,14 +6,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'upsert_habit_controller.g.dart';
 
 @riverpod
-class UpsertHabitDefaultController extends _$UpsertHabitDefaultController implements UpsertHabitController {
-
+class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
+    implements UpsertHabitController {
   @override
   UpsertHabitModel build(final Habit? habit) {
     return UpsertHabitModel(
-        isInEditMode: habit != null,
-        name: habit?.name ?? ""
-    );
+        isInEditMode: habit != null, name: habit?.name ?? "");
   }
 
   @override
@@ -22,12 +20,8 @@ class UpsertHabitDefaultController extends _$UpsertHabitDefaultController implem
   }
 
   @override
-  void onCancel() {
-
-  }
+  void onCancel() {}
 
   @override
-  void onSave() {
-
-  }
+  void onSave() {}
 }

@@ -11,14 +11,13 @@ import 'package:mobile_anwendungen/widgets/calendar_week_view.dart';
 
 import '../../common/selection_button.dart';
 
-
-
 class Statistics extends ConsumerWidget {
   const Statistics({super.key});
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final StatisticsController controller = ref.read(statisticsControllerProvider);
+    final StatisticsController controller =
+        ref.read(statisticsControllerProvider);
     final StatisticsModel model = ref.watch(statisticsModelProvider);
 
     return Scaffold(
@@ -30,10 +29,7 @@ class Statistics extends ConsumerWidget {
   }
 
   Widget _segmentedControl(
-      ThemeData theme,
-      StatisticsController controller,
-      StatisticsModel model
-      ) {
+      ThemeData theme, StatisticsController controller, StatisticsModel model) {
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,11 +51,8 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _onData(
-      BuildContext context,
-      StatisticsController controller,
-      StatisticsModel model
-      ) {
+  Widget _onData(BuildContext context, StatisticsController controller,
+      StatisticsModel model) {
     if (model.habits.isEmpty) {
       return _emptyState(context);
     } else {
@@ -83,7 +76,7 @@ class Statistics extends ConsumerWidget {
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {
     final startOfWeek =
-    DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
     return Expanded(
       child: ListView.builder(
@@ -98,7 +91,7 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _weekCard(BuildContext context ,Habit habit, DateTime startOfWeek) {
+  Widget _weekCard(BuildContext context, Habit habit, DateTime startOfWeek) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -123,7 +116,7 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _monthStatistic(BuildContext context,List<Habit> habits) {
+  Widget _monthStatistic(BuildContext context, List<Habit> habits) {
     return Expanded(
       child: ListView.builder(
         itemCount: habits.length,
@@ -137,7 +130,7 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _monthCard(BuildContext context,Habit habit) {
+  Widget _monthCard(BuildContext context, Habit habit) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),

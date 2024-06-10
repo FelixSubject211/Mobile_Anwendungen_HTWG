@@ -10,27 +10,28 @@ import 'domain/habits/habit.dart';
 part 'go_router.g.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
-GlobalKey<NavigatorState>(debugLabel: 'root');
+    GlobalKey<NavigatorState>(debugLabel: 'root');
 
 @riverpod
 GoRouter goRouter(final GoRouterRef ref) => GoRouter(
-    debugLogDiagnostics: kDebugMode,
-    onException: (BuildContext context, GoRouterState state, GoRouter router) {
-      debugPrint('GoRouter exception: ${state.error}');
-    },
-    routes: <RouteBase>[
-      GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const Navigation();
-        },
-      ),
-      GoRoute(
-        path: '/upsertHabit',
-        builder: (BuildContext context, GoRouterState state) {
-          final habit = state.extra as Habit?;
-          return UpsertHabit();
-        },
-      ),
-    ],
-  );
+      debugLogDiagnostics: kDebugMode,
+      onException:
+          (BuildContext context, GoRouterState state, GoRouter router) {
+        debugPrint('GoRouter exception: ${state.error}');
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: '/',
+          builder: (BuildContext context, GoRouterState state) {
+            return const Navigation();
+          },
+        ),
+        GoRoute(
+          path: '/upsertHabit',
+          builder: (BuildContext context, GoRouterState state) {
+            final habit = state.extra as Habit?;
+            return UpsertHabit();
+          },
+        ),
+      ],
+    );

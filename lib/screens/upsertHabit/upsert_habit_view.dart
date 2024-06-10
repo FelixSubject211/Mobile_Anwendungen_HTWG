@@ -6,17 +6,15 @@ import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_provider.dar
 import 'package:mobile_anwendungen/screens/upsert_habit.dart';
 
 class UpsertHabit extends ConsumerWidget {
-
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final UpsertHabitController controller = ref.read(upsertHabitControllerProvider);
+    final UpsertHabitController controller =
+        ref.read(upsertHabitControllerProvider);
     final UpsertHabitModel model = ref.watch(upsertHabitModelProvider);
 
     return Text(model.toString());
   }
 }
-
 
 abstract class UpsertHabitController {
   void onNameChanged(String name);

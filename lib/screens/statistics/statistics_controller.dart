@@ -8,14 +8,13 @@ import '../../lang/locale_keys.g.dart';
 part 'statistics_controller.g.dart';
 
 @riverpod
-class StatisticsDefaultController extends _$StatisticsDefaultController implements StatisticsController {
-
+class StatisticsDefaultController extends _$StatisticsDefaultController
+    implements StatisticsController {
   @override
   StatisticsModel build() {
     return StatisticsModel(
         selectedButton: LocaleKeys.statisticsWeekSelection.tr(),
-        habits: List.empty()
-    );
+        habits: List.empty());
   }
 
   @override
