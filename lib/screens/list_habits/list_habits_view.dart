@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/common/yusto_stream_builder.dart';
 import 'package:mobile_anwendungen/domain/habits/day_state.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_providers.dart';
+
 import '../../domain/habits/habit.dart';
 import '../../lang/locale_keys.g.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ListHabits extends ConsumerStatefulWidget {
   const ListHabits({super.key});

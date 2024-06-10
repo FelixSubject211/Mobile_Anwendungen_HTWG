@@ -1,7 +1,7 @@
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
-import 'package:mobile_anwendungen/screens/list_habits/list_habits_view.dart';
-import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
 import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
+import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
+import 'package:mobile_anwendungen/screens/list_habits/list_habits_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'list_habits_controller.g.dart';

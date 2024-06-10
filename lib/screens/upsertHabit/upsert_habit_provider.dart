@@ -1,5 +1,4 @@
 
-import 'package:mobile_anwendungen/screens/statistics/statistics_controller.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_controller.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_model.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_view.dart';
