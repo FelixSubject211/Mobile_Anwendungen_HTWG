@@ -1,17 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/database/habits/habit_database_datasource.dart';
 import 'package:mobile_anwendungen/database/habits/habit_database_default_datasource.dart';
 import 'package:mobile_anwendungen/domain/habits/habit_default_repository.dart';
 import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
-import 'package:mobile_anwendungen/screens/navigation.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mobile_anwendungen/screens/upsert_habit.dart';
 
 import 'database/object_box.dart';
-import 'domain/habits/habit.dart';
+import 'go_router.dart';
 import 'lang/codegen_loader.g.dart';
 
 Future<void> main() async {
@@ -23,46 +20,25 @@ Future<void> main() async {
   GetIt.instance.registerSingleton<HabitRepository>(HabitDefaultRepository());
 
   await EasyLocalization.ensureInitialized();
-  runApp(EasyLocalization(
-    path: 'assets/lang',
-    supportedLocales: const [
-      Locale('de'),
-    ],
-    fallbackLocale: const Locale('de'),
-    assetLoader: const CodegenLoader(),
-    child: const MyApp(),
-  ));
+  runApp(
+    EasyLocalization(
+      path: 'assets/lang',
+      supportedLocales: const [
+        Locale('de'),
+      ],
+      fallbackLocale: const Locale('de'),
+      assetLoader: const CodegenLoader(),
+      child: const ProviderScope(child: MyApp()),
+    ),
+  );
 }
 
-// Muhammed was here
-
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final goRouter = GoRouter(
-      debugLogDiagnostics: kDebugMode,
-      onException:
-          (BuildContext context, GoRouterState state, GoRouter router) {
-        debugPrint('GoRouter exception: ${state.error}');
-      },
-      routes: <RouteBase>[
-        GoRoute(
-          path: '/',
-          builder: (BuildContext context, GoRouterState state) {
-            return const Navigation();
-          },
-        ),
-        GoRoute(
-          path: '/upsertHabit',
-          builder: (BuildContext context, GoRouterState state) {
-            final habit = state.extra as Habit?;
-            return UpsertHabit(habit: habit);
-          },
-        ),
-      ],
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final goRouter = ref.watch(goRouterProvider);
 
     return MaterialApp.router(
       routerConfig: goRouter,
