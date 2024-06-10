@@ -1,11 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mobile_anwendungen/domain/habits/habit.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
-import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
+/*
 class UpsertHabit extends StatefulWidget {
   final Habit? habit;
 
@@ -115,3 +109,4 @@ class _UpsertHabitState extends State<UpsertHabit> {
     );
   }
 }
+ */

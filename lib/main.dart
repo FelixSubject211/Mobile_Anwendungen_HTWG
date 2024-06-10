@@ -1,23 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
-import 'package:mobile_anwendungen/database/habits/habit_database_datasource.dart';
-import 'package:mobile_anwendungen/database/habits/habit_database_default_datasource.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_default_repository.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
-
-import 'database/object_box.dart';
 import 'go_router.dart';
 import 'lang/codegen_loader.g.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  GetIt.instance.registerSingleton<ObjectBox>(await ObjectBox.create());
-  GetIt.instance.registerSingleton<HabitDatabaseDatasource>(
-      HabitsDatabaseDefaultDatasource());
-  GetIt.instance.registerSingleton<HabitRepository>(HabitDefaultRepository());
 
   await EasyLocalization.ensureInitialized();
   runApp(

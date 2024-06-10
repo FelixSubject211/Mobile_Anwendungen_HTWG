@@ -1,4 +1,3 @@
-import 'package:get_it/get_it.dart';
 import 'package:mobile_anwendungen/database/object_box.dart';
 import 'package:mobile_anwendungen/database/database.dart';
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
@@ -16,8 +15,7 @@ Database objectBoxDatabase(
     ObjectBoxDatabase();
 
 class ObjectBoxDatabase extends Database {
-  final Box<Habit> _habitBox =
-      GetIt.instance.get<ObjectBox>().store.box<Habit>();
+  final Box<Habit> _habitBox = throw Exception("TODO"); // TODO
 
   ObjectBoxDatabase();
 
