@@ -7,8 +7,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'domain/habits/habit.dart';
 
-final goRouterProvider = Provider<GoRouter>((ref) {
-  return GoRouter(
+part 'go_router.g.dart';
+
+final GlobalKey<NavigatorState> rootNavigatorKey =
+GlobalKey<NavigatorState>(debugLabel: 'root');
+
+@riverpod
+GoRouter goRouter(final GoRouterRef ref) => GoRouter(
     debugLogDiagnostics: kDebugMode,
     onException: (BuildContext context, GoRouterState state, GoRouter router) {
       debugPrint('GoRouter exception: ${state.error}');
@@ -29,4 +34,3 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
-});
