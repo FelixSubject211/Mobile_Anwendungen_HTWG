@@ -15,9 +15,14 @@ class ListHabitsDefaultController extends _$ListHabitsDefaultController
     required final ListHabitsNavigationService listHabitsNavigationService,
     required final HabitRepository habitRepository,
   }) {
-    return ListHabitsModel(
-      habits: habitRepository.listHabits(),
-    );
+    habitRepository.listHabits().listen((List<Habit> habits) {
+      state = state.when(
+        loading: () => ListHabitsModel.loaded(habits: habits),
+        loaded: (_) => ListHabitsModel.loaded(habits: habits),
+      );
+    });
+
+    return const ListHabitsModel.loading();
   }
 
   @override

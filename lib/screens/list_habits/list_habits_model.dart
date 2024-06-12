@@ -5,7 +5,8 @@ part 'list_habits_model.freezed.dart';
 
 @freezed
 class ListHabitsModel with _$ListHabitsModel {
-  factory ListHabitsModel({
-    required final Stream<List<Habit>> habits,
-  }) = _ListHabitsModel;
+  const factory ListHabitsModel.loading() = _Loading;
+  const factory ListHabitsModel.loaded({
+    required List<Habit> habits,
+  }) = _Loaded;
 }

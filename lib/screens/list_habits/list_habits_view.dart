@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_anwendungen/common/yusto_stream_builder.dart';
 import 'package:mobile_anwendungen/domain/habits/day_state.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_providers.dart';
@@ -29,39 +28,26 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   Widget build(BuildContext context) {
     final ListHabitsController controller =
         ref.read(listHabitsControllerProvider);
-
     final ListHabitsModel model = ref.watch(listHabitsModelProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.listHabitsTitle.tr()),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: yustoStreamBuilder(
-              stream: model.habits,
-              onData: (context, habits) {
-                if (habits.isNotEmpty) {
-                  return IconButton(
-                    icon: Icon(_isEditing ? Icons.check : Icons.edit),
-                    onPressed: _toggleEditing,
-                    tooltip: _isEditing
-                        ? LocaleKeys.finish.tr()
-                        : LocaleKeys.edit.tr(),
-                  );
-                }
-                return Container();
-              },
-            ),
-          ),
+          model.when(
+              loading: () => Container(),
+              loaded: (habits) => _editButton(habits)),
         ],
       ),
-      body: Padding(
+      body: model.when(
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        loaded: (habits) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: yustoStreamBuilder(
-            stream: model.habits,
-            onData: _onData,
-          )),
+          child: _onData(habits),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controller.showUpsertHabit(null);
@@ -72,12 +58,23 @@ class ListHabitsState extends ConsumerState<ListHabits> {
     );
   }
 
-  Widget _onData(BuildContext context, List<Habit> habits) {
+  Widget _onData(List<Habit> habits) {
     if (habits.isEmpty) {
       return _emptyState();
     } else {
       return _isEditing ? _buildEditableList(habits) : _buildList(habits);
     }
+  }
+
+  Widget _editButton(List<Habit> habits) {
+    if (habits.isNotEmpty) {
+      return IconButton(
+        icon: Icon(_isEditing ? Icons.check : Icons.edit),
+        onPressed: _toggleEditing,
+        tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+      );
+    }
+    return Container();
   }
 
   Widget _buildList(List<Habit> habits) {

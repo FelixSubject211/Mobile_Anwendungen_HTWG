@@ -7,7 +7,7 @@ part of 'statistics_provider.dart';
 // **************************************************************************
 
 String _$statisticsControllerHash() =>
-    r'3880ad9b0b135a88a9162b40944dd7821d9327bf';
+    r'eb31bef89bfaa775e727f401bb399011dc0799a9';
 
 /// See also [statisticsController].
 @ProviderFor(statisticsController)
@@ -23,7 +23,7 @@ final statisticsControllerProvider =
 );
 
 typedef StatisticsControllerRef = AutoDisposeProviderRef<StatisticsController>;
-String _$statisticsModelHash() => r'd41078078e3494926fcc41ee77b74dc6976d0ecc';
+String _$statisticsModelHash() => r'4bfc068787db8546023a34397c2424a15876dc73';
 
 /// See also [statisticsModel].
 @ProviderFor(statisticsModel)

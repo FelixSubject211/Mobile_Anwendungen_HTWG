@@ -16,10 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ListHabitsModel {
-  Stream<List<Habit>> get habits => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ListHabitsModelCopyWith<ListHabitsModel> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Habit> habits) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Habit> habits)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Habit> habits)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -28,8 +61,6 @@ abstract class $ListHabitsModelCopyWith<$Res> {
   factory $ListHabitsModelCopyWith(
           ListHabitsModel value, $Res Function(ListHabitsModel) then) =
       _$ListHabitsModelCopyWithImpl<$Res, ListHabitsModel>;
-  @useResult
-  $Res call({Stream<List<Habit>> habits});
 }
 
 /// @nodoc
@@ -41,38 +72,125 @@ class _$ListHabitsModelCopyWithImpl<$Res, $Val extends ListHabitsModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
 
-  @pragma('vm:prefer-inline')
+/// @nodoc
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$ListHabitsModelCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
+
   @override
-  $Res call({
-    Object? habits = null,
+  String toString() {
+    return 'ListHabitsModel.loading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Habit> habits) loaded,
   }) {
-    return _then(_value.copyWith(
-      habits: null == habits
-          ? _value.habits
-          : habits // ignore: cast_nullable_to_non_nullable
-              as Stream<List<Habit>>,
-    ) as $Val);
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Habit> habits)? loaded,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Habit> habits)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract class _$$ListHabitsModelImplCopyWith<$Res>
-    implements $ListHabitsModelCopyWith<$Res> {
-  factory _$$ListHabitsModelImplCopyWith(_$ListHabitsModelImpl value,
-          $Res Function(_$ListHabitsModelImpl) then) =
-      __$$ListHabitsModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Stream<List<Habit>> habits});
+abstract class _Loading implements ListHabitsModel {
+  const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-class __$$ListHabitsModelImplCopyWithImpl<$Res>
-    extends _$ListHabitsModelCopyWithImpl<$Res, _$ListHabitsModelImpl>
-    implements _$$ListHabitsModelImplCopyWith<$Res> {
-  __$$ListHabitsModelImplCopyWithImpl(
-      _$ListHabitsModelImpl _value, $Res Function(_$ListHabitsModelImpl) _then)
+abstract class _$$LoadedImplCopyWith<$Res> {
+  factory _$$LoadedImplCopyWith(
+          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
+      __$$LoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Habit> habits});
+}
+
+/// @nodoc
+class __$$LoadedImplCopyWithImpl<$Res>
+    extends _$ListHabitsModelCopyWithImpl<$Res, _$LoadedImpl>
+    implements _$$LoadedImplCopyWith<$Res> {
+  __$$LoadedImplCopyWithImpl(
+      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,55 +198,119 @@ class __$$ListHabitsModelImplCopyWithImpl<$Res>
   $Res call({
     Object? habits = null,
   }) {
-    return _then(_$ListHabitsModelImpl(
+    return _then(_$LoadedImpl(
       habits: null == habits
-          ? _value.habits
+          ? _value._habits
           : habits // ignore: cast_nullable_to_non_nullable
-              as Stream<List<Habit>>,
+              as List<Habit>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ListHabitsModelImpl implements _ListHabitsModel {
-  _$ListHabitsModelImpl({required this.habits});
+class _$LoadedImpl implements _Loaded {
+  const _$LoadedImpl({required final List<Habit> habits}) : _habits = habits;
 
+  final List<Habit> _habits;
   @override
-  final Stream<List<Habit>> habits;
+  List<Habit> get habits {
+    if (_habits is EqualUnmodifiableListView) return _habits;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_habits);
+  }
 
   @override
   String toString() {
-    return 'ListHabitsModel(habits: $habits)';
+    return 'ListHabitsModel.loaded(habits: $habits)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ListHabitsModelImpl &&
-            (identical(other.habits, habits) || other.habits == habits));
+            other is _$LoadedImpl &&
+            const DeepCollectionEquality().equals(other._habits, _habits));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, habits);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_habits));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ListHabitsModelImplCopyWith<_$ListHabitsModelImpl> get copyWith =>
-      __$$ListHabitsModelImplCopyWithImpl<_$ListHabitsModelImpl>(
-          this, _$identity);
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Habit> habits) loaded,
+  }) {
+    return loaded(habits);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Habit> habits)? loaded,
+  }) {
+    return loaded?.call(habits);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Habit> habits)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(habits);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _ListHabitsModel implements ListHabitsModel {
-  factory _ListHabitsModel({required final Stream<List<Habit>> habits}) =
-      _$ListHabitsModelImpl;
+abstract class _Loaded implements ListHabitsModel {
+  const factory _Loaded({required final List<Habit> habits}) = _$LoadedImpl;
 
-  @override
-  Stream<List<Habit>> get habits;
-  @override
+  List<Habit> get habits;
   @JsonKey(ignore: true)
-  _$$ListHabitsModelImplCopyWith<_$ListHabitsModelImpl> get copyWith =>
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

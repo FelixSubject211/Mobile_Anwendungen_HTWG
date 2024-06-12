@@ -6,7 +6,9 @@ part 'statistics_model.freezed.dart';
 
 @freezed
 class StatisticsModel with _$StatisticsModel {
-  factory StatisticsModel(
-      {required final String selectedButton,
-      required final List<Habit> habits}) = _StatisticsModel;
+  const factory StatisticsModel.loading() = _Loading;
+  const factory StatisticsModel.loaded({
+    required String selectedButton,
+    required List<Habit> habits,
+  }) = _Loaded;
 }

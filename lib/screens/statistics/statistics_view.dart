@@ -24,25 +24,31 @@ class Statistics extends ConsumerWidget {
       appBar: AppBar(
         title: Text(LocaleKeys.statisticsTitle.tr()),
       ),
-      body: _onData(context, controller, model),
+      body: model.when(
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        loaded: (selectedButton, habits) =>
+            _onData(context, controller, selectedButton, habits),
+      ),
     );
   }
 
   Widget _segmentedControl(
-      ThemeData theme, StatisticsController controller, StatisticsModel model) {
+      ThemeData theme, StatisticsController controller, String selectedButton) {
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SelectionButton(
             label: LocaleKeys.statisticsWeekSelection.tr(),
-            selectedButton: model.selectedButton,
+            selectedButton: selectedButton,
             onButtonPressed: controller.onSegmentedControlPressed,
             theme: theme,
           ),
           SelectionButton(
             label: LocaleKeys.statisticsMonthSelection.tr(),
-            selectedButton: model.selectedButton,
+            selectedButton: selectedButton,
             onButtonPressed: controller.onSegmentedControlPressed,
             theme: theme,
           ),
@@ -52,8 +58,8 @@ class Statistics extends ConsumerWidget {
   }
 
   Widget _onData(BuildContext context, StatisticsController controller,
-      StatisticsModel model) {
-    if (model.habits.isEmpty) {
+      String selectedButton, List<Habit> habits) {
+    if (habits.isEmpty) {
       return _emptyState(context);
     } else {
       final theme = Theme.of(context);
@@ -63,11 +69,11 @@ class Statistics extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            _segmentedControl(theme, controller, model),
+            _segmentedControl(theme, controller, selectedButton),
             const SizedBox(height: 20),
-            model.selectedButton == LocaleKeys.statisticsWeekSelection.tr()
-                ? _weekStatistic(context, model.habits)
-                : _monthStatistic(context, model.habits)
+            selectedButton == LocaleKeys.statisticsWeekSelection.tr()
+                ? _weekStatistic(context, habits)
+                : _monthStatistic(context, habits)
           ],
         ),
       );

@@ -1,3 +1,4 @@
+import 'package:mobile_anwendungen/domain/habits/habit_default_repository.dart';
 import 'package:mobile_anwendungen/screens/statistics/statistics_controller.dart';
 import 'package:mobile_anwendungen/screens/statistics/statistics_model.dart';
 import 'package:mobile_anwendungen/screens/statistics/statistics_view.dart';
@@ -7,8 +8,11 @@ part 'statistics_provider.g.dart';
 
 @riverpod
 StatisticsController statisticsController(final StatisticsControllerRef ref) =>
-    ref.watch(statisticsDefaultControllerProvider.notifier);
+    ref.watch(StatisticsDefaultControllerProvider(
+            habitRepository: ref.watch(habitRepositoryProvider))
+        .notifier);
 
 @riverpod
 StatisticsModel statisticsModel(final StatisticsModelRef ref) =>
-    ref.watch(statisticsDefaultControllerProvider);
+    ref.watch(StatisticsDefaultControllerProvider(
+        habitRepository: ref.watch(habitRepositoryProvider)));
