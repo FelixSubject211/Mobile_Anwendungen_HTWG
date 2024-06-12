@@ -6,7 +6,7 @@ import 'package:mobile_anwendungen/screens/navigation.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'domain/habits/habit.dart';
+import 'domain/model/habit.dart';
 
 part 'go_router.g.dart';
 

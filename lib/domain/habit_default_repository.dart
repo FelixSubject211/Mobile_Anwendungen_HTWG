@@ -2,20 +2,21 @@ import 'dart:async';
 
 import 'package:mobile_anwendungen/database/database.dart';
 import 'package:mobile_anwendungen/database/object_box_database.dart';
-import 'package:mobile_anwendungen/domain/habits/habit.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_repository_aggregator.dart';
+import 'package:mobile_anwendungen/domain/model/habit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'habit_repository.dart';
 
 part 'habit_default_repository.g.dart';
 
 @Riverpod(keepAlive: true)
-HabitRepositoryAggregator habitRepository(
+HabitDefaultRepository habitRepository(
   final HabitRepositoryRef ref,
 ) =>
     HabitDefaultRepository(database: ref.watch(objectBoxDatabaseProvider));
 
-class HabitDefaultRepository extends HabitRepositoryAggregator {
+class HabitDefaultRepository extends HabitRepository {
   final _habitsSubject = BehaviorSubject<List<Habit>>();
   final Database database;
 

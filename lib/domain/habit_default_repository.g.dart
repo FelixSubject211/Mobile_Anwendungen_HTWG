@@ -6,11 +6,11 @@ part of 'habit_default_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$habitRepositoryHash() => r'121f95c407ac1958c6df3c46d0af2c3da9533405';
+String _$habitRepositoryHash() => r'5144ac8b1eb0e042c4976f5c632934e42ccded13';
 
 /// See also [habitRepository].
 @ProviderFor(habitRepository)
-final habitRepositoryProvider = Provider<HabitRepositoryAggregator>.internal(
+final habitRepositoryProvider = Provider<HabitDefaultRepository>.internal(
   habitRepository,
   name: r'habitRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -20,6 +20,6 @@ final habitRepositoryProvider = Provider<HabitRepositoryAggregator>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef HabitRepositoryRef = ProviderRef<HabitRepositoryAggregator>;
+typedef HabitRepositoryRef = ProviderRef<HabitDefaultRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

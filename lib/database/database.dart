@@ -1,4 +1,4 @@
-import '../domain/habits/habit.dart';
+import '../domain/model/habit.dart';
 
 abstract class Database {
   List<Habit> listHabits();

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_anwendungen/domain/habits/habit.dart';
+import 'package:mobile_anwendungen/domain/model/habit.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_model.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_provider.dart';
 

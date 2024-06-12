@@ -1,4 +1,4 @@
-import 'package:mobile_anwendungen/domain/habits/habit_default_repository.dart';
+import 'package:mobile_anwendungen/domain/habit_default_repository.dart';
 import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_service.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_controller.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';

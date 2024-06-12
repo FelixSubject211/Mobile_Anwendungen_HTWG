@@ -1,5 +1,5 @@
-import 'package:mobile_anwendungen/domain/habits/habit.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
+import 'package:mobile_anwendungen/domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit_repository.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_view.dart';
 import 'package:mobile_anwendungen/screens/list_habits/services/list_habits_navigation_service.dart';

@@ -1,5 +1,5 @@
-import 'package:mobile_anwendungen/domain/habits/habit.dart';
-import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
+import 'package:mobile_anwendungen/domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit_repository.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/services/upsert_habit_navigation_service.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_model.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_view.dart';

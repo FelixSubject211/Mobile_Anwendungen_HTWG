@@ -3,8 +3,8 @@ import 'package:mobile_anwendungen/screens/statistics/statistics_model.dart';
 import 'package:mobile_anwendungen/screens/statistics/statistics_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../domain/habits/habit.dart';
-import '../../domain/habits/habit_repository.dart';
+import '../../domain/model/habit.dart';
+import '../../domain/habit_repository.dart';
 import '../../lang/locale_keys.g.dart';
 
 part 'statistics_controller.g.dart';

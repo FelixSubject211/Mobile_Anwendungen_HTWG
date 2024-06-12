@@ -1,8 +1,8 @@
 import 'package:mobile_anwendungen/database/database.dart';
-import 'package:mobile_anwendungen/domain/habits/habit.dart';
+import 'package:mobile_anwendungen/domain/model/habit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../domain/habits/completion_date.dart';
+import '../domain/model/completion_date.dart';
 import '../main.dart';
 import '../objectbox.g.dart';
 

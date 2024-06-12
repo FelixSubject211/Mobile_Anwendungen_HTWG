@@ -7,7 +7,7 @@ part of 'statistics_controller.dart';
 // **************************************************************************
 
 String _$statisticsDefaultControllerHash() =>
-    r'53f0cf71afb6097ae252df72315ecdd3b0aa0955';
+    r'569a5fd4f479cd9d1503ca57ffd3fb62d97cbb6b';
 
 /// Copied from Dart SDK
 class _SystemHash {

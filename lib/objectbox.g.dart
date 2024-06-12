@@ -15,8 +15,8 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'domain/habits/completion_date.dart';
-import 'domain/habits/habit.dart';
+import 'domain/model/completion_date.dart';
+import 'domain/model/habit.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
