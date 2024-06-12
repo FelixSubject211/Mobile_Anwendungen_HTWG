@@ -14,17 +14,17 @@ class UpsertHabit extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final UpsertHabitController controller =
-        ref.read(upsertHabitControllerProvider(habit));
+    final UpsertHabitController controller = ref.read(upsertHabitControllerProvider(habit));
     final UpsertHabitModel model = ref.watch(upsertHabitModelProvider(habit));
 
     return Scaffold(
       appBar: AppBar(
           title: Text(
-        model.isInEditMode
+          model.isInEditMode
             ? LocaleKeys.upsertHabitEditTitle.tr()
             : LocaleKeys.upsertHabitAddTitle.tr(),
-      )),
+        )
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -52,7 +52,9 @@ class UpsertHabit extends ConsumerWidget {
         onChanged: controller.onNameChanged,
         decoration: InputDecoration(
             labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
-            border: const OutlineInputBorder()));
+            border: const OutlineInputBorder()
+        )
+    );
   }
 
   Widget _buttonRow(UpsertHabitModel model, UpsertHabitController controller) {

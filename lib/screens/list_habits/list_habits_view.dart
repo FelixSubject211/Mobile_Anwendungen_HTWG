@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/domain/model/day_state.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_providers.dart';
-
 import '../../domain/model/habit.dart';
 import '../../lang/locale_keys.g.dart';
 
@@ -26,32 +25,28 @@ class ListHabitsState extends ConsumerState<ListHabits> {
 
   @override
   Widget build(BuildContext context) {
-    final ListHabitsController controller =
-        ref.read(listHabitsControllerProvider);
+    final ListHabitsController controller = ref.read(listHabitsControllerProvider);
     final ListHabitsModel model = ref.watch(listHabitsModelProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.listHabitsTitle.tr()),
-        actions: <Widget>[
+        actions: [
           model.when(
-              loading: () => Container(),
-              loaded: (habits) => _editButton(habits)),
+            loading: () => Container(),
+            loaded: (habits) => _editButton(habits),
+          ),
         ],
       ),
       body: model.when(
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
+        loading: () => const Center(child: CircularProgressIndicator()),
         loaded: (habits) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: _onData(habits),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.showUpsertHabit(null);
-        },
+        onPressed: () => controller.showUpsertHabit(null),
         tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
         child: const Icon(Icons.add),
       ),
@@ -59,36 +54,31 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   Widget _onData(List<Habit> habits) {
-    if (habits.isEmpty) {
-      return _emptyState();
-    } else {
-      return _isEditing ? _buildEditableList(habits) : _buildList(habits);
-    }
+    return habits.isEmpty ? _emptyState() : (_isEditing ? _buildEditableList(habits) : _buildList(habits));
   }
 
   Widget _editButton(List<Habit> habits) {
-    if (habits.isNotEmpty) {
-      return IconButton(
-        icon: Icon(_isEditing ? Icons.check : Icons.edit),
-        onPressed: _toggleEditing,
-        tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
-      );
-    }
-    return Container();
+    return habits.isNotEmpty
+        ? IconButton(
+      icon: Icon(_isEditing ? Icons.check : Icons.edit),
+      onPressed: _toggleEditing,
+      tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+    )
+        : Container();
   }
 
   Widget _buildList(List<Habit> habits) {
     return ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
-        Habit habit = habits[index];
+        final habit = habits[index];
         return _habit(habit, _habitCheckbox(habit));
       },
     );
   }
 
   Widget _buildEditableList(List<Habit> habits) {
-    ListHabitsController controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(listHabitsControllerProvider);
 
     return ReorderableListView(
       onReorder: controller.onReorder,
@@ -101,34 +91,31 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   Material _habit(Habit habit, Widget trailing) {
-    ListHabitsController controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(listHabitsControllerProvider);
 
     return Material(
-        color: Colors.transparent,
-        key: ValueKey(habit.index),
-        child: ListTile(
-          title: Text(
-            habit.name,
-            style: habit.isCompletedToday() == DayState.done
-                ? const TextStyle(decoration: TextDecoration.lineThrough)
-                : null,
-          ),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-          trailing: trailing,
-          onTap: () {
-            if (_isEditing) {
-              controller.showUpsertHabit(habit);
-            }
-          },
-          enabled: _isEditing || habit.isCompletedToday() != DayState.done,
-          shape: const Border(
-            bottom: BorderSide(),
-          ),
-        ));
+      color: Colors.transparent,
+      key: ValueKey(habit.index),
+      child: ListTile(
+        title: Text(
+          habit.name,
+          style: habit.isCompletedToday() == DayState.done
+              ? const TextStyle(decoration: TextDecoration.lineThrough)
+              : null,
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+        trailing: trailing,
+        onTap: () {
+          if (_isEditing) controller.showUpsertHabit(habit);
+        },
+        enabled: _isEditing || habit.isCompletedToday() != DayState.done,
+        shape: const Border(bottom: BorderSide()),
+      ),
+    );
   }
 
   SizedBox _habitCheckbox(Habit habit) {
-    ListHabitsController controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(listHabitsControllerProvider);
 
     return SizedBox(
       width: 24,
@@ -148,18 +135,16 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   Row _habitEditActions(Habit habit) {
-    ListHabitsController controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(listHabitsControllerProvider);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
           icon: const Icon(Icons.delete_outline),
-          onPressed: () {
-            controller.onDeleteHabit(habit);
-          },
+          onPressed: () => controller.onDeleteHabit(habit),
         ),
-        const Icon(Icons.drag_handle_sharp)
+        const Icon(Icons.drag_handle_sharp),
       ],
     );
   }

@@ -16,8 +16,7 @@ class Statistics extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final StatisticsController controller =
-        ref.read(statisticsControllerProvider);
+    final StatisticsController controller = ref.read(statisticsControllerProvider);
     final StatisticsModel model = ref.watch(statisticsModelProvider);
 
     return Scaffold(
@@ -25,11 +24,8 @@ class Statistics extends ConsumerWidget {
         title: Text(LocaleKeys.statisticsTitle.tr()),
       ),
       body: model.when(
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        loaded: (selectedButton, habits) =>
-            _onData(context, controller, selectedButton, habits),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        loaded: (selectedButton, habits) => _onData(context, controller, selectedButton, habits),
       ),
     );
   }
@@ -57,8 +53,7 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _onData(BuildContext context, StatisticsController controller,
-      String selectedButton, List<Habit> habits) {
+  Widget _onData(BuildContext context, StatisticsController controller, String selectedButton, List<Habit> habits) {
     if (habits.isEmpty) {
       return _emptyState(context);
     } else {
@@ -73,7 +68,7 @@ class Statistics extends ConsumerWidget {
             const SizedBox(height: 20),
             selectedButton == LocaleKeys.statisticsWeekSelection.tr()
                 ? _weekStatistic(context, habits)
-                : _monthStatistic(context, habits)
+                : _monthStatistic(context, habits),
           ],
         ),
       );
@@ -81,8 +76,7 @@ class Statistics extends ConsumerWidget {
   }
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {
-    final startOfWeek =
-        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+    final startOfWeek = DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
     return Expanded(
       child: ListView.builder(
@@ -106,16 +100,11 @@ class Statistics extends ConsumerWidget {
           children: [
             Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
             CalendarWeekView(
-                dayBuilder: (date, isSelected) {
-                  return _dayBuilder(date, isSelected, habit);
-                },
-                headerBuilder: (weekLabel) {
-                  return _headerBuilderWeek(weekLabel);
-                },
-                dayOfWeekLabelBuilder: (dayOfWeek) {
-                  return _dayOfWeekLabelBuilder(dayOfWeek);
-                },
-                selectedDate: DateTime.now())
+              dayBuilder: (date, isSelected) => _dayBuilder(date, isSelected, habit),
+              headerBuilder: (weekLabel) => _headerBuilderWeek(weekLabel),
+              dayOfWeekLabelBuilder: (dayOfWeek) => _dayOfWeekLabelBuilder(dayOfWeek),
+              selectedDate: DateTime.now(),
+            ),
           ],
         ),
       ),
@@ -145,15 +134,9 @@ class Statistics extends ConsumerWidget {
           children: [
             Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
             CalendarMonthView(
-              dayBuilder: (date, isSelected) {
-                return _dayBuilder(date, isSelected, habit);
-              },
-              headerBuilder: (month, year) {
-                return _headerBuilderMonth(month, year);
-              },
-              dayOfWeekLabelBuilder: (dayOfWeek) {
-                return _dayOfWeekLabelBuilder(dayOfWeek);
-              },
+              dayBuilder: (date, isSelected) => _dayBuilder(date, isSelected, habit),
+              headerBuilder: (month, year) => _headerBuilderMonth(month, year),
+              dayOfWeekLabelBuilder: (dayOfWeek) => _dayOfWeekLabelBuilder(dayOfWeek),
               selectedDate: DateTime.now(),
             ),
           ],
@@ -172,9 +155,7 @@ class Statistics extends ConsumerWidget {
       child: Center(
         child: Text(
           date.day.toString(),
-          style: const TextStyle(
-            color: Colors.white,
-          ),
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );
