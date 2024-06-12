@@ -11,7 +11,8 @@ part 'list_habits_providers.g.dart';
 ListHabitsController listHabitsController(final ListHabitsControllerRef ref) =>
     ref.watch(
       ListHabitsDefaultControllerProvider(
-          listHabitsNavigationService: ref.watch(goRouterNavigationServiceProvider),
+              listHabitsNavigationService:
+                  ref.watch(goRouterNavigationServiceProvider),
               habitRepository: ref.watch(habitRepositoryProvider))
           .notifier,
     );
@@ -19,6 +20,7 @@ ListHabitsController listHabitsController(final ListHabitsControllerRef ref) =>
 @riverpod
 ListHabitsModel listHabitsModel(final ListHabitsModelRef ref) => ref.watch(
       ListHabitsDefaultControllerProvider(
-          listHabitsNavigationService: ref.watch(goRouterNavigationServiceProvider),
+          listHabitsNavigationService:
+              ref.watch(goRouterNavigationServiceProvider),
           habitRepository: ref.watch(habitRepositoryProvider)),
     );

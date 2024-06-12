@@ -11,11 +11,10 @@ part 'upsert_habit_controller.g.dart';
 class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
     implements UpsertHabitController {
   @override
-  UpsertHabitModel build({
-    required final UpsertHabitNavigationService upsertHabitNavigationService,
-    required final HabitRepository habitRepository,
-    required final Habit? habit
-  }) {
+  UpsertHabitModel build(
+      {required final UpsertHabitNavigationService upsertHabitNavigationService,
+      required final HabitRepository habitRepository,
+      required final Habit? habit}) {
     return UpsertHabitModel(
         isInEditMode: habit != null, name: habit?.name ?? "");
   }
@@ -36,13 +35,10 @@ class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
       habit?.name = state.name;
       habitRepository.upsertHabit(habit!);
     } else {
-      habitRepository.upsertHabit(
-          Habit(
-              name: state.name,
-              index: Habit.newIndex(),
-              creationDate: DateTime.now().millisecondsSinceEpoch
-          )
-      );
+      habitRepository.upsertHabit(Habit(
+          name: state.name,
+          index: Habit.newIndex(),
+          creationDate: DateTime.now().millisecondsSinceEpoch));
     }
     upsertHabitNavigationService.pop();
   }

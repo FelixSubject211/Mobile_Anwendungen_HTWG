@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
@@ -15,16 +14,17 @@ class UpsertHabit extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final UpsertHabitController controller = ref.read(upsertHabitControllerProvider(habit));
+    final UpsertHabitController controller =
+        ref.read(upsertHabitControllerProvider(habit));
     final UpsertHabitModel model = ref.watch(upsertHabitModelProvider(habit));
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(model.isInEditMode
+          title: Text(
+        model.isInEditMode
             ? LocaleKeys.upsertHabitEditTitle.tr()
             : LocaleKeys.upsertHabitAddTitle.tr(),
-        )
-      ),
+      )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -46,10 +46,7 @@ class UpsertHabit extends ConsumerWidget {
     );
   }
 
-  Widget _nameField(
-      UpsertHabitModel model,
-      UpsertHabitController controller
-      ) {
+  Widget _nameField(UpsertHabitModel model, UpsertHabitController controller) {
     return TextFormField(
         initialValue: model.name,
         onChanged: controller.onNameChanged,
@@ -58,10 +55,7 @@ class UpsertHabit extends ConsumerWidget {
             border: const OutlineInputBorder()));
   }
 
-  Widget _buttonRow(
-      UpsertHabitModel model,
-      UpsertHabitController controller
-      ) {
+  Widget _buttonRow(UpsertHabitModel model, UpsertHabitController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
