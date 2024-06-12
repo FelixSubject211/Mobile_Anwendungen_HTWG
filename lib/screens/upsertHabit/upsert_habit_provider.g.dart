@@ -7,7 +7,7 @@ part of 'upsert_habit_provider.dart';
 // **************************************************************************
 
 String _$upsertHabitControllerHash() =>
-    r'593322bb3c6128cf6b9952fac2c7e5d2b8320532';
+    r'f5e3a983205a196c384eb9d52260822be1f838d2';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -159,7 +159,7 @@ class _UpsertHabitControllerProviderElement
   Habit? get habit => (origin as UpsertHabitControllerProvider).habit;
 }
 
-String _$upsertHabitModelHash() => r'c783762e793bfb1a4965701ba3169afdcd8ca023';
+String _$upsertHabitModelHash() => r'8f1044b211fe338d897070b5166aec168814b429';
 
 /// See also [upsertHabitModel].
 @ProviderFor(upsertHabitModel)

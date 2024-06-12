@@ -7,7 +7,7 @@ part of 'list_habits_controller.dart';
 // **************************************************************************
 
 String _$listHabitsDefaultControllerHash() =>
-    r'e83ed97aeabc160d271001fe960583deb21e6961';
+    r'28f562ba68e80613cfe041069dbf322eb680b918';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,9 +32,11 @@ class _SystemHash {
 
 abstract class _$ListHabitsDefaultController
     extends BuildlessAutoDisposeNotifier<ListHabitsModel> {
+  late final ListHabitsNavigationService listHabitsNavigationService;
   late final HabitRepository habitRepository;
 
   ListHabitsModel build({
+    required ListHabitsNavigationService listHabitsNavigationService,
     required HabitRepository habitRepository,
   });
 }
@@ -50,9 +52,11 @@ class ListHabitsDefaultControllerFamily extends Family<ListHabitsModel> {
 
   /// See also [ListHabitsDefaultController].
   ListHabitsDefaultControllerProvider call({
+    required ListHabitsNavigationService listHabitsNavigationService,
     required HabitRepository habitRepository,
   }) {
     return ListHabitsDefaultControllerProvider(
+      listHabitsNavigationService: listHabitsNavigationService,
       habitRepository: habitRepository,
     );
   }
@@ -62,6 +66,7 @@ class ListHabitsDefaultControllerFamily extends Family<ListHabitsModel> {
     covariant ListHabitsDefaultControllerProvider provider,
   ) {
     return call(
+      listHabitsNavigationService: provider.listHabitsNavigationService,
       habitRepository: provider.habitRepository,
     );
   }
@@ -87,10 +92,12 @@ class ListHabitsDefaultControllerProvider
         ListHabitsModel> {
   /// See also [ListHabitsDefaultController].
   ListHabitsDefaultControllerProvider({
+    required ListHabitsNavigationService listHabitsNavigationService,
     required HabitRepository habitRepository,
   }) : this._internal(
-          () =>
-              ListHabitsDefaultController()..habitRepository = habitRepository,
+          () => ListHabitsDefaultController()
+            ..listHabitsNavigationService = listHabitsNavigationService
+            ..habitRepository = habitRepository,
           from: listHabitsDefaultControllerProvider,
           name: r'listHabitsDefaultControllerProvider',
           debugGetCreateSourceHash:
@@ -100,6 +107,7 @@ class ListHabitsDefaultControllerProvider
           dependencies: ListHabitsDefaultControllerFamily._dependencies,
           allTransitiveDependencies:
               ListHabitsDefaultControllerFamily._allTransitiveDependencies,
+          listHabitsNavigationService: listHabitsNavigationService,
           habitRepository: habitRepository,
         );
 
@@ -110,9 +118,11 @@ class ListHabitsDefaultControllerProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
+    required this.listHabitsNavigationService,
     required this.habitRepository,
   }) : super.internal();
 
+  final ListHabitsNavigationService listHabitsNavigationService;
   final HabitRepository habitRepository;
 
   @override
@@ -120,6 +130,7 @@ class ListHabitsDefaultControllerProvider
     covariant ListHabitsDefaultController notifier,
   ) {
     return notifier.build(
+      listHabitsNavigationService: listHabitsNavigationService,
       habitRepository: habitRepository,
     );
   }
@@ -129,12 +140,15 @@ class ListHabitsDefaultControllerProvider
     return ProviderOverride(
       origin: this,
       override: ListHabitsDefaultControllerProvider._internal(
-        () => create()..habitRepository = habitRepository,
+        () => create()
+          ..listHabitsNavigationService = listHabitsNavigationService
+          ..habitRepository = habitRepository,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
+        listHabitsNavigationService: listHabitsNavigationService,
         habitRepository: habitRepository,
       ),
     );
@@ -149,12 +163,14 @@ class ListHabitsDefaultControllerProvider
   @override
   bool operator ==(Object other) {
     return other is ListHabitsDefaultControllerProvider &&
+        other.listHabitsNavigationService == listHabitsNavigationService &&
         other.habitRepository == habitRepository;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, listHabitsNavigationService.hashCode);
     hash = _SystemHash.combine(hash, habitRepository.hashCode);
 
     return _SystemHash.finish(hash);
@@ -163,6 +179,9 @@ class ListHabitsDefaultControllerProvider
 
 mixin ListHabitsDefaultControllerRef
     on AutoDisposeNotifierProviderRef<ListHabitsModel> {
+  /// The parameter `listHabitsNavigationService` of this provider.
+  ListHabitsNavigationService get listHabitsNavigationService;
+
   /// The parameter `habitRepository` of this provider.
   HabitRepository get habitRepository;
 }
@@ -172,6 +191,10 @@ class _ListHabitsDefaultControllerProviderElement
         ListHabitsModel> with ListHabitsDefaultControllerRef {
   _ListHabitsDefaultControllerProviderElement(super.provider);
 
+  @override
+  ListHabitsNavigationService get listHabitsNavigationService =>
+      (origin as ListHabitsDefaultControllerProvider)
+          .listHabitsNavigationService;
   @override
   HabitRepository get habitRepository =>
       (origin as ListHabitsDefaultControllerProvider).habitRepository;

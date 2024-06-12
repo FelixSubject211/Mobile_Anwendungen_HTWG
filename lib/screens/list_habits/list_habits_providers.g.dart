@@ -7,7 +7,7 @@ part of 'list_habits_providers.dart';
 // **************************************************************************
 
 String _$listHabitsControllerHash() =>
-    r'33d724d897ea6e8fbdd8ce52b2d790b355328400';
+    r'621ca7bfc6d2c239615066b31dc863c5ee581596';
 
 /// See also [listHabitsController].
 @ProviderFor(listHabitsController)
@@ -23,7 +23,7 @@ final listHabitsControllerProvider =
 );
 
 typedef ListHabitsControllerRef = AutoDisposeProviderRef<ListHabitsController>;
-String _$listHabitsModelHash() => r'3afe773b5740067e07fc5d36298617b66a762637';
+String _$listHabitsModelHash() => r'ba8550af15adddb14931ba4402e60e62f815a7c1';
 
 /// See also [listHabitsModel].
 @ProviderFor(listHabitsModel)

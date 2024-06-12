@@ -1,4 +1,6 @@
 import 'package:mobile_anwendungen/domain/habits/habit.dart';
+import 'package:mobile_anwendungen/domain/habits/habit_repository.dart';
+import 'package:mobile_anwendungen/screens/upsertHabit/services/upsert_habit_navigation_service.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_model.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,7 +11,11 @@ part 'upsert_habit_controller.g.dart';
 class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
     implements UpsertHabitController {
   @override
-  UpsertHabitModel build(final Habit? habit) {
+  UpsertHabitModel build({
+    required final UpsertHabitNavigationService upsertHabitNavigationService,
+    required final HabitRepository habitRepository,
+    required final Habit? habit
+  }) {
     return UpsertHabitModel(
         isInEditMode: habit != null, name: habit?.name ?? "");
   }
@@ -20,8 +26,24 @@ class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
   }
 
   @override
-  void onCancel() {}
+  void onCancel() {
+    upsertHabitNavigationService.pop();
+  }
 
   @override
-  void onSave() {}
+  void onSave() {
+    if (state.isInEditMode) {
+      habit?.name = state.name;
+      habitRepository.upsertHabit(habit!);
+    } else {
+      habitRepository.upsertHabit(
+          Habit(
+              name: state.name,
+              index: Habit.newIndex(),
+              creationDate: DateTime.now().millisecondsSinceEpoch
+          )
+      );
+    }
+    upsertHabitNavigationService.pop();
+  }
 }

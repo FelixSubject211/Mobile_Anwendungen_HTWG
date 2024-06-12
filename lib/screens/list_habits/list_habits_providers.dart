@@ -1,4 +1,5 @@
 import 'package:mobile_anwendungen/domain/habits/habit_default_repository.dart';
+import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_service.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_controller.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
 import 'package:mobile_anwendungen/screens/list_habits/list_habits_view.dart';
@@ -10,6 +11,7 @@ part 'list_habits_providers.g.dart';
 ListHabitsController listHabitsController(final ListHabitsControllerRef ref) =>
     ref.watch(
       ListHabitsDefaultControllerProvider(
+          listHabitsNavigationService: ref.watch(goRouterNavigationServiceProvider),
               habitRepository: ref.watch(habitRepositoryProvider))
           .notifier,
     );
@@ -17,5 +19,6 @@ ListHabitsController listHabitsController(final ListHabitsControllerRef ref) =>
 @riverpod
 ListHabitsModel listHabitsModel(final ListHabitsModelRef ref) => ref.watch(
       ListHabitsDefaultControllerProvider(
+          listHabitsNavigationService: ref.watch(goRouterNavigationServiceProvider),
           habitRepository: ref.watch(habitRepositoryProvider)),
     );
