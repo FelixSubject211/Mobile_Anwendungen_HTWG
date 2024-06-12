@@ -1,7 +1,7 @@
 import 'package:mobile_anwendungen/database/database.dart';
+import 'package:mobile_anwendungen/database/object_box.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../main.dart';
-import '../objectbox.g.dart';
+import 'package:mobile_anwendungen/objectbox.g.dart';
 import 'model/database_completion_date.dart';
 import 'model/database_habit.dart';
 
@@ -14,9 +14,16 @@ Database objectBoxDatabase(
     ObjectBoxDatabase();
 
 class ObjectBoxDatabase extends Database {
-  final Box<DatabaseHabit> _habitBox = objectBox.store.box<DatabaseHabit>();
+  late final ObjectBox _objectBox;
+  late final Box<DatabaseHabit> _habitBox;
 
   ObjectBoxDatabase();
+
+  @override
+  Future<void> init() async {
+    _objectBox = await ObjectBox.create();
+    _habitBox = _objectBox.store.box<DatabaseHabit>();
+  }
 
   @override
   void upsertHabit(DatabaseHabit habit) {
@@ -68,5 +75,14 @@ class ObjectBoxDatabase extends Database {
   @override
   void deleteHabit(DatabaseHabit habit) {
     _habitBox.remove(habit.id);
+  }
+
+  @override
+  int nextIndex() {
+    final habits = _habitBox.getAll();
+    final maxIndex = habits
+        .map((habit) => habit.index)
+        .fold(0, (prev, curr) => prev > curr ? prev : curr);
+    return maxIndex + 1;
   }
 }

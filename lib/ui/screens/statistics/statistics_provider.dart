@@ -1,7 +1,7 @@
-import 'package:mobile_anwendungen/domain/habit_default_repository.dart';
-import 'package:mobile_anwendungen/screens/statistics/statistics_controller.dart';
-import 'package:mobile_anwendungen/screens/statistics/statistics_model.dart';
-import 'package:mobile_anwendungen/screens/statistics/statistics_view.dart';
+import 'package:mobile_anwendungen/domain/habit/habit_default_repository.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_controller.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_model.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'statistics_provider.g.dart';

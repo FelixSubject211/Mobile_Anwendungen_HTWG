@@ -1,4 +1,4 @@
-import '../../../domain/navigation/general_navigation_service.dart';
+import 'package:mobile_anwendungen/domain/navigation/general_navigation_service.dart';
 
 abstract class UpsertHabitNavigationService
     implements GeneralNavigationService {}

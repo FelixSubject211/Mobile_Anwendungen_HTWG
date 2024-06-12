@@ -1,22 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_anwendungen/domain/model/day_state.dart';
-import 'package:mobile_anwendungen/domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/model/day_state.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
-import 'package:mobile_anwendungen/screens/statistics/statistics_model.dart';
-import 'package:mobile_anwendungen/screens/statistics/statistics_provider.dart';
-import 'package:mobile_anwendungen/widgets/calendar_view.dart';
-import 'package:mobile_anwendungen/widgets/calendar_week_view.dart';
-
-import '../../common/selection_button.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_model.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_provider.dart';
+import 'package:mobile_anwendungen/ui/widgets/calendar_view.dart';
+import 'package:mobile_anwendungen/ui/widgets/calendar_week_view.dart';
+import 'package:mobile_anwendungen/ui/widgets/selection_button.dart';
 
 class Statistics extends ConsumerWidget {
   const Statistics({super.key});
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final StatisticsController controller = ref.read(statisticsControllerProvider);
+    final StatisticsController controller =
+        ref.read(statisticsControllerProvider);
     final StatisticsModel model = ref.watch(statisticsModelProvider);
 
     return Scaffold(
@@ -25,7 +25,8 @@ class Statistics extends ConsumerWidget {
       ),
       body: model.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        loaded: (selectedButton, habits) => _onData(context, controller, selectedButton, habits),
+        loaded: (selectedButton, habits) =>
+            _onData(context, controller, selectedButton, habits),
       ),
     );
   }
@@ -53,7 +54,8 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _onData(BuildContext context, StatisticsController controller, String selectedButton, List<Habit> habits) {
+  Widget _onData(BuildContext context, StatisticsController controller,
+      String selectedButton, List<Habit> habits) {
     if (habits.isEmpty) {
       return _emptyState(context);
     } else {
@@ -76,7 +78,8 @@ class Statistics extends ConsumerWidget {
   }
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {
-    final startOfWeek = DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+    final startOfWeek =
+        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
     return Expanded(
       child: ListView.builder(
@@ -100,9 +103,11 @@ class Statistics extends ConsumerWidget {
           children: [
             Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
             CalendarWeekView(
-              dayBuilder: (date, isSelected) => _dayBuilder(date, isSelected, habit),
+              dayBuilder: (date, isSelected) =>
+                  _dayBuilder(date, isSelected, habit),
               headerBuilder: (weekLabel) => _headerBuilderWeek(weekLabel),
-              dayOfWeekLabelBuilder: (dayOfWeek) => _dayOfWeekLabelBuilder(dayOfWeek),
+              dayOfWeekLabelBuilder: (dayOfWeek) =>
+                  _dayOfWeekLabelBuilder(dayOfWeek),
               selectedDate: DateTime.now(),
             ),
           ],
@@ -134,9 +139,11 @@ class Statistics extends ConsumerWidget {
           children: [
             Text(habit.name, style: Theme.of(context).textTheme.titleMedium),
             CalendarMonthView(
-              dayBuilder: (date, isSelected) => _dayBuilder(date, isSelected, habit),
+              dayBuilder: (date, isSelected) =>
+                  _dayBuilder(date, isSelected, habit),
               headerBuilder: (month, year) => _headerBuilderMonth(month, year),
-              dayOfWeekLabelBuilder: (dayOfWeek) => _dayOfWeekLabelBuilder(dayOfWeek),
+              dayOfWeekLabelBuilder: (dayOfWeek) =>
+                  _dayOfWeekLabelBuilder(dayOfWeek),
               selectedDate: DateTime.now(),
             ),
           ],

@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:mobile_anwendungen/domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/domain/navigation/navigation_service_routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

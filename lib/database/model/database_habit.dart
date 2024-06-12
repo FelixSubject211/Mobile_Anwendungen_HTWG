@@ -1,5 +1,4 @@
 import 'package:mobile_anwendungen/database/model/database_completion_date.dart';
-import 'package:mobile_anwendungen/main.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
@@ -25,14 +24,5 @@ class DatabaseHabit {
   }) {
     this.completionDates.addAll(completionDates.map((date) =>
         DatabaseCompletionDate(dateMillis: date.millisecondsSinceEpoch)));
-  }
-
-  static int newIndex() {
-    final Box<DatabaseHabit> habitBox = objectBox.store.box<DatabaseHabit>();
-    final habits = habitBox.getAll();
-    final maxIndex = habits
-        .map((habit) => habit.index)
-        .fold(0, (prev, curr) => prev > curr ? prev : curr);
-    return maxIndex + 1;
   }
 }

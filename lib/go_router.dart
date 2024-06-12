@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_anwendungen/domain/navigation/navigation_service_routes.dart';
-import 'package:mobile_anwendungen/screens/navigation.dart';
-import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_view.dart';
+import 'package:mobile_anwendungen/ui/screens/navigation.dart';
+import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 
 part 'go_router.g.dart';
 

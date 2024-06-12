@@ -1,9 +1,8 @@
-import 'package:mobile_anwendungen/database/model/database_habit.dart';
-import 'package:mobile_anwendungen/domain/model/habit.dart';
-import 'package:mobile_anwendungen/domain/habit_repository.dart';
-import 'package:mobile_anwendungen/screens/upsertHabit/services/upsert_habit_navigation_service.dart';
-import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_model.dart';
-import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_view.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
+import 'package:mobile_anwendungen/ui/screens/upsertHabit/services/upsert_habit_navigation_service.dart';
+import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_model.dart';
+import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'upsert_habit_controller.g.dart';
@@ -38,7 +37,7 @@ class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
     } else {
       habitRepository.upsertHabit(Habit(
           name: state.name,
-          index: DatabaseHabit.newIndex(),
+          index: habitRepository.nextIndex(),
           creationDate: DateTime.now(),
           completionDates: []));
     }

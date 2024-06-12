@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 
 part 'statistics_model.freezed.dart';
 

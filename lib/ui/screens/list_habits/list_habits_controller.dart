@@ -1,8 +1,8 @@
-import 'package:mobile_anwendungen/domain/model/habit.dart';
-import 'package:mobile_anwendungen/domain/habit_repository.dart';
-import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
-import 'package:mobile_anwendungen/screens/list_habits/list_habits_view.dart';
-import 'package:mobile_anwendungen/screens/list_habits/services/list_habits_navigation_service.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
+import 'package:mobile_anwendungen/ui/screens/list_habits/list_habits_model.dart';
+import 'package:mobile_anwendungen/ui/screens/list_habits/list_habits_view.dart';
+import 'package:mobile_anwendungen/ui/screens/list_habits/services/list_habits_navigation_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'list_habits_controller.g.dart';

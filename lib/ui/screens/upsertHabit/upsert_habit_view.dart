@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_anwendungen/domain/model/habit.dart';
-import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_model.dart';
-import 'package:mobile_anwendungen/screens/upsertHabit/upsert_habit_provider.dart';
-
-import '../../lang/locale_keys.g.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
+import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_model.dart';
+import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_provider.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
 class UpsertHabit extends ConsumerWidget {
   final Habit? habit;
@@ -14,17 +13,17 @@ class UpsertHabit extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final UpsertHabitController controller = ref.read(upsertHabitControllerProvider(habit));
+    final UpsertHabitController controller =
+        ref.read(upsertHabitControllerProvider(habit));
     final UpsertHabitModel model = ref.watch(upsertHabitModelProvider(habit));
 
     return Scaffold(
       appBar: AppBar(
           title: Text(
-          model.isInEditMode
+        model.isInEditMode
             ? LocaleKeys.upsertHabitEditTitle.tr()
             : LocaleKeys.upsertHabitAddTitle.tr(),
-        )
-      ),
+      )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -52,9 +51,7 @@ class UpsertHabit extends ConsumerWidget {
         onChanged: controller.onNameChanged,
         decoration: InputDecoration(
             labelText: LocaleKeys.upsertHabitNameLabelText.tr(),
-            border: const OutlineInputBorder()
-        )
-    );
+            border: const OutlineInputBorder()));
   }
 
   Widget _buttonRow(UpsertHabitModel model, UpsertHabitController controller) {

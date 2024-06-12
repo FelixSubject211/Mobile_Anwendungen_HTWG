@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:mobile_anwendungen/screens/statistics/statistics_model.dart';
-import 'package:mobile_anwendungen/screens/statistics/statistics_view.dart';
+import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_model.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../domain/model/habit.dart';
-import '../../domain/habit_repository.dart';
-import '../../lang/locale_keys.g.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
 part 'statistics_controller.g.dart';
 

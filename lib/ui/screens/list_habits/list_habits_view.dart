@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_anwendungen/domain/model/day_state.dart';
-import 'package:mobile_anwendungen/screens/list_habits/list_habits_model.dart';
-import 'package:mobile_anwendungen/screens/list_habits/list_habits_providers.dart';
-import '../../domain/model/habit.dart';
-import '../../lang/locale_keys.g.dart';
+import 'package:mobile_anwendungen/domain/habit/model/day_state.dart';
+import 'package:mobile_anwendungen/ui/screens/list_habits/list_habits_model.dart';
+import 'package:mobile_anwendungen/ui/screens/list_habits/list_habits_providers.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
 class ListHabits extends ConsumerStatefulWidget {
   const ListHabits({super.key});
@@ -25,7 +25,8 @@ class ListHabitsState extends ConsumerState<ListHabits> {
 
   @override
   Widget build(BuildContext context) {
-    final ListHabitsController controller = ref.read(listHabitsControllerProvider);
+    final ListHabitsController controller =
+        ref.read(listHabitsControllerProvider);
     final ListHabitsModel model = ref.watch(listHabitsModelProvider);
 
     return Scaffold(
@@ -54,16 +55,18 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   Widget _onData(List<Habit> habits) {
-    return habits.isEmpty ? _emptyState() : (_isEditing ? _buildEditableList(habits) : _buildList(habits));
+    return habits.isEmpty
+        ? _emptyState()
+        : (_isEditing ? _buildEditableList(habits) : _buildList(habits));
   }
 
   Widget _editButton(List<Habit> habits) {
     return habits.isNotEmpty
         ? IconButton(
-      icon: Icon(_isEditing ? Icons.check : Icons.edit),
-      onPressed: _toggleEditing,
-      tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
-    )
+            icon: Icon(_isEditing ? Icons.check : Icons.edit),
+            onPressed: _toggleEditing,
+            tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+          )
         : Container();
   }
 

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobile_anwendungen/domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 
 part 'list_habits_model.freezed.dart';
 

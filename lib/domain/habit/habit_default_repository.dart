@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:mobile_anwendungen/database/database.dart';
 import 'package:mobile_anwendungen/database/object_box_database.dart';
-import 'package:mobile_anwendungen/domain/model/habit.dart';
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -66,5 +66,10 @@ class HabitDefaultRepository extends HabitRepository {
   void deleteHabit(Habit habit) {
     database.deleteHabit(habit.toDataBaseHabit());
     _updateStream();
+  }
+
+  @override
+  int nextIndex() {
+    return database.nextIndex();
   }
 }
