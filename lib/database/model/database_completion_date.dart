@@ -1,7 +1,7 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class CompletionDate {
+class DatabaseCompletionDate {
   int id = 0;
 
   @Transient()
@@ -9,11 +9,11 @@ class CompletionDate {
 
   int dateMillis;
 
-  CompletionDate({
+  DatabaseCompletionDate({
     required this.dateMillis,
   }) : date = DateTime.fromMillisecondsSinceEpoch(dateMillis, isUtc: true);
 
-  CompletionDate.withDate({
+  DatabaseCompletionDate.withDate({
     required this.date,
   }) : dateMillis = date.toUtc().millisecondsSinceEpoch;
 

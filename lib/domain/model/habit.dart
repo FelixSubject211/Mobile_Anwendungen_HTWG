@@ -1,23 +1,19 @@
-import 'package:mobile_anwendungen/main.dart';
-import 'package:objectbox/objectbox.dart';
+import 'package:mobile_anwendungen/database/model/database_habit.dart';
 
-import 'completion_date.dart';
 import 'day_state.dart';
 
-@Entity()
 class Habit {
-  int id = 0;
   String name;
   int index;
-  int creationDate;
+  DateTime creationDate;
 
-  final completionDates = ToMany<CompletionDate>();
+  final List<DateTime> completionDates;
 
-  Habit({
-    required this.name,
-    required this.index,
-    required this.creationDate,
-  });
+  Habit(
+      {required this.name,
+      required this.index,
+      required this.creationDate,
+      required this.completionDates});
 
   DayState dayStateOn(DateTime date) {
     final dateStart = DateTime(date.year, date.month, date.day);
@@ -31,13 +27,12 @@ class Habit {
       return DayState.futureDate;
     }
 
-    if (dateEnd.isBefore(DateTime.fromMillisecondsSinceEpoch(creationDate))) {
+    if (dateEnd.isBefore(creationDate)) {
       return DayState.habitNotCreatedYet;
     }
 
     if (completionDates.any((completionDate) {
-      final completionDateTime =
-          DateTime.fromMillisecondsSinceEpoch(completionDate.dateMillis);
+      final completionDateTime = completionDate;
       return completionDateTime.isAfter(dateStart) &&
           completionDateTime.isBefore(dateEnd);
     })) {
@@ -51,12 +46,23 @@ class Habit {
     return dayStateOn(DateTime.now());
   }
 
-  static int newIndex() {
-    final Box<Habit> habitBox = objectBox.store.box<Habit>();
-    final habits = habitBox.getAll();
-    final maxIndex = habits
-        .map((habit) => habit.index)
-        .fold(0, (prev, curr) => prev > curr ? prev : curr);
-    return maxIndex + 1;
+  DatabaseHabit toDataBaseHabit() {
+    return DatabaseHabit.withCompletionDates(
+      name: name,
+      index: index,
+      creationDate: creationDate.millisecondsSinceEpoch,
+      completionDates: completionDates,
+    );
+  }
+
+  factory Habit.fromDatabaseHabit(DatabaseHabit databaseHabit) {
+    return Habit(
+        name: databaseHabit.name,
+        index: databaseHabit.index,
+        creationDate:
+            DateTime.fromMillisecondsSinceEpoch(databaseHabit.creationDate),
+        completionDates: databaseHabit.completionDates
+            .map((dc) => DateTime.fromMillisecondsSinceEpoch(dc.dateMillis))
+            .toList());
   }
 }

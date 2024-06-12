@@ -105,7 +105,7 @@ class ListHabitsState extends ConsumerState<ListHabits> {
 
     return Material(
         color: Colors.transparent,
-        key: ValueKey(habit.id),
+        key: ValueKey(habit.index),
         child: ListTile(
           title: Text(
             habit.name,

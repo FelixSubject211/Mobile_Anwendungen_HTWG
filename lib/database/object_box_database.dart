@@ -1,10 +1,9 @@
 import 'package:mobile_anwendungen/database/database.dart';
-import 'package:mobile_anwendungen/domain/model/habit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../domain/model/completion_date.dart';
 import '../main.dart';
 import '../objectbox.g.dart';
+import 'model/database_completion_date.dart';
+import 'model/database_habit.dart';
 
 part 'object_box_database.g.dart';
 
@@ -15,32 +14,32 @@ Database objectBoxDatabase(
     ObjectBoxDatabase();
 
 class ObjectBoxDatabase extends Database {
-  final Box<Habit> _habitBox = objectBox.store.box<Habit>();
+  final Box<DatabaseHabit> _habitBox = objectBox.store.box<DatabaseHabit>();
 
   ObjectBoxDatabase();
 
   @override
-  void upsertHabit(Habit habit) {
+  void upsertHabit(DatabaseHabit habit) {
     _habitBox.put(habit);
   }
 
   @override
-  List<Habit> listHabits() {
+  List<DatabaseHabit> listHabits() {
     final habits = _habitBox.getAll();
     habits.sort((a, b) => a.index.compareTo(b.index));
     return habits;
   }
 
   @override
-  void completeHabit(Habit habit) {
+  void completeHabit(DatabaseHabit habit) {
     final nowMillis = DateTime.now().millisecondsSinceEpoch;
-    final completionDate = CompletionDate(dateMillis: nowMillis);
+    final completionDate = DatabaseCompletionDate(dateMillis: nowMillis);
     habit.completionDates.add(completionDate);
     _habitBox.put(habit);
   }
 
   @override
-  void unCompleteHabit(Habit habit) {
+  void unCompleteHabit(DatabaseHabit habit) {
     if (habit.completionDates.isNotEmpty) {
       habit.completionDates
           .sort((a, b) => b.dateMillis.compareTo(a.dateMillis));
@@ -67,7 +66,7 @@ class ObjectBoxDatabase extends Database {
   }
 
   @override
-  void deleteHabit(Habit habit) {
+  void deleteHabit(DatabaseHabit habit) {
     _habitBox.remove(habit.id);
   }
 }

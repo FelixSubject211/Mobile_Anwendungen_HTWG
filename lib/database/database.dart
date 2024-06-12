@@ -1,10 +1,10 @@
-import '../domain/model/habit.dart';
+import 'package:mobile_anwendungen/database/model/database_habit.dart';
 
 abstract class Database {
-  List<Habit> listHabits();
-  void upsertHabit(Habit habit);
-  void completeHabit(Habit habit);
-  void unCompleteHabit(Habit habit);
+  List<DatabaseHabit> listHabits();
+  void upsertHabit(DatabaseHabit habit);
+  void completeHabit(DatabaseHabit habit);
+  void unCompleteHabit(DatabaseHabit habit);
   void reorderHabit(int oldIndex, int newIndex);
-  void deleteHabit(Habit habit);
+  void deleteHabit(DatabaseHabit habit);
 }

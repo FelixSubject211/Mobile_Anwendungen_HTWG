@@ -25,7 +25,10 @@ class HabitDefaultRepository extends HabitRepository {
   }) : super();
 
   void _updateStream() {
-    List<Habit> habits = database.listHabits();
+    List<Habit> habits = database
+        .listHabits()
+        .map((habit) => Habit.fromDatabaseHabit(habit))
+        .toList();
     _habitsSubject.add(habits);
   }
 
@@ -37,19 +40,19 @@ class HabitDefaultRepository extends HabitRepository {
 
   @override
   void upsertHabit(Habit habit) {
-    database.upsertHabit(habit);
+    database.upsertHabit(habit.toDataBaseHabit());
     _updateStream();
   }
 
   @override
   void completeHabit(Habit habit) {
-    database.completeHabit(habit);
+    database.completeHabit(habit.toDataBaseHabit());
     _updateStream();
   }
 
   @override
   void unCompleteHabit(Habit habit) {
-    database.unCompleteHabit(habit);
+    database.unCompleteHabit(habit.toDataBaseHabit());
     _updateStream();
   }
 
@@ -61,7 +64,7 @@ class HabitDefaultRepository extends HabitRepository {
 
   @override
   void deleteHabit(Habit habit) {
-    database.deleteHabit(habit);
+    database.deleteHabit(habit.toDataBaseHabit());
     _updateStream();
   }
 }

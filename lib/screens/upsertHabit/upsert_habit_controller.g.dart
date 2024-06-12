@@ -7,7 +7,7 @@ part of 'upsert_habit_controller.dart';
 // **************************************************************************
 
 String _$upsertHabitDefaultControllerHash() =>
-    r'ce8e76b84cff5bea0b88b9c7ebb0b56d777ed39f';
+    r'e794a826139b95113a694968dc2b9a21226dd25c';
 
 /// Copied from Dart SDK
 class _SystemHash {

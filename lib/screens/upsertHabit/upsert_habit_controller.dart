@@ -1,3 +1,4 @@
+import 'package:mobile_anwendungen/database/model/database_habit.dart';
 import 'package:mobile_anwendungen/domain/model/habit.dart';
 import 'package:mobile_anwendungen/domain/habit_repository.dart';
 import 'package:mobile_anwendungen/screens/upsertHabit/services/upsert_habit_navigation_service.dart';
@@ -37,8 +38,9 @@ class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
     } else {
       habitRepository.upsertHabit(Habit(
           name: state.name,
-          index: Habit.newIndex(),
-          creationDate: DateTime.now().millisecondsSinceEpoch));
+          index: DatabaseHabit.newIndex(),
+          creationDate: DateTime.now(),
+          completionDates: []));
     }
     upsertHabitNavigationService.pop();
   }
