@@ -193,6 +193,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.3"
+  dart_console:
+    dependency: "direct overridden"
+    description:
+      name: dart_console
+      sha256: dfa4b63eb4382325ff975fdb6b7a0db8303bb5809ee5cb4516b44153844742ed
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   dart_style:
     dependency: transitive
     description:
@@ -365,6 +373,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  interact:
+    dependency: transitive
+    description:
+      name: interact
+      sha256: b1abf79334bec42e58496a054cb7ee7ca74da6181f6a1fb6b134f1aa22bc4080
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   intl:
     dependency: "direct main"
     description:
@@ -397,6 +413,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
+  klutter:
+    dependency: "direct dev"
+    description:
+      name: klutter
+      sha256: a51069f1582b7d40360348563e2ed4690098198b123a28ec2d1769465c1f555a
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
   leak_tracker:
     dependency: transitive
     description:
@@ -794,6 +818,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  tint:
+    dependency: transitive
+    description:
+      name: tint
+      sha256: "9652d9a589f4536d5e392cf790263d120474f15da3cf1bee7f1fdb31b4de5f46"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:

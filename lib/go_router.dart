@@ -30,7 +30,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           path: '/upsertHabit',
           builder: (BuildContext context, GoRouterState state) {
             final habit = state.extra as Habit?;
-            return UpsertHabit();
+            return UpsertHabit(habit: habit);
           },
         ),
       ],
