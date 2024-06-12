@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'upsert_habit_provider.dart';
+part of 'habit_detail_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$upsertHabitControllerHash() =>
-    r'f5e3a983205a196c384eb9d52260822be1f838d2';
+String _$habitDetailControllerHash() =>
+    r'3b8c7c9e81d76367f598e888e420313f011b4931';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,27 +30,27 @@ class _SystemHash {
   }
 }
 
-/// See also [upsertHabitController].
-@ProviderFor(upsertHabitController)
-const upsertHabitControllerProvider = UpsertHabitControllerFamily();
+/// See also [habitDetailController].
+@ProviderFor(habitDetailController)
+const habitDetailControllerProvider = HabitDetailControllerFamily();
 
-/// See also [upsertHabitController].
-class UpsertHabitControllerFamily extends Family<UpsertHabitController> {
-  /// See also [upsertHabitController].
-  const UpsertHabitControllerFamily();
+/// See also [habitDetailController].
+class HabitDetailControllerFamily extends Family<HabitDetailController> {
+  /// See also [habitDetailController].
+  const HabitDetailControllerFamily();
 
-  /// See also [upsertHabitController].
-  UpsertHabitControllerProvider call(
+  /// See also [habitDetailController].
+  HabitDetailControllerProvider call(
     Habit? habit,
   ) {
-    return UpsertHabitControllerProvider(
+    return HabitDetailControllerProvider(
       habit,
     );
   }
 
   @override
-  UpsertHabitControllerProvider getProviderOverride(
-    covariant UpsertHabitControllerProvider provider,
+  HabitDetailControllerProvider getProviderOverride(
+    covariant HabitDetailControllerProvider provider,
   ) {
     return call(
       provider.habit,
@@ -69,33 +69,33 @@ class UpsertHabitControllerFamily extends Family<UpsertHabitController> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'upsertHabitControllerProvider';
+  String? get name => r'habitDetailControllerProvider';
 }
 
-/// See also [upsertHabitController].
-class UpsertHabitControllerProvider
-    extends AutoDisposeProvider<UpsertHabitController> {
-  /// See also [upsertHabitController].
-  UpsertHabitControllerProvider(
+/// See also [habitDetailController].
+class HabitDetailControllerProvider
+    extends AutoDisposeProvider<HabitDetailController> {
+  /// See also [habitDetailController].
+  HabitDetailControllerProvider(
     Habit? habit,
   ) : this._internal(
-          (ref) => upsertHabitController(
-            ref as UpsertHabitControllerRef,
+          (ref) => habitDetailController(
+            ref as HabitDetailControllerRef,
             habit,
           ),
-          from: upsertHabitControllerProvider,
-          name: r'upsertHabitControllerProvider',
+          from: habitDetailControllerProvider,
+          name: r'habitDetailControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$upsertHabitControllerHash,
-          dependencies: UpsertHabitControllerFamily._dependencies,
+                  : _$habitDetailControllerHash,
+          dependencies: HabitDetailControllerFamily._dependencies,
           allTransitiveDependencies:
-              UpsertHabitControllerFamily._allTransitiveDependencies,
+              HabitDetailControllerFamily._allTransitiveDependencies,
           habit: habit,
         );
 
-  UpsertHabitControllerProvider._internal(
+  HabitDetailControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -109,12 +109,12 @@ class UpsertHabitControllerProvider
 
   @override
   Override overrideWith(
-    UpsertHabitController Function(UpsertHabitControllerRef provider) create,
+    HabitDetailController Function(HabitDetailControllerRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: UpsertHabitControllerProvider._internal(
-        (ref) => create(ref as UpsertHabitControllerRef),
+      override: HabitDetailControllerProvider._internal(
+        (ref) => create(ref as HabitDetailControllerRef),
         from: from,
         name: null,
         dependencies: null,
@@ -126,13 +126,13 @@ class UpsertHabitControllerProvider
   }
 
   @override
-  AutoDisposeProviderElement<UpsertHabitController> createElement() {
-    return _UpsertHabitControllerProviderElement(this);
+  AutoDisposeProviderElement<HabitDetailController> createElement() {
+    return _HabitDetailControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is UpsertHabitControllerProvider && other.habit == habit;
+    return other is HabitDetailControllerProvider && other.habit == habit;
   }
 
   @override
@@ -144,44 +144,44 @@ class UpsertHabitControllerProvider
   }
 }
 
-mixin UpsertHabitControllerRef
-    on AutoDisposeProviderRef<UpsertHabitController> {
+mixin HabitDetailControllerRef
+    on AutoDisposeProviderRef<HabitDetailController> {
   /// The parameter `habit` of this provider.
   Habit? get habit;
 }
 
-class _UpsertHabitControllerProviderElement
-    extends AutoDisposeProviderElement<UpsertHabitController>
-    with UpsertHabitControllerRef {
-  _UpsertHabitControllerProviderElement(super.provider);
+class _HabitDetailControllerProviderElement
+    extends AutoDisposeProviderElement<HabitDetailController>
+    with HabitDetailControllerRef {
+  _HabitDetailControllerProviderElement(super.provider);
 
   @override
-  Habit? get habit => (origin as UpsertHabitControllerProvider).habit;
+  Habit? get habit => (origin as HabitDetailControllerProvider).habit;
 }
 
-String _$upsertHabitModelHash() => r'8f1044b211fe338d897070b5166aec168814b429';
+String _$habitDetailModelHash() => r'9d6487bfe6638a9156dbc64032d6354175a1430a';
 
-/// See also [upsertHabitModel].
-@ProviderFor(upsertHabitModel)
-const upsertHabitModelProvider = UpsertHabitModelFamily();
+/// See also [habitDetailModel].
+@ProviderFor(habitDetailModel)
+const habitDetailModelProvider = HabitDetailModelFamily();
 
-/// See also [upsertHabitModel].
-class UpsertHabitModelFamily extends Family<UpsertHabitModel> {
-  /// See also [upsertHabitModel].
-  const UpsertHabitModelFamily();
+/// See also [habitDetailModel].
+class HabitDetailModelFamily extends Family<HabitDetailModel> {
+  /// See also [habitDetailModel].
+  const HabitDetailModelFamily();
 
-  /// See also [upsertHabitModel].
-  UpsertHabitModelProvider call(
+  /// See also [habitDetailModel].
+  HabitDetailModelProvider call(
     Habit? habit,
   ) {
-    return UpsertHabitModelProvider(
+    return HabitDetailModelProvider(
       habit,
     );
   }
 
   @override
-  UpsertHabitModelProvider getProviderOverride(
-    covariant UpsertHabitModelProvider provider,
+  HabitDetailModelProvider getProviderOverride(
+    covariant HabitDetailModelProvider provider,
   ) {
     return call(
       provider.habit,
@@ -200,32 +200,32 @@ class UpsertHabitModelFamily extends Family<UpsertHabitModel> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'upsertHabitModelProvider';
+  String? get name => r'habitDetailModelProvider';
 }
 
-/// See also [upsertHabitModel].
-class UpsertHabitModelProvider extends AutoDisposeProvider<UpsertHabitModel> {
-  /// See also [upsertHabitModel].
-  UpsertHabitModelProvider(
+/// See also [habitDetailModel].
+class HabitDetailModelProvider extends AutoDisposeProvider<HabitDetailModel> {
+  /// See also [habitDetailModel].
+  HabitDetailModelProvider(
     Habit? habit,
   ) : this._internal(
-          (ref) => upsertHabitModel(
-            ref as UpsertHabitModelRef,
+          (ref) => habitDetailModel(
+            ref as HabitDetailModelRef,
             habit,
           ),
-          from: upsertHabitModelProvider,
-          name: r'upsertHabitModelProvider',
+          from: habitDetailModelProvider,
+          name: r'habitDetailModelProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$upsertHabitModelHash,
-          dependencies: UpsertHabitModelFamily._dependencies,
+                  : _$habitDetailModelHash,
+          dependencies: HabitDetailModelFamily._dependencies,
           allTransitiveDependencies:
-              UpsertHabitModelFamily._allTransitiveDependencies,
+              HabitDetailModelFamily._allTransitiveDependencies,
           habit: habit,
         );
 
-  UpsertHabitModelProvider._internal(
+  HabitDetailModelProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -239,12 +239,12 @@ class UpsertHabitModelProvider extends AutoDisposeProvider<UpsertHabitModel> {
 
   @override
   Override overrideWith(
-    UpsertHabitModel Function(UpsertHabitModelRef provider) create,
+    HabitDetailModel Function(HabitDetailModelRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: UpsertHabitModelProvider._internal(
-        (ref) => create(ref as UpsertHabitModelRef),
+      override: HabitDetailModelProvider._internal(
+        (ref) => create(ref as HabitDetailModelRef),
         from: from,
         name: null,
         dependencies: null,
@@ -256,13 +256,13 @@ class UpsertHabitModelProvider extends AutoDisposeProvider<UpsertHabitModel> {
   }
 
   @override
-  AutoDisposeProviderElement<UpsertHabitModel> createElement() {
-    return _UpsertHabitModelProviderElement(this);
+  AutoDisposeProviderElement<HabitDetailModel> createElement() {
+    return _HabitDetailModelProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is UpsertHabitModelProvider && other.habit == habit;
+    return other is HabitDetailModelProvider && other.habit == habit;
   }
 
   @override
@@ -274,18 +274,18 @@ class UpsertHabitModelProvider extends AutoDisposeProvider<UpsertHabitModel> {
   }
 }
 
-mixin UpsertHabitModelRef on AutoDisposeProviderRef<UpsertHabitModel> {
+mixin HabitDetailModelRef on AutoDisposeProviderRef<HabitDetailModel> {
   /// The parameter `habit` of this provider.
   Habit? get habit;
 }
 
-class _UpsertHabitModelProviderElement
-    extends AutoDisposeProviderElement<UpsertHabitModel>
-    with UpsertHabitModelRef {
-  _UpsertHabitModelProviderElement(super.provider);
+class _HabitDetailModelProviderElement
+    extends AutoDisposeProviderElement<HabitDetailModel>
+    with HabitDetailModelRef {
+  _HabitDetailModelProviderElement(super.provider);
 
   @override
-  Habit? get habit => (origin as UpsertHabitModelProvider).habit;
+  Habit? get habit => (origin as HabitDetailModelProvider).habit;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

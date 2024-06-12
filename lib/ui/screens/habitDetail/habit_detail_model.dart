@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'upsert_habit_model.freezed.dart';
+part 'habit_detail_model.freezed.dart';
 
 @freezed
-class UpsertHabitModel with _$UpsertHabitModel {
-  factory UpsertHabitModel({
+class HabitDetailModel with _$HabitDetailModel {
+  factory HabitDetailModel({
     required final bool isInEditMode,
     required final String name,
-  }) = _UpsertHabitModel;
+  }) = _HabitDetailModel;
 }

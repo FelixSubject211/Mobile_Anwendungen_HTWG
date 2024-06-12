@@ -1,4 +1,4 @@
 class NavigationServiceRoutes {
   static const String root = '/';
-  static const String upsertHabit = '/upsertHabit';
+  static const String habitDetail = '/habitDetail';
 }

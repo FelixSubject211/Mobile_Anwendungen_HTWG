@@ -158,10 +158,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final dateMillisParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
-          final object = DatabaseCompletionDate(dateMillis: dateMillisParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final object =
+              DatabaseCompletionDate(id: idParam, dateMillis: dateMillisParam);
 
           return object;
         }),
@@ -189,6 +191,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final nameParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
           final indexParam =
@@ -196,10 +200,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final creationDateParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
           final object = DatabaseHabit(
+              id: idParam,
               name: nameParam,
               index: indexParam,
-              creationDate: creationDateParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+              creationDate: creationDateParam);
           obx_int.InternalToManyAccess.setRelInfo<DatabaseHabit>(
               object.completionDates,
               store,

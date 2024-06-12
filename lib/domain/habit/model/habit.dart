@@ -1,16 +1,19 @@
 import 'package:mobile_anwendungen/database/model/database_habit.dart';
+import 'package:mobile_anwendungen/common/completion_date.dart';
 
 import 'day_state.dart';
 
 class Habit {
+  int id;
   String name;
   int index;
   DateTime creationDate;
 
-  final List<DateTime> completionDates;
+  final List<CompletionDate> completionDates;
 
   Habit(
-      {required this.name,
+      {this.id = 0,
+      required this.name,
       required this.index,
       required this.creationDate,
       required this.completionDates});
@@ -33,8 +36,8 @@ class Habit {
 
     if (completionDates.any((completionDate) {
       final completionDateTime = completionDate;
-      return completionDateTime.isAfter(dateStart) &&
-          completionDateTime.isBefore(dateEnd);
+      return completionDateTime.dateTime.isAfter(dateStart) &&
+          completionDateTime.dateTime.isBefore(dateEnd);
     })) {
       return DayState.done;
     } else {
@@ -48,6 +51,7 @@ class Habit {
 
   DatabaseHabit toDataBaseHabit() {
     return DatabaseHabit.withCompletionDates(
+      id: id,
       name: name,
       index: index,
       creationDate: creationDate.millisecondsSinceEpoch,
@@ -57,12 +61,15 @@ class Habit {
 
   factory Habit.fromDatabaseHabit(DatabaseHabit databaseHabit) {
     return Habit(
+        id: databaseHabit.id,
         name: databaseHabit.name,
         index: databaseHabit.index,
         creationDate:
             DateTime.fromMillisecondsSinceEpoch(databaseHabit.creationDate),
         completionDates: databaseHabit.completionDates
-            .map((dc) => DateTime.fromMillisecondsSinceEpoch(dc.dateMillis))
+            .map((dc) => CompletionDate(
+                id: dc.id,
+                dateTime: DateTime.fromMillisecondsSinceEpoch(dc.dateMillis)))
             .toList());
   }
 }

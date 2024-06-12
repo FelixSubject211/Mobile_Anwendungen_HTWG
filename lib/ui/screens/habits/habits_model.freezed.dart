@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'list_habits_model.dart';
+part of 'habits_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ListHabitsModel {
+mixin _$HabitsModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -57,16 +57,16 @@ mixin _$ListHabitsModel {
 }
 
 /// @nodoc
-abstract class $ListHabitsModelCopyWith<$Res> {
-  factory $ListHabitsModelCopyWith(
-          ListHabitsModel value, $Res Function(ListHabitsModel) then) =
-      _$ListHabitsModelCopyWithImpl<$Res, ListHabitsModel>;
+abstract class $HabitsModelCopyWith<$Res> {
+  factory $HabitsModelCopyWith(
+          HabitsModel value, $Res Function(HabitsModel) then) =
+      _$HabitsModelCopyWithImpl<$Res, HabitsModel>;
 }
 
 /// @nodoc
-class _$ListHabitsModelCopyWithImpl<$Res, $Val extends ListHabitsModel>
-    implements $ListHabitsModelCopyWith<$Res> {
-  _$ListHabitsModelCopyWithImpl(this._value, this._then);
+class _$HabitsModelCopyWithImpl<$Res, $Val extends HabitsModel>
+    implements $HabitsModelCopyWith<$Res> {
+  _$HabitsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,7 +83,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ListHabitsModelCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$HabitsModelCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -97,7 +97,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ListHabitsModel.loading()';
+    return 'HabitsModel.loading()';
   }
 
   @override
@@ -172,7 +172,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ListHabitsModel {
+abstract class _Loading implements HabitsModel {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -187,7 +187,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ListHabitsModelCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$HabitsModelCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
@@ -222,7 +222,7 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   String toString() {
-    return 'ListHabitsModel.loaded(habits: $habits)';
+    return 'HabitsModel.loaded(habits: $habits)';
   }
 
   @override
@@ -306,7 +306,7 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements ListHabitsModel {
+abstract class _Loaded implements HabitsModel {
   const factory _Loaded({required final List<Habit> habits}) = _$LoadedImpl;
 
   List<Habit> get habits;

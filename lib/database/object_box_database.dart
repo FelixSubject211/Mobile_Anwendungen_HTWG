@@ -48,9 +48,7 @@ class ObjectBoxDatabase extends Database {
   @override
   void unCompleteHabit(DatabaseHabit habit) {
     if (habit.completionDates.isNotEmpty) {
-      habit.completionDates
-          .sort((a, b) => b.dateMillis.compareTo(a.dateMillis));
-      habit.completionDates.removeAt(0);
+      habit.completionDates.removeLast();
       _habitBox.put(habit);
     }
   }

@@ -1,21 +1,21 @@
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
-import 'package:mobile_anwendungen/ui/screens/upsertHabit/services/upsert_habit_navigation_service.dart';
-import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_model.dart';
-import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_view.dart';
+import 'package:mobile_anwendungen/ui/screens/habitDetail/services/habit_detail_navigation_service.dart';
+import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_model.dart';
+import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'upsert_habit_controller.g.dart';
+part 'habit_detail_controller.g.dart';
 
 @riverpod
-class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
-    implements UpsertHabitController {
+class HabitDetailDefaultController extends _$HabitDetailDefaultController
+    implements HabitDetailController {
   @override
-  UpsertHabitModel build(
-      {required final UpsertHabitNavigationService upsertHabitNavigationService,
+  HabitDetailModel build(
+      {required final HabitDetailNavigationService habitDetailNavigationService,
       required final HabitRepository habitRepository,
       required final Habit? habit}) {
-    return UpsertHabitModel(
+    return HabitDetailModel(
         isInEditMode: habit != null, name: habit?.name ?? "");
   }
 
@@ -26,7 +26,7 @@ class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
 
   @override
   void onCancel() {
-    upsertHabitNavigationService.pop();
+    habitDetailNavigationService.pop();
   }
 
   @override
@@ -41,6 +41,6 @@ class UpsertHabitDefaultController extends _$UpsertHabitDefaultController
           creationDate: DateTime.now(),
           completionDates: []));
     }
-    upsertHabitNavigationService.pop();
+    habitDetailNavigationService.pop();
   }
 }

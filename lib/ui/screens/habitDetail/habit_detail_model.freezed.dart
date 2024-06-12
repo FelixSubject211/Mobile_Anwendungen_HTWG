@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'upsert_habit_model.dart';
+part of 'habit_detail_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,28 +15,28 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$UpsertHabitModel {
+mixin _$HabitDetailModel {
   bool get isInEditMode => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UpsertHabitModelCopyWith<UpsertHabitModel> get copyWith =>
+  $HabitDetailModelCopyWith<HabitDetailModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UpsertHabitModelCopyWith<$Res> {
-  factory $UpsertHabitModelCopyWith(
-          UpsertHabitModel value, $Res Function(UpsertHabitModel) then) =
-      _$UpsertHabitModelCopyWithImpl<$Res, UpsertHabitModel>;
+abstract class $HabitDetailModelCopyWith<$Res> {
+  factory $HabitDetailModelCopyWith(
+          HabitDetailModel value, $Res Function(HabitDetailModel) then) =
+      _$HabitDetailModelCopyWithImpl<$Res, HabitDetailModel>;
   @useResult
   $Res call({bool isInEditMode, String name});
 }
 
 /// @nodoc
-class _$UpsertHabitModelCopyWithImpl<$Res, $Val extends UpsertHabitModel>
-    implements $UpsertHabitModelCopyWith<$Res> {
-  _$UpsertHabitModelCopyWithImpl(this._value, this._then);
+class _$HabitDetailModelCopyWithImpl<$Res, $Val extends HabitDetailModel>
+    implements $HabitDetailModelCopyWith<$Res> {
+  _$HabitDetailModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -63,22 +63,22 @@ class _$UpsertHabitModelCopyWithImpl<$Res, $Val extends UpsertHabitModel>
 }
 
 /// @nodoc
-abstract class _$$UpsertHabitModelImplCopyWith<$Res>
-    implements $UpsertHabitModelCopyWith<$Res> {
-  factory _$$UpsertHabitModelImplCopyWith(_$UpsertHabitModelImpl value,
-          $Res Function(_$UpsertHabitModelImpl) then) =
-      __$$UpsertHabitModelImplCopyWithImpl<$Res>;
+abstract class _$$HabitDetailModelImplCopyWith<$Res>
+    implements $HabitDetailModelCopyWith<$Res> {
+  factory _$$HabitDetailModelImplCopyWith(_$HabitDetailModelImpl value,
+          $Res Function(_$HabitDetailModelImpl) then) =
+      __$$HabitDetailModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isInEditMode, String name});
 }
 
 /// @nodoc
-class __$$UpsertHabitModelImplCopyWithImpl<$Res>
-    extends _$UpsertHabitModelCopyWithImpl<$Res, _$UpsertHabitModelImpl>
-    implements _$$UpsertHabitModelImplCopyWith<$Res> {
-  __$$UpsertHabitModelImplCopyWithImpl(_$UpsertHabitModelImpl _value,
-      $Res Function(_$UpsertHabitModelImpl) _then)
+class __$$HabitDetailModelImplCopyWithImpl<$Res>
+    extends _$HabitDetailModelCopyWithImpl<$Res, _$HabitDetailModelImpl>
+    implements _$$HabitDetailModelImplCopyWith<$Res> {
+  __$$HabitDetailModelImplCopyWithImpl(_$HabitDetailModelImpl _value,
+      $Res Function(_$HabitDetailModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$UpsertHabitModelImplCopyWithImpl<$Res>
     Object? isInEditMode = null,
     Object? name = null,
   }) {
-    return _then(_$UpsertHabitModelImpl(
+    return _then(_$HabitDetailModelImpl(
       isInEditMode: null == isInEditMode
           ? _value.isInEditMode
           : isInEditMode // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$UpsertHabitModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpsertHabitModelImpl implements _UpsertHabitModel {
-  _$UpsertHabitModelImpl({required this.isInEditMode, required this.name});
+class _$HabitDetailModelImpl implements _HabitDetailModel {
+  _$HabitDetailModelImpl({required this.isInEditMode, required this.name});
 
   @override
   final bool isInEditMode;
@@ -112,14 +112,14 @@ class _$UpsertHabitModelImpl implements _UpsertHabitModel {
 
   @override
   String toString() {
-    return 'UpsertHabitModel(isInEditMode: $isInEditMode, name: $name)';
+    return 'HabitDetailModel(isInEditMode: $isInEditMode, name: $name)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpsertHabitModelImpl &&
+            other is _$HabitDetailModelImpl &&
             (identical(other.isInEditMode, isInEditMode) ||
                 other.isInEditMode == isInEditMode) &&
             (identical(other.name, name) || other.name == name));
@@ -131,15 +131,15 @@ class _$UpsertHabitModelImpl implements _UpsertHabitModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpsertHabitModelImplCopyWith<_$UpsertHabitModelImpl> get copyWith =>
-      __$$UpsertHabitModelImplCopyWithImpl<_$UpsertHabitModelImpl>(
+  _$$HabitDetailModelImplCopyWith<_$HabitDetailModelImpl> get copyWith =>
+      __$$HabitDetailModelImplCopyWithImpl<_$HabitDetailModelImpl>(
           this, _$identity);
 }
 
-abstract class _UpsertHabitModel implements UpsertHabitModel {
-  factory _UpsertHabitModel(
+abstract class _HabitDetailModel implements HabitDetailModel {
+  factory _HabitDetailModel(
       {required final bool isInEditMode,
-      required final String name}) = _$UpsertHabitModelImpl;
+      required final String name}) = _$HabitDetailModelImpl;
 
   @override
   bool get isInEditMode;
@@ -147,6 +147,6 @@ abstract class _UpsertHabitModel implements UpsertHabitModel {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$UpsertHabitModelImplCopyWith<_$UpsertHabitModelImpl> get copyWith =>
+  _$$HabitDetailModelImplCopyWith<_$HabitDetailModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

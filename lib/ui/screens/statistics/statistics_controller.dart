@@ -15,7 +15,7 @@ class StatisticsDefaultController extends _$StatisticsDefaultController
   StatisticsModel build({
     required final HabitRepository habitRepository,
   }) {
-    habitRepository.listHabits().listen((List<Habit> habits) {
+    habitRepository.habits().listen((List<Habit> habits) {
       state = state.when(
         loading: () => StatisticsModel.loaded(
           selectedButton: LocaleKeys.statisticsWeekSelection.tr(),

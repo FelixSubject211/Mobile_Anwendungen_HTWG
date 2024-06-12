@@ -27,7 +27,7 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   }
 
   @override
-  void showUpsertHabit(Habit? habit) {
-    _goRouter.push(NavigationServiceRoutes.upsertHabit, extra: habit);
+  void showHabitDetail(Habit? habit) {
+    _goRouter.push(NavigationServiceRoutes.habitDetail, extra: habit);
   }
 }

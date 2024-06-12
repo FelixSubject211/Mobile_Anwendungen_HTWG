@@ -33,7 +33,7 @@ class HabitDefaultRepository extends HabitRepository {
   }
 
   @override
-  Stream<List<Habit>> listHabits() {
+  Stream<List<Habit>> habits() {
     _updateStream();
     return _habitsSubject.stream;
   }

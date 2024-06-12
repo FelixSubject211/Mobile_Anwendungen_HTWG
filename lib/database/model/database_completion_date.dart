@@ -10,6 +10,7 @@ class DatabaseCompletionDate {
   int dateMillis;
 
   DatabaseCompletionDate({
+    this.id = 0,
     required this.dateMillis,
   }) : date = DateTime.fromMillisecondsSinceEpoch(dateMillis, isUtc: true);
 

@@ -24,57 +24,43 @@ class Statistics extends ConsumerWidget {
         title: Text(LocaleKeys.statisticsTitle.tr()),
       ),
       body: model.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        loaded: (selectedButton, habits) =>
-            _onData(context, controller, selectedButton, habits),
-      ),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          loaded: (selectedButton, habits) => habits.isEmpty
+              ? _emptyState(context)
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SelectionButton(
+                              label: LocaleKeys.statisticsWeekSelection.tr(),
+                              selectedButton: selectedButton,
+                              onButtonPressed:
+                                  controller.onSegmentedControlPressed,
+                              theme: Theme.of(context),
+                            ),
+                            SelectionButton(
+                              label: LocaleKeys.statisticsMonthSelection.tr(),
+                              selectedButton: selectedButton,
+                              onButtonPressed:
+                                  controller.onSegmentedControlPressed,
+                              theme: Theme.of(context),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      selectedButton == LocaleKeys.statisticsWeekSelection.tr()
+                          ? _weekStatistic(context, habits)
+                          : _monthStatistic(context, habits),
+                    ],
+                  ),
+                )),
     );
-  }
-
-  Widget _segmentedControl(
-      ThemeData theme, StatisticsController controller, String selectedButton) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          SelectionButton(
-            label: LocaleKeys.statisticsWeekSelection.tr(),
-            selectedButton: selectedButton,
-            onButtonPressed: controller.onSegmentedControlPressed,
-            theme: theme,
-          ),
-          SelectionButton(
-            label: LocaleKeys.statisticsMonthSelection.tr(),
-            selectedButton: selectedButton,
-            onButtonPressed: controller.onSegmentedControlPressed,
-            theme: theme,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _onData(BuildContext context, StatisticsController controller,
-      String selectedButton, List<Habit> habits) {
-    if (habits.isEmpty) {
-      return _emptyState(context);
-    } else {
-      final theme = Theme.of(context);
-
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _segmentedControl(theme, controller, selectedButton),
-            const SizedBox(height: 20),
-            selectedButton == LocaleKeys.statisticsWeekSelection.tr()
-                ? _weekStatistic(context, habits)
-                : _monthStatistic(context, habits),
-          ],
-        ),
-      );
-    }
   }
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {

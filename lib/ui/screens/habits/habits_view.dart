@@ -2,19 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/domain/habit/model/day_state.dart';
-import 'package:mobile_anwendungen/ui/screens/list_habits/list_habits_model.dart';
-import 'package:mobile_anwendungen/ui/screens/list_habits/list_habits_providers.dart';
+import 'package:mobile_anwendungen/ui/screens/habits/habits_model.dart';
+import 'package:mobile_anwendungen/ui/screens/habits/habits_providers.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
-class ListHabits extends ConsumerStatefulWidget {
-  const ListHabits({super.key});
+class Habits extends ConsumerStatefulWidget {
+  const Habits({super.key});
 
   @override
-  ListHabitsState createState() => ListHabitsState();
+  HabitsState createState() => HabitsState();
 }
 
-class ListHabitsState extends ConsumerState<ListHabits> {
+class HabitsState extends ConsumerState<Habits> {
   bool _isEditing = false;
 
   void _toggleEditing() {
@@ -25,13 +25,12 @@ class ListHabitsState extends ConsumerState<ListHabits> {
 
   @override
   Widget build(BuildContext context) {
-    final ListHabitsController controller =
-        ref.read(listHabitsControllerProvider);
-    final ListHabitsModel model = ref.watch(listHabitsModelProvider);
+    final HabitsController controller = ref.read(habitsControllerProvider);
+    final HabitsModel model = ref.watch(habitsModelProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.listHabitsTitle.tr()),
+        title: Text(LocaleKeys.habitsTitle.tr()),
         actions: [
           model.when(
             loading: () => Container(),
@@ -47,8 +46,8 @@ class ListHabitsState extends ConsumerState<ListHabits> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => controller.showUpsertHabit(null),
-        tooltip: LocaleKeys.listHabitsFloatingActionButtonTooltip.tr(),
+        onPressed: () => controller.showHabitDetail(null),
+        tooltip: LocaleKeys.habitsFloatingActionButtonTooltip.tr(),
         child: const Icon(Icons.add),
       ),
     );
@@ -81,7 +80,7 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   Widget _buildEditableList(List<Habit> habits) {
-    final controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(habitsControllerProvider);
 
     return ReorderableListView(
       onReorder: controller.onReorder,
@@ -94,7 +93,7 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   Material _habit(Habit habit, Widget trailing) {
-    final controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(habitsControllerProvider);
 
     return Material(
       color: Colors.transparent,
@@ -109,7 +108,7 @@ class ListHabitsState extends ConsumerState<ListHabits> {
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         trailing: trailing,
         onTap: () {
-          if (_isEditing) controller.showUpsertHabit(habit);
+          if (_isEditing) controller.showHabitDetail(habit);
         },
         enabled: _isEditing || habit.isCompletedToday() != DayState.done,
         shape: const Border(bottom: BorderSide()),
@@ -118,7 +117,7 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   SizedBox _habitCheckbox(Habit habit) {
-    final controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(habitsControllerProvider);
 
     return SizedBox(
       width: 24,
@@ -138,7 +137,7 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 
   Row _habitEditActions(Habit habit) {
-    final controller = ref.read(listHabitsControllerProvider);
+    final controller = ref.read(habitsControllerProvider);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -168,8 +167,8 @@ class ListHabitsState extends ConsumerState<ListHabits> {
   }
 }
 
-abstract class ListHabitsController {
-  void showUpsertHabit(Habit? habit);
+abstract class HabitsController {
+  void showHabitDetail(Habit? habit);
   void onCompleteHabit(Habit habit);
   void onUnCompleteHabit(Habit habit);
   void onReorder(int oldIndex, int newIndex);

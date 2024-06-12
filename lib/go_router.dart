@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_anwendungen/domain/navigation/navigation_service_routes.dart';
 import 'package:mobile_anwendungen/ui/screens/navigation.dart';
-import 'package:mobile_anwendungen/ui/screens/upsertHabit/upsert_habit_view.dart';
+import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 
@@ -27,10 +27,10 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           },
         ),
         GoRoute(
-          path: NavigationServiceRoutes.upsertHabit,
+          path: NavigationServiceRoutes.habitDetail,
           builder: (BuildContext context, GoRouterState state) {
             final habit = state.extra as Habit?;
-            return UpsertHabit(habit: habit);
+            return HabitDetail(habit: habit);
           },
         ),
       ],
