@@ -45,7 +45,7 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
   @override
   Widget build(BuildContext context) {
     final daysInCurrentMonth =
-        _monthLength(displayedMonth.month, displayedMonth.year);
+    _monthLength(displayedMonth.month, displayedMonth.year);
     final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
         displayedMonth.month, displayedMonth.year);
     final totalItems = daysInCurrentMonth + previousMonthDays + 7;
@@ -107,7 +107,7 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
     } else if (iteration >= previousMonthDays + 7 &&
         iteration < previousMonthDays + 7 + daysInCurrentMonth) {
       final date = DateTime(displayedMonth.year, displayedMonth.month,
-          iteration - (previousMonthDays + 6));
+          iteration - previousMonthDays - 6);
       final isSelected = date.year == selectedDate.year &&
           date.month == selectedDate.month &&
           date.day == selectedDate.day;
@@ -119,7 +119,7 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
 
   int _calculateVisibleDaysOfPreviousMonth(int month, int year) {
     final firstDayOfMonth = DateTime(year, month, 1);
-    return firstDayOfMonth.weekday % 7;
+    return (firstDayOfMonth.weekday + 6) % 7;
   }
 
   int _monthLength(int month, int year) {
