@@ -36,19 +36,17 @@ class Statistics extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            SelectionButton(
-                              label: LocaleKeys.statisticsWeekSelection.tr(),
-                              selectedButton: selectedButton,
-                              onButtonPressed:
-                                  controller.onSegmentedControlPressed,
-                              theme: Theme.of(context),
+                            buildSelectionButton(
+                                context,
+                                LocaleKeys.statisticsWeekSelection.tr(),
+                                selectedButton,
+                                controller.onSegmentedControlPressed
                             ),
-                            SelectionButton(
-                              label: LocaleKeys.statisticsMonthSelection.tr(),
-                              selectedButton: selectedButton,
-                              onButtonPressed:
-                                  controller.onSegmentedControlPressed,
-                              theme: Theme.of(context),
+                            buildSelectionButton(
+                                context,
+                                LocaleKeys.statisticsMonthSelection.tr(),
+                                selectedButton,
+                                controller.onSegmentedControlPressed
                             ),
                           ],
                         ),
@@ -59,7 +57,18 @@ class Statistics extends ConsumerWidget {
                           : _monthStatistic(context, habits),
                     ],
                   ),
-                )),
+                )
+      ),
+    );
+  }
+
+  Widget buildSelectionButton(BuildContext context, String label,
+      String selectedButton, Function(String) onButtonPressed) {
+    return SelectionButton(
+      label: label,
+      selectedButton: selectedButton,
+      onButtonPressed: onButtonPressed,
+      theme: Theme.of(context),
     );
   }
 
