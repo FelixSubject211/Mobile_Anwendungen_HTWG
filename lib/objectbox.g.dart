@@ -15,64 +15,64 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'domain/habits/completion_date.dart';
-import 'domain/habits/habit.dart';
+import 'database/model/database_completion_date.dart';
+import 'database/model/database_habit.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 4933774847501334240),
-      name: 'Habit',
-      lastPropertyId: const obx_int.IdUid(7, 1519975166456393104),
+      id: const obx_int.IdUid(4, 387660998193724500),
+      name: 'DatabaseCompletionDate',
+      lastPropertyId: const obx_int.IdUid(2, 2264737502640803515),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 7150806586606125223),
+            id: const obx_int.IdUid(1, 6533330200763842630),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 5251352729535817138),
+            id: const obx_int.IdUid(2, 2264737502640803515),
+            name: 'dateMillis',
+            type: 6,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(5, 5037049250469846763),
+      name: 'DatabaseHabit',
+      lastPropertyId: const obx_int.IdUid(4, 1249293660816430618),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 420480327639789263),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 9158090672755388168),
             name: 'name',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 5114650160825505742),
+            id: const obx_int.IdUid(3, 6699594223918173098),
             name: 'index',
             type: 6,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 7831590582768626053),
+            id: const obx_int.IdUid(4, 1249293660816430618),
             name: 'creationDate',
             type: 6,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[
         obx_int.ModelRelation(
-            id: const obx_int.IdUid(1, 3165293421844515969),
+            id: const obx_int.IdUid(2, 3167539005792856175),
             name: 'completionDates',
-            targetId: const obx_int.IdUid(3, 5768749410228167719))
+            targetId: const obx_int.IdUid(4, 387660998193724500))
       ],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(3, 5768749410228167719),
-      name: 'CompletionDate',
-      lastPropertyId: const obx_int.IdUid(2, 2758452046988340640),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 5485435159034364373),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 2758452046988340640),
-            name: 'dateMillis',
-            type: 6,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
 ];
 
@@ -111,18 +111,28 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(3, 5768749410228167719),
+      lastEntityId: const obx_int.IdUid(5, 5037049250469846763),
       lastIndexId: const obx_int.IdUid(1, 1373669356522302806),
-      lastRelationId: const obx_int.IdUid(1, 3165293421844515969),
+      lastRelationId: const obx_int.IdUid(2, 3167539005792856175),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [2271560381588274515],
+      retiredEntityUids: const [
+        2271560381588274515,
+        4933774847501334240,
+        5768749410228167719
+      ],
       retiredIndexUids: const [1373669356522302806],
       retiredPropertyUids: const [
         5772066262068371116,
         2849403198628120101,
         6188093224734784656,
         2427150203127901892,
-        1519975166456393104
+        1519975166456393104,
+        7150806586606125223,
+        5251352729535817138,
+        5114650160825505742,
+        7831590582768626053,
+        5485435159034364373,
+        2758452046988340640
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -130,54 +140,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
       version: 1);
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    Habit: obx_int.EntityDefinition<Habit>(
+    DatabaseCompletionDate: obx_int.EntityDefinition<DatabaseCompletionDate>(
         model: _entities[0],
-        toOneRelations: (Habit object) => [],
-        toManyRelations: (Habit object) => {
-              obx_int.RelInfo<Habit>.toMany(1, object.id):
-                  object.completionDates
-            },
-        getId: (Habit object) => object.id,
-        setId: (Habit object, int id) {
+        toOneRelations: (DatabaseCompletionDate object) => [],
+        toManyRelations: (DatabaseCompletionDate object) => {},
+        getId: (DatabaseCompletionDate object) => object.id,
+        setId: (DatabaseCompletionDate object, int id) {
           object.id = id;
         },
-        objectToFB: (Habit object, fb.Builder fbb) {
-          final nameOffset = fbb.writeString(object.name);
-          fbb.startTable(8);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, nameOffset);
-          fbb.addInt64(2, object.index);
-          fbb.addInt64(4, object.creationDate);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final nameParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 6, '');
-          final indexParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
-          final creationDateParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
-          final object = Habit(
-              name: nameParam,
-              index: indexParam,
-              creationDate: creationDateParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          obx_int.InternalToManyAccess.setRelInfo<Habit>(object.completionDates,
-              store, obx_int.RelInfo<Habit>.toMany(1, object.id));
-          return object;
-        }),
-    CompletionDate: obx_int.EntityDefinition<CompletionDate>(
-        model: _entities[1],
-        toOneRelations: (CompletionDate object) => [],
-        toManyRelations: (CompletionDate object) => {},
-        getId: (CompletionDate object) => object.id,
-        setId: (CompletionDate object, int id) {
-          object.id = id;
-        },
-        objectToFB: (CompletionDate object, fb.Builder fbb) {
+        objectToFB: (DatabaseCompletionDate object, fb.Builder fbb) {
           fbb.startTable(3);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.dateMillis);
@@ -187,11 +158,56 @@ obx_int.ModelDefinition getObjectBoxModel() {
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final dateMillisParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
-          final object = CompletionDate(dateMillis: dateMillisParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final object =
+              DatabaseCompletionDate(id: idParam, dateMillis: dateMillisParam);
 
+          return object;
+        }),
+    DatabaseHabit: obx_int.EntityDefinition<DatabaseHabit>(
+        model: _entities[1],
+        toOneRelations: (DatabaseHabit object) => [],
+        toManyRelations: (DatabaseHabit object) => {
+              obx_int.RelInfo<DatabaseHabit>.toMany(2, object.id):
+                  object.completionDates
+            },
+        getId: (DatabaseHabit object) => object.id,
+        setId: (DatabaseHabit object, int id) {
+          object.id = id;
+        },
+        objectToFB: (DatabaseHabit object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          fbb.startTable(5);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addInt64(2, object.index);
+          fbb.addInt64(3, object.creationDate);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final indexParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
+          final creationDateParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          final object = DatabaseHabit(
+              id: idParam,
+              name: nameParam,
+              index: indexParam,
+              creationDate: creationDateParam);
+          obx_int.InternalToManyAccess.setRelInfo<DatabaseHabit>(
+              object.completionDates,
+              store,
+              obx_int.RelInfo<DatabaseHabit>.toMany(2, object.id));
           return object;
         })
   };
@@ -199,35 +215,37 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [Habit] entity fields to define ObjectBox queries.
-class Habit_ {
-  /// see [Habit.id]
-  static final id = obx.QueryIntegerProperty<Habit>(_entities[0].properties[0]);
+/// [DatabaseCompletionDate] entity fields to define ObjectBox queries.
+class DatabaseCompletionDate_ {
+  /// see [DatabaseCompletionDate.id]
+  static final id = obx.QueryIntegerProperty<DatabaseCompletionDate>(
+      _entities[0].properties[0]);
 
-  /// see [Habit.name]
-  static final name =
-      obx.QueryStringProperty<Habit>(_entities[0].properties[1]);
-
-  /// see [Habit.index]
-  static final index =
-      obx.QueryIntegerProperty<Habit>(_entities[0].properties[2]);
-
-  /// see [Habit.creationDate]
-  static final creationDate =
-      obx.QueryIntegerProperty<Habit>(_entities[0].properties[3]);
-
-  /// see [Habit.completionDates]
-  static final completionDates =
-      obx.QueryRelationToMany<Habit, CompletionDate>(_entities[0].relations[0]);
+  /// see [DatabaseCompletionDate.dateMillis]
+  static final dateMillis = obx.QueryIntegerProperty<DatabaseCompletionDate>(
+      _entities[0].properties[1]);
 }
 
-/// [CompletionDate] entity fields to define ObjectBox queries.
-class CompletionDate_ {
-  /// see [CompletionDate.id]
+/// [DatabaseHabit] entity fields to define ObjectBox queries.
+class DatabaseHabit_ {
+  /// see [DatabaseHabit.id]
   static final id =
-      obx.QueryIntegerProperty<CompletionDate>(_entities[1].properties[0]);
+      obx.QueryIntegerProperty<DatabaseHabit>(_entities[1].properties[0]);
 
-  /// see [CompletionDate.dateMillis]
-  static final dateMillis =
-      obx.QueryIntegerProperty<CompletionDate>(_entities[1].properties[1]);
+  /// see [DatabaseHabit.name]
+  static final name =
+      obx.QueryStringProperty<DatabaseHabit>(_entities[1].properties[1]);
+
+  /// see [DatabaseHabit.index]
+  static final index =
+      obx.QueryIntegerProperty<DatabaseHabit>(_entities[1].properties[2]);
+
+  /// see [DatabaseHabit.creationDate]
+  static final creationDate =
+      obx.QueryIntegerProperty<DatabaseHabit>(_entities[1].properties[3]);
+
+  /// see [DatabaseHabit.completionDates]
+  static final completionDates =
+      obx.QueryRelationToMany<DatabaseHabit, DatabaseCompletionDate>(
+          _entities[1].relations[0]);
 }

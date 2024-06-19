@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
-import 'package:mobile_anwendungen/screens/list_habits.dart';
-import 'package:mobile_anwendungen/screens/statistics.dart';
+import 'package:mobile_anwendungen/ui/screens/habits/habits_view.dart';
+import 'package:mobile_anwendungen/ui/screens/statistics/statistics_view.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -36,7 +36,7 @@ class _NavigationState extends State<Navigation> {
     return <Widget>[
       NavigationDestination(
         icon: const Icon(Icons.list),
-        label: LocaleKeys.listHabitsTitle.tr(),
+        label: LocaleKeys.habitsTitle.tr(),
       ),
       NavigationDestination(
         icon: const Icon(Icons.leaderboard),
@@ -46,9 +46,6 @@ class _NavigationState extends State<Navigation> {
   }
 
   List<Widget> _pages() {
-    return const <Widget>[
-      Center(child: ListHabits()),
-      Center(child: Statistics())
-    ];
+    return const <Widget>[Center(child: Habits()), Center(child: Statistics())];
   }
 }
