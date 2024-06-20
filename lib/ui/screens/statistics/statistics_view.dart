@@ -24,51 +24,46 @@ class Statistics extends ConsumerWidget {
         title: Text(LocaleKeys.statisticsTitle.tr()),
       ),
       body: model.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          loaded: (selectedButton, habits) => habits.isEmpty
-              ? _emptyState(context)
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            buildSelectionButton(
-                                context,
-                                LocaleKeys.statisticsWeekSelection.tr(),
-                                selectedButton,
-                                controller.onSegmentedControlPressed
-                            ),
-                            buildSelectionButton(
-                                context,
-                                LocaleKeys.statisticsMonthSelection.tr(),
-                                selectedButton,
-                                controller.onSegmentedControlPressed
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      selectedButton == LocaleKeys.statisticsWeekSelection.tr()
-                          ? _weekStatistic(context, habits)
-                          : _monthStatistic(context, habits),
-                    ],
-                  ),
-                )
+        loading: () => const Center(child: CircularProgressIndicator()),
+        loaded: (selectedButton, habits) => habits.isEmpty
+            ? _emptyState(context)
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _buildSelectionButtons(context, selectedButton, controller),
+                    const SizedBox(height: 20),
+                    selectedButton == LocaleKeys.statisticsWeekSelection.tr()
+                        ? _weekStatistic(context, habits)
+                        : _monthStatistic(context, habits),
+                  ],
+                ),
+              ),
       ),
     );
   }
 
-  Widget buildSelectionButton(BuildContext context, String label,
-      String selectedButton, Function(String) onButtonPressed) {
-    return SelectionButton(
-      label: label,
-      selectedButton: selectedButton,
-      onButtonPressed: onButtonPressed,
-      theme: Theme.of(context),
+  Widget _buildSelectionButtons(BuildContext context, String selectedButton,
+      StatisticsController controller) {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          SelectionButton(
+            label: LocaleKeys.statisticsWeekSelection.tr(),
+            selectedButton: selectedButton,
+            onButtonPressed: controller.onSegmentedControlPressed,
+            theme: Theme.of(context),
+          ),
+          SelectionButton(
+            label: LocaleKeys.statisticsMonthSelection.tr(),
+            selectedButton: selectedButton,
+            onButtonPressed: controller.onSegmentedControlPressed,
+            theme: Theme.of(context),
+          ),
+        ],
+      ),
     );
   }
 
@@ -166,9 +161,11 @@ class Statistics extends ConsumerWidget {
   Widget _headerBuilderMonth(String month, int year) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(
-        '$month $year',
-        style: const TextStyle(fontSize: 14),
+      child: Center(
+        child: Text(
+          '$month $year',
+          style: const TextStyle(fontSize: 14),
+        ),
       ),
     );
   }
@@ -176,9 +173,11 @@ class Statistics extends ConsumerWidget {
   Widget _headerBuilderWeek(String weekLabel) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(
-        weekLabel,
-        style: const TextStyle(fontSize: 14),
+      child: Center(
+        child: Text(
+          weekLabel,
+          style: const TextStyle(fontSize: 14),
+        ),
       ),
     );
   }

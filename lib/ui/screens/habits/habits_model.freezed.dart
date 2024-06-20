@@ -19,19 +19,19 @@ mixin _$HabitsModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Habit> habits) loaded,
+    required TResult Function(List<Habit> habits, bool isEditing) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Habit> habits)? loaded,
+    TResult? Function(List<Habit> habits, bool isEditing)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Habit> habits)? loaded,
+    TResult Function(List<Habit> habits, bool isEditing)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Habit> habits) loaded,
+    required TResult Function(List<Habit> habits, bool isEditing) loaded,
   }) {
     return loading();
   }
@@ -122,7 +122,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Habit> habits)? loaded,
+    TResult? Function(List<Habit> habits, bool isEditing)? loaded,
   }) {
     return loading?.call();
   }
@@ -131,7 +131,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Habit> habits)? loaded,
+    TResult Function(List<Habit> habits, bool isEditing)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -182,7 +182,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Habit> habits});
+  $Res call({List<Habit> habits, bool isEditing});
 }
 
 /// @nodoc
@@ -197,12 +197,17 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? habits = null,
+    Object? isEditing = null,
   }) {
     return _then(_$LoadedImpl(
       habits: null == habits
           ? _value._habits
           : habits // ignore: cast_nullable_to_non_nullable
               as List<Habit>,
+      isEditing: null == isEditing
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -210,7 +215,9 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<Habit> habits}) : _habits = habits;
+  const _$LoadedImpl(
+      {required final List<Habit> habits, required this.isEditing})
+      : _habits = habits;
 
   final List<Habit> _habits;
   @override
@@ -221,8 +228,11 @@ class _$LoadedImpl implements _Loaded {
   }
 
   @override
+  final bool isEditing;
+
+  @override
   String toString() {
-    return 'HabitsModel.loaded(habits: $habits)';
+    return 'HabitsModel.loaded(habits: $habits, isEditing: $isEditing)';
   }
 
   @override
@@ -230,12 +240,14 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._habits, _habits));
+            const DeepCollectionEquality().equals(other._habits, _habits) &&
+            (identical(other.isEditing, isEditing) ||
+                other.isEditing == isEditing));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_habits));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_habits), isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -247,29 +259,29 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Habit> habits) loaded,
+    required TResult Function(List<Habit> habits, bool isEditing) loaded,
   }) {
-    return loaded(habits);
+    return loaded(habits, isEditing);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Habit> habits)? loaded,
+    TResult? Function(List<Habit> habits, bool isEditing)? loaded,
   }) {
-    return loaded?.call(habits);
+    return loaded?.call(habits, isEditing);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Habit> habits)? loaded,
+    TResult Function(List<Habit> habits, bool isEditing)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(habits);
+      return loaded(habits, isEditing);
     }
     return orElse();
   }
@@ -307,9 +319,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements HabitsModel {
-  const factory _Loaded({required final List<Habit> habits}) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<Habit> habits,
+      required final bool isEditing}) = _$LoadedImpl;
 
   List<Habit> get habits;
+  bool get isEditing;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
