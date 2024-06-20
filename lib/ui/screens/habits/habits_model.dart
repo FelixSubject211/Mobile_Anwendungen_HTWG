@@ -8,5 +8,6 @@ class HabitsModel with _$HabitsModel {
   const factory HabitsModel.loading() = _Loading;
   const factory HabitsModel.loaded({
     required List<Habit> habits,
+    required bool isEditing,
   }) = _Loaded;
 }

@@ -7,24 +7,11 @@ import 'package:mobile_anwendungen/ui/screens/habits/habits_providers.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
-class Habits extends ConsumerStatefulWidget {
+class Habits extends ConsumerWidget {
   const Habits({super.key});
 
   @override
-  HabitsState createState() => HabitsState();
-}
-
-class HabitsState extends ConsumerState<Habits> {
-  bool _isEditing = false;
-
-  void _toggleEditing() {
-    setState(() {
-      _isEditing = !_isEditing;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final HabitsController controller = ref.read(habitsControllerProvider);
     final HabitsModel model = ref.watch(habitsModelProvider);
 
@@ -34,15 +21,15 @@ class HabitsState extends ConsumerState<Habits> {
         actions: [
           model.when(
             loading: () => Container(),
-            loaded: (habits) => _editButton(habits),
+            loaded: (habits, isEditing) => _editButton(habits, isEditing, controller),
           ),
         ],
       ),
       body: model.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        loaded: (habits) => Padding(
+        loaded: (habits, isEditing) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: _onData(habits),
+          child: _onData(habits, isEditing, ref, context),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -53,33 +40,33 @@ class HabitsState extends ConsumerState<Habits> {
     );
   }
 
-  Widget _onData(List<Habit> habits) {
+  Widget _onData(List<Habit> habits, bool isEditing, WidgetRef ref, BuildContext context) {
     return habits.isEmpty
-        ? _emptyState()
-        : (_isEditing ? _buildEditableList(habits) : _buildList(habits));
+        ? _emptyState(context)
+        : (isEditing ? _buildEditableList(habits, ref) : _buildList(habits, ref));
   }
 
-  Widget _editButton(List<Habit> habits) {
+  Widget _editButton(List<Habit> habits, bool isEditing, HabitsController controller) {
     return habits.isNotEmpty
         ? IconButton(
-      icon: Icon(_isEditing ? Icons.check : Icons.edit),
-      onPressed: _toggleEditing,
-      tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+      icon: Icon(isEditing ? Icons.check : Icons.edit),
+      onPressed: controller.toggleEditing,
+      tooltip: isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
     )
         : Container();
   }
 
-  Widget _buildList(List<Habit> habits) {
+  Widget _buildList(List<Habit> habits, WidgetRef ref) {
     return ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
         final habit = habits[index];
-        return _habit(habit, _habitCheckbox(habit));
+        return _habit(habit, _habitCheckbox(habit, ref), ref);
       },
     );
   }
 
-  Widget _buildEditableList(List<Habit> habits) {
+  Widget _buildEditableList(List<Habit> habits, WidgetRef ref) {
     final controller = ref.read(habitsControllerProvider);
 
     return ReorderableListView(
@@ -87,12 +74,12 @@ class HabitsState extends ConsumerState<Habits> {
       proxyDecorator: (child, index, animation) => child,
       padding: const EdgeInsets.symmetric(vertical: 0),
       children: habits
-          .map((habit) => _habit(habit, _habitEditActions(habit)))
+          .map((habit) => _habit(habit, _habitEditActions(habit, ref), ref))
           .toList(),
     );
   }
 
-  Material _habit(Habit habit, Widget trailing) {
+  Material _habit(Habit habit, Widget trailing, WidgetRef ref) {
     final controller = ref.read(habitsControllerProvider);
 
     return Material(
@@ -108,15 +95,24 @@ class HabitsState extends ConsumerState<Habits> {
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         trailing: trailing,
         onTap: () {
-          if (_isEditing) controller.showHabitDetail(habit);
+          if (ref.read(habitsModelProvider).maybeWhen(
+            orElse: () => false,
+            loaded: (_, isEditing) => isEditing,
+          )) {
+            controller.showHabitDetail(habit);
+          }
         },
-        enabled: _isEditing || habit.isCompletedToday() != DayState.done,
+        enabled: ref.read(habitsModelProvider).maybeWhen(
+          orElse: () => false,
+          loaded: (_, isEditing) => isEditing,
+        ) ||
+            habit.isCompletedToday() != DayState.done,
         shape: const Border(bottom: BorderSide()),
       ),
     );
   }
 
-  SizedBox _habitCheckbox(Habit habit) {
+  SizedBox _habitCheckbox(Habit habit, WidgetRef ref) {
     final controller = ref.read(habitsControllerProvider);
 
     return SizedBox(
@@ -136,7 +132,7 @@ class HabitsState extends ConsumerState<Habits> {
     );
   }
 
-  Row _habitEditActions(Habit habit) {
+  Row _habitEditActions(Habit habit, WidgetRef ref) {
     final controller = ref.read(habitsControllerProvider);
 
     return Row(
@@ -151,7 +147,7 @@ class HabitsState extends ConsumerState<Habits> {
     );
   }
 
-  Widget _emptyState() {
+  Widget _emptyState(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -173,4 +169,5 @@ abstract class HabitsController {
   void onUnCompleteHabit(Habit habit);
   void onReorder(int oldIndex, int newIndex);
   void onDeleteHabit(Habit habit);
+  void toggleEditing();
 }
