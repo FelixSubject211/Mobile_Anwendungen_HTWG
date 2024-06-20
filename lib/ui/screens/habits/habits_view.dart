@@ -21,7 +21,8 @@ class Habits extends ConsumerWidget {
         actions: [
           model.when(
             loading: () => Container(),
-            loaded: (habits, isEditing) => _editButton(habits, isEditing, controller),
+            loaded: (habits, isEditing) =>
+                _editButton(habits, isEditing, controller),
           ),
         ],
       ),
@@ -40,19 +41,23 @@ class Habits extends ConsumerWidget {
     );
   }
 
-  Widget _onData(List<Habit> habits, bool isEditing, WidgetRef ref, BuildContext context) {
+  Widget _onData(
+      List<Habit> habits, bool isEditing, WidgetRef ref, BuildContext context) {
     return habits.isEmpty
         ? _emptyState(context)
-        : (isEditing ? _buildEditableList(habits, ref) : _buildList(habits, ref));
+        : (isEditing
+            ? _buildEditableList(habits, ref)
+            : _buildList(habits, ref));
   }
 
-  Widget _editButton(List<Habit> habits, bool isEditing, HabitsController controller) {
+  Widget _editButton(
+      List<Habit> habits, bool isEditing, HabitsController controller) {
     return habits.isNotEmpty
         ? IconButton(
-      icon: Icon(isEditing ? Icons.check : Icons.edit),
-      onPressed: controller.toggleEditing,
-      tooltip: isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
-    )
+            icon: Icon(isEditing ? Icons.check : Icons.edit),
+            onPressed: controller.toggleEditing,
+            tooltip: isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+          )
         : Container();
   }
 
@@ -96,16 +101,16 @@ class Habits extends ConsumerWidget {
         trailing: trailing,
         onTap: () {
           if (ref.read(habitsModelProvider).maybeWhen(
-            orElse: () => false,
-            loaded: (_, isEditing) => isEditing,
-          )) {
+                orElse: () => false,
+                loaded: (_, isEditing) => isEditing,
+              )) {
             controller.showHabitDetail(habit);
           }
         },
         enabled: ref.read(habitsModelProvider).maybeWhen(
-          orElse: () => false,
-          loaded: (_, isEditing) => isEditing,
-        ) ||
+                  orElse: () => false,
+                  loaded: (_, isEditing) => isEditing,
+                ) ||
             habit.isCompletedToday() != DayState.done,
         shape: const Border(bottom: BorderSide()),
       ),

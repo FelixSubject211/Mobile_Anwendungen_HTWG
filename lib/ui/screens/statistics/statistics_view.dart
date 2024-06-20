@@ -16,7 +16,7 @@ class Statistics extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     final StatisticsController controller =
-    ref.read(statisticsControllerProvider);
+        ref.read(statisticsControllerProvider);
     final StatisticsModel model = ref.watch(statisticsModelProvider);
 
     return Scaffold(
@@ -28,19 +28,18 @@ class Statistics extends ConsumerWidget {
         loaded: (selectedButton, habits) => habits.isEmpty
             ? _emptyState(context)
             : Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              _buildSelectionButtons(
-                  context, selectedButton, controller),
-              const SizedBox(height: 20),
-              selectedButton == LocaleKeys.statisticsWeekSelection.tr()
-                  ? _weekStatistic(context, habits)
-                  : _monthStatistic(context, habits),
-            ],
-          ),
-        ),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _buildSelectionButtons(context, selectedButton, controller),
+                    const SizedBox(height: 20),
+                    selectedButton == LocaleKeys.statisticsWeekSelection.tr()
+                        ? _weekStatistic(context, habits)
+                        : _monthStatistic(context, habits),
+                  ],
+                ),
+              ),
       ),
     );
   }
@@ -70,7 +69,7 @@ class Statistics extends ConsumerWidget {
 
   Widget _weekStatistic(BuildContext context, List<Habit> habits) {
     final startOfWeek =
-    DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
     return Expanded(
       child: ListView.builder(

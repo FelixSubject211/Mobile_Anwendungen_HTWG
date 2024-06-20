@@ -45,7 +45,7 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
   @override
   Widget build(BuildContext context) {
     final daysInCurrentMonth =
-    _monthLength(displayedMonth.month, displayedMonth.year);
+        _monthLength(displayedMonth.month, displayedMonth.year);
     final previousMonthDays = _calculateVisibleDaysOfPreviousMonth(
         displayedMonth.month, displayedMonth.year);
     final totalItems = daysInCurrentMonth + previousMonthDays + 7;

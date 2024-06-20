@@ -18,7 +18,8 @@ class HabitsDefaultController extends _$HabitsDefaultController
     habitRepository.habits().listen((List<Habit> habits) {
       state = state.when(
         loading: () => HabitsModel.loaded(habits: habits, isEditing: false),
-        loaded: (habits, isEditing) => HabitsModel.loaded(habits: habits, isEditing: isEditing),
+        loaded: (_, isEditing) =>
+            HabitsModel.loaded(habits: habits, isEditing: isEditing),
       );
     });
 
@@ -29,7 +30,8 @@ class HabitsDefaultController extends _$HabitsDefaultController
   void toggleEditing() {
     state = state.when(
       loading: () => state,
-      loaded: (habits, isEditing) => HabitsModel.loaded(habits: habits, isEditing: !isEditing),
+      loaded: (habits, isEditing) =>
+          HabitsModel.loaded(habits: habits, isEditing: !isEditing),
     );
   }
 
