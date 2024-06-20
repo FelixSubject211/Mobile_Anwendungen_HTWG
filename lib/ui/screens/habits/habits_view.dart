@@ -62,10 +62,10 @@ class HabitsState extends ConsumerState<Habits> {
   Widget _editButton(List<Habit> habits) {
     return habits.isNotEmpty
         ? IconButton(
-            icon: Icon(_isEditing ? Icons.check : Icons.edit),
-            onPressed: _toggleEditing,
-            tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
-          )
+      icon: Icon(_isEditing ? Icons.check : Icons.edit),
+      onPressed: _toggleEditing,
+      tooltip: _isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+    )
         : Container();
   }
 
