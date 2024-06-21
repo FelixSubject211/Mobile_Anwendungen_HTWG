@@ -29,7 +29,11 @@ class CodegenLoader extends AssetLoader {
     "statisticsTitle": "Statistik",
     "statisticsWeekSelection": "Woche",
     "statisticsMonthSelection": "Monat",
-    "textIfItIsEmpty": "Du hast noch keine Gewohnheiten"
+    "textIfItIsEmpty": "Du hast noch keine Gewohnheiten",
+    "confirmDeleteTitle": "Gewohnheit Löschen",
+    "confirmDeleteMessage":
+        "Sind Sie sicher, dass Sie diese Gewohnheit löschen wollen?",
+    "delete": "Löschen"
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {"de": de};
 }

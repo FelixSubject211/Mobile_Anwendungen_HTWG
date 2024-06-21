@@ -46,7 +46,7 @@ class Habits extends ConsumerWidget {
     return habits.isEmpty
         ? _emptyState(context)
         : (isEditing
-            ? _buildEditableList(habits, ref)
+            ? _buildEditableList(habits, ref, context)
             : _buildList(habits, ref));
   }
 
@@ -71,7 +71,8 @@ class Habits extends ConsumerWidget {
     );
   }
 
-  Widget _buildEditableList(List<Habit> habits, WidgetRef ref) {
+  Widget _buildEditableList(
+      List<Habit> habits, WidgetRef ref, BuildContext context) {
     final controller = ref.read(habitsControllerProvider);
 
     return ReorderableListView(
@@ -79,7 +80,8 @@ class Habits extends ConsumerWidget {
       proxyDecorator: (child, index, animation) => child,
       padding: const EdgeInsets.symmetric(vertical: 0),
       children: habits
-          .map((habit) => _habit(habit, _habitEditActions(habit, ref), ref))
+          .map((habit) =>
+              _habit(habit, _habitEditActions(context, habit, ref), ref))
           .toList(),
     );
   }
@@ -97,7 +99,7 @@ class Habits extends ConsumerWidget {
               ? const TextStyle(decoration: TextDecoration.lineThrough)
               : null,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 4),
         trailing: trailing,
         onTap: () {
           if (ref.read(habitsModelProvider).maybeWhen(
@@ -137,7 +139,7 @@ class Habits extends ConsumerWidget {
     );
   }
 
-  Row _habitEditActions(Habit habit, WidgetRef ref) {
+  Row _habitEditActions(BuildContext context, Habit habit, WidgetRef ref) {
     final controller = ref.read(habitsControllerProvider);
 
     return Row(
@@ -145,7 +147,32 @@ class Habits extends ConsumerWidget {
       children: [
         IconButton(
           icon: const Icon(Icons.delete_outline),
-          onPressed: () => controller.onDeleteHabit(habit),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(LocaleKeys.confirmDeleteTitle.tr()),
+                  content: Text(LocaleKeys.confirmDeleteMessage.tr()),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(LocaleKeys.cancel.tr()),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        controller.onDeleteHabit(habit);
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(LocaleKeys.delete.tr()),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
         ),
         const Icon(Icons.drag_handle_sharp),
       ],
