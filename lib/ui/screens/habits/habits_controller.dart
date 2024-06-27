@@ -60,4 +60,11 @@ class HabitsDefaultController extends _$HabitsDefaultController
   void onDeleteHabit(Habit habit) {
     habitRepository.deleteHabit(habit);
   }
+
+  @override
+  void showConfirmDeleteAlert(Habit habit) {
+    habitsNavigationService.showConfirmDeleteAlert(() {
+      habitRepository.deleteHabit(habit);
+    });
+  }
 }

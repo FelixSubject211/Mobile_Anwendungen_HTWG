@@ -16,5 +16,6 @@
   "textIfItIsEmpty": "Du hast noch keine Gewohnheiten",
   "confirmDeleteTitle": "Gewohnheit Löschen",
   "confirmDeleteMessage": "Sind Sie sicher, dass Sie diese Gewohnheit löschen wollen?",
-  "delete": "Löschen"
+  "delete": "Löschen",
+  "unknownErrorOccurred": "Ein unbekannter Fehler ist aufgetreten"
 }

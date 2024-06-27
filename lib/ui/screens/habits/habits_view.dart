@@ -149,30 +149,7 @@ class Habits extends ConsumerWidget {
         IconButton(
           icon: const Icon(Icons.delete_outline),
           onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text(LocaleKeys.confirmDeleteTitle.tr()),
-                  content: Text(LocaleKeys.confirmDeleteMessage.tr()),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(LocaleKeys.cancel.tr()),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        controller.onDeleteHabit(habit);
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(LocaleKeys.delete.tr()),
-                    ),
-                  ],
-                );
-              },
-            );
+            controller.showConfirmDeleteAlert(habit);
           },
         ),
         const Icon(Icons.drag_handle_sharp),
@@ -203,4 +180,5 @@ abstract class HabitsController {
   void onReorder(int oldIndex, int newIndex);
   void onDeleteHabit(Habit habit);
   void toggleEditing();
+  void showConfirmDeleteAlert(Habit habit);
 }

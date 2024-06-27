@@ -20,4 +20,5 @@ abstract class LocaleKeys {
   static const confirmDeleteTitle = 'confirmDeleteTitle';
   static const confirmDeleteMessage = 'confirmDeleteMessage';
   static const delete = 'delete';
+  static const unknownErrorOccurred = 'unknownErrorOccurred';
 }
