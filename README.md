@@ -20,6 +20,6 @@ Yusto is a mobile application designed to help users establish, manage, and trac
 
 ## Architecture
 
-
+![Architecture Diagram](documents-assets/arch.png)
 
 
