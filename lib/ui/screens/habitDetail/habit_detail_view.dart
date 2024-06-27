@@ -1,14 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_provider.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
 class HabitDetail extends StatelessWidget {
-  final Habit? habit;
+  final int? id;
 
-  const HabitDetail({super.key, this.habit});
+  const HabitDetail({super.key, this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class HabitDetail extends StatelessWidget {
       appBar: AppBar(
         title: Consumer(
           builder: (context, ref, _) {
-            final model = ref.watch(habitDetailModelProvider(habit));
+            final model = ref.watch(habitDetailModelProvider(id));
             return Text(
               model.isInEditMode
                   ? LocaleKeys.habitDetailEditTitle.tr()
@@ -25,15 +24,15 @@ class HabitDetail extends StatelessWidget {
           },
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              NameInputField(),
-              Divider(height: 20),
-              ActionButtons(),
+              NameInputField(id: id),
+              const Divider(height: 20),
+              ActionButtons(id: id),
             ],
           ),
         ),
@@ -43,12 +42,14 @@ class HabitDetail extends StatelessWidget {
 }
 
 class NameInputField extends ConsumerWidget {
-  const NameInputField({Key? key}) : super(key: key);
+  final int? id;
+
+  const NameInputField({Key? key, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final model = ref.watch(habitDetailModelProvider(null));
-    final controller = ref.read(habitDetailControllerProvider(null));
+    final model = ref.watch(habitDetailModelProvider(id));
+    final controller = ref.read(habitDetailControllerProvider(id));
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
@@ -65,12 +66,14 @@ class NameInputField extends ConsumerWidget {
 }
 
 class ActionButtons extends ConsumerWidget {
-  const ActionButtons({Key? key}) : super(key: key);
+  final int? id;
+
+  const ActionButtons({Key? key, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final model = ref.watch(habitDetailModelProvider(null));
-    final controller = ref.read(habitDetailControllerProvider(null));
+    final model = ref.watch(habitDetailModelProvider(id));
+    final controller = ref.read(habitDetailControllerProvider(id));
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,

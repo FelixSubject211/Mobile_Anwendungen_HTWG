@@ -7,7 +7,7 @@ part of 'habit_detail_provider.dart';
 // **************************************************************************
 
 String _$habitDetailControllerHash() =>
-    r'3b8c7c9e81d76367f598e888e420313f011b4931';
+    r'0ae3cf99e957a6f8da18a2c8c7508bf1dee1f8cf';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -41,10 +41,10 @@ class HabitDetailControllerFamily extends Family<HabitDetailController> {
 
   /// See also [habitDetailController].
   HabitDetailControllerProvider call(
-    Habit? habit,
+    int? id,
   ) {
     return HabitDetailControllerProvider(
-      habit,
+      id,
     );
   }
 
@@ -53,7 +53,7 @@ class HabitDetailControllerFamily extends Family<HabitDetailController> {
     covariant HabitDetailControllerProvider provider,
   ) {
     return call(
-      provider.habit,
+      provider.id,
     );
   }
 
@@ -77,11 +77,11 @@ class HabitDetailControllerProvider
     extends AutoDisposeProvider<HabitDetailController> {
   /// See also [habitDetailController].
   HabitDetailControllerProvider(
-    Habit? habit,
+    int? id,
   ) : this._internal(
           (ref) => habitDetailController(
             ref as HabitDetailControllerRef,
-            habit,
+            id,
           ),
           from: habitDetailControllerProvider,
           name: r'habitDetailControllerProvider',
@@ -92,7 +92,7 @@ class HabitDetailControllerProvider
           dependencies: HabitDetailControllerFamily._dependencies,
           allTransitiveDependencies:
               HabitDetailControllerFamily._allTransitiveDependencies,
-          habit: habit,
+          id: id,
         );
 
   HabitDetailControllerProvider._internal(
@@ -102,10 +102,10 @@ class HabitDetailControllerProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.habit,
+    required this.id,
   }) : super.internal();
 
-  final Habit? habit;
+  final int? id;
 
   @override
   Override overrideWith(
@@ -120,7 +120,7 @@ class HabitDetailControllerProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        habit: habit,
+        id: id,
       ),
     );
   }
@@ -132,13 +132,13 @@ class HabitDetailControllerProvider
 
   @override
   bool operator ==(Object other) {
-    return other is HabitDetailControllerProvider && other.habit == habit;
+    return other is HabitDetailControllerProvider && other.id == id;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, habit.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -146,8 +146,8 @@ class HabitDetailControllerProvider
 
 mixin HabitDetailControllerRef
     on AutoDisposeProviderRef<HabitDetailController> {
-  /// The parameter `habit` of this provider.
-  Habit? get habit;
+  /// The parameter `id` of this provider.
+  int? get id;
 }
 
 class _HabitDetailControllerProviderElement
@@ -156,10 +156,10 @@ class _HabitDetailControllerProviderElement
   _HabitDetailControllerProviderElement(super.provider);
 
   @override
-  Habit? get habit => (origin as HabitDetailControllerProvider).habit;
+  int? get id => (origin as HabitDetailControllerProvider).id;
 }
 
-String _$habitDetailModelHash() => r'9d6487bfe6638a9156dbc64032d6354175a1430a';
+String _$habitDetailModelHash() => r'6eebef52f1a72d7d23f868f0cda7bf341d8bbf0f';
 
 /// See also [habitDetailModel].
 @ProviderFor(habitDetailModel)
@@ -172,10 +172,10 @@ class HabitDetailModelFamily extends Family<HabitDetailModel> {
 
   /// See also [habitDetailModel].
   HabitDetailModelProvider call(
-    Habit? habit,
+    int? id,
   ) {
     return HabitDetailModelProvider(
-      habit,
+      id,
     );
   }
 
@@ -184,7 +184,7 @@ class HabitDetailModelFamily extends Family<HabitDetailModel> {
     covariant HabitDetailModelProvider provider,
   ) {
     return call(
-      provider.habit,
+      provider.id,
     );
   }
 
@@ -207,11 +207,11 @@ class HabitDetailModelFamily extends Family<HabitDetailModel> {
 class HabitDetailModelProvider extends AutoDisposeProvider<HabitDetailModel> {
   /// See also [habitDetailModel].
   HabitDetailModelProvider(
-    Habit? habit,
+    int? id,
   ) : this._internal(
           (ref) => habitDetailModel(
             ref as HabitDetailModelRef,
-            habit,
+            id,
           ),
           from: habitDetailModelProvider,
           name: r'habitDetailModelProvider',
@@ -222,7 +222,7 @@ class HabitDetailModelProvider extends AutoDisposeProvider<HabitDetailModel> {
           dependencies: HabitDetailModelFamily._dependencies,
           allTransitiveDependencies:
               HabitDetailModelFamily._allTransitiveDependencies,
-          habit: habit,
+          id: id,
         );
 
   HabitDetailModelProvider._internal(
@@ -232,10 +232,10 @@ class HabitDetailModelProvider extends AutoDisposeProvider<HabitDetailModel> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.habit,
+    required this.id,
   }) : super.internal();
 
-  final Habit? habit;
+  final int? id;
 
   @override
   Override overrideWith(
@@ -250,7 +250,7 @@ class HabitDetailModelProvider extends AutoDisposeProvider<HabitDetailModel> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        habit: habit,
+        id: id,
       ),
     );
   }
@@ -262,21 +262,21 @@ class HabitDetailModelProvider extends AutoDisposeProvider<HabitDetailModel> {
 
   @override
   bool operator ==(Object other) {
-    return other is HabitDetailModelProvider && other.habit == habit;
+    return other is HabitDetailModelProvider && other.id == id;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, habit.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin HabitDetailModelRef on AutoDisposeProviderRef<HabitDetailModel> {
-  /// The parameter `habit` of this provider.
-  Habit? get habit;
+  /// The parameter `id` of this provider.
+  int? get id;
 }
 
 class _HabitDetailModelProviderElement
@@ -285,7 +285,7 @@ class _HabitDetailModelProviderElement
   _HabitDetailModelProviderElement(super.provider);
 
   @override
-  Habit? get habit => (origin as HabitDetailModelProvider).habit;
+  int? get id => (origin as HabitDetailModelProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

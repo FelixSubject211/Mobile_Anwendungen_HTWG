@@ -13,5 +13,8 @@
   "statisticsTitle": "Statistik",
   "statisticsWeekSelection": "Woche",
   "statisticsMonthSelection": "Monat",
-  "textIfItIsEmpty": "Du hast noch keine Gewohnheiten"
+  "textIfItIsEmpty": "Du hast noch keine Gewohnheiten",
+  "confirmDeleteTitle": "Gewohnheit Löschen",
+  "confirmDeleteMessage": "Sind Sie sicher, dass Sie diese Gewohnheit löschen wollen?",
+  "delete": "Löschen"
 }

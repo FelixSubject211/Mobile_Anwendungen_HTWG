@@ -99,6 +99,7 @@ class Statistics extends ConsumerWidget {
               dayOfWeekLabelBuilder: (dayOfWeek) =>
                   _dayOfWeekLabelBuilder(dayOfWeek),
               selectedDate: DateTime.now(),
+              creationDate: habit.creationDate,
             ),
           ],
         ),
@@ -135,6 +136,7 @@ class Statistics extends ConsumerWidget {
               dayOfWeekLabelBuilder: (dayOfWeek) =>
                   _dayOfWeekLabelBuilder(dayOfWeek),
               selectedDate: DateTime.now(),
+              creationDate: habit.creationDate,
             ),
           ],
         ),
@@ -143,6 +145,11 @@ class Statistics extends ConsumerWidget {
   }
 
   Widget _dayBuilder(DateTime date, bool isSelected, Habit habit) {
+    if (date.isBefore(habit.creationDate) &&
+        date.day < habit.creationDate.day) {
+      return Container();
+    }
+
     return Container(
       margin: const EdgeInsets.all(1),
       decoration: BoxDecoration(
