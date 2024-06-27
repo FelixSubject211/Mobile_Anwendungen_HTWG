@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
 import 'package:mobile_anwendungen/ui/screens/habits/habits_model.dart';
@@ -36,8 +37,8 @@ class HabitsDefaultController extends _$HabitsDefaultController
   }
 
   @override
-  void showHabitDetail(Habit? habit) {
-    habitsNavigationService.showHabitDetail(habit);
+  void showHabitDetail(int? id, BuildContext context) {
+    habitsNavigationService.showHabitDetail(id, context);
   }
 
   @override

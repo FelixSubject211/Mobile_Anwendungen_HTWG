@@ -6,6 +6,7 @@ class CalendarMonthView extends StatefulWidget {
   final Widget Function(String month, int year) headerBuilder;
   final Widget Function(String dayOfWeek) dayOfWeekLabelBuilder;
   final DateTime selectedDate;
+  final DateTime creationDate;
 
   const CalendarMonthView({
     super.key,
@@ -13,6 +14,7 @@ class CalendarMonthView extends StatefulWidget {
     required this.headerBuilder,
     required this.dayOfWeekLabelBuilder,
     required this.selectedDate,
+    required this.creationDate,
   });
 
   @override
@@ -35,10 +37,13 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
     });
   }
 
+  DateTime get _previousMonth {
+    return DateTime(displayedMonth.year, displayedMonth.month - 1, 1);
+  }
+
   void _goToPreviousMonth() {
     setState(() {
-      displayedMonth =
-          DateTime(displayedMonth.year, displayedMonth.month - 1, 1);
+      displayedMonth = _previousMonth;
     });
   }
 
@@ -56,10 +61,12 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: _goToPreviousMonth,
-            ),
+            if (_previousMonth.year > widget.creationDate.year ||
+                _previousMonth.month >= widget.creationDate.month)
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: _goToPreviousMonth,
+              ),
             widget.headerBuilder(
               DateFormat.MMMM(context.locale.toString()).format(displayedMonth),
               displayedMonth.year,

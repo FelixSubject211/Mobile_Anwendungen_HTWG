@@ -72,4 +72,15 @@ class HabitDefaultRepository extends HabitRepository {
   int nextIndex() {
     return database.nextIndex();
   }
+
+  @override
+  Habit? getById(int id) {
+    var databaseHabit = database.getById(id);
+
+    if (databaseHabit == null) {
+      return null;
+    }
+
+    return Habit.fromDatabaseHabit(databaseHabit);
+  }
 }

@@ -9,4 +9,5 @@ abstract class Database {
   void reorderHabit(int oldIndex, int newIndex);
   void deleteHabit(DatabaseHabit habit);
   int nextIndex();
+  DatabaseHabit? getById(int id);
 }

@@ -14,9 +14,12 @@ class HabitDetailDefaultController extends _$HabitDetailDefaultController
   HabitDetailModel build(
       {required final HabitDetailNavigationService habitDetailNavigationService,
       required final HabitRepository habitRepository,
-      required final Habit? habit}) {
-    return HabitDetailModel(
-        isInEditMode: habit != null, name: habit?.name ?? "");
+      required final int? id}) {
+    var name = '';
+    if (id != null) {
+      name = habitRepository.getById(id)?.name ?? '';
+    }
+    return HabitDetailModel(isInEditMode: id != null, name: name);
   }
 
   @override
@@ -32,6 +35,11 @@ class HabitDetailDefaultController extends _$HabitDetailDefaultController
   @override
   void onSave() {
     if (state.isInEditMode) {
+      if (id == null) {
+        return;
+      }
+
+      var habit = habitRepository.getById(id!);
       habit?.name = state.name;
       habitRepository.upsertHabit(habit!);
     } else {
