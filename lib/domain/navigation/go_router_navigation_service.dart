@@ -1,8 +1,10 @@
-import 'package:flutter/widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../go_router.dart';
+import '../../lang/locale_keys.g.dart';
 import 'navigation_service_aggregator.dart';
 
 part 'go_router_navigation_service.g.dart';
@@ -28,5 +30,33 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   @override
   void showHabitDetail(int? id, BuildContext context) {
     HabitRoute(id: id).go(context);
+  }
+
+  @override
+  void showConfirmDeleteAlert(BuildContext context, VoidCallback onConfirm) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(LocaleKeys.confirmDeleteTitle.tr()),
+          content: Text(LocaleKeys.confirmDeleteMessage.tr()),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(LocaleKeys.cancel.tr()),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                onConfirm();
+              },
+              child: Text(LocaleKeys.delete.tr()),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

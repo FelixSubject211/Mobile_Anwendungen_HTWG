@@ -3,4 +3,5 @@ import 'package:mobile_anwendungen/domain/navigation/general_navigation_service.
 
 abstract class HabitsNavigationService implements GeneralNavigationService {
   void showHabitDetail(int? id, BuildContext context);
+  void showConfirmDeleteAlert(BuildContext context, VoidCallback onConfirm);
 }
