@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final theme = ThemeData(
+final lightTheme = ThemeData(
   fontFamily: 'RobotoFlex',
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
   appBarTheme: const AppBarTheme(
@@ -23,4 +23,10 @@ final theme = ThemeData(
     foregroundColor: Colors.indigo,
   )),
   useMaterial3: true,
+);
+
+final darkTheme = ThemeData.dark().copyWith(
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    shape: CircleBorder(),
+  ),
 );
