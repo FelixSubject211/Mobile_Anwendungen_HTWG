@@ -7,7 +7,7 @@ part of 'habits_controller.dart';
 // **************************************************************************
 
 String _$habitsDefaultControllerHash() =>
-    r'2b9598fcdc5b5d8e661384d393a19cb42f87d9ae';
+    r'507fc1312d6a156d7e9c7db0421e61697faf084f';
 
 /// Copied from Dart SDK
 class _SystemHash {

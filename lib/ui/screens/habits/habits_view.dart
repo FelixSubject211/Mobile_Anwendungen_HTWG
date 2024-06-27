@@ -149,7 +149,7 @@ class Habits extends ConsumerWidget {
         IconButton(
           icon: const Icon(Icons.delete_outline),
           onPressed: () {
-            controller.showConfirmDeleteAlert(context, habit);
+            controller.showConfirmDeleteAlert(habit);
           },
         ),
         const Icon(Icons.drag_handle_sharp),
@@ -180,5 +180,5 @@ abstract class HabitsController {
   void onReorder(int oldIndex, int newIndex);
   void onDeleteHabit(Habit habit);
   void toggleEditing();
-  void showConfirmDeleteAlert(BuildContext context, Habit habit);
+  void showConfirmDeleteAlert(Habit habit);
 }

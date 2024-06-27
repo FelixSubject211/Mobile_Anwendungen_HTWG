@@ -33,30 +33,35 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   }
 
   @override
-  void showConfirmDeleteAlert(BuildContext context, VoidCallback onConfirm) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(LocaleKeys.confirmDeleteTitle.tr()),
-          content: Text(LocaleKeys.confirmDeleteMessage.tr()),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(LocaleKeys.cancel.tr()),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                onConfirm();
-              },
-              child: Text(LocaleKeys.delete.tr()),
-            ),
-          ],
-        );
-      },
-    );
+  void showConfirmDeleteAlert(VoidCallback onConfirm) {
+    BuildContext? context =
+        _goRouter.routerDelegate.navigatorKey.currentContext;
+
+    if (context != null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(LocaleKeys.confirmDeleteTitle.tr()),
+            content: Text(LocaleKeys.confirmDeleteMessage.tr()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(LocaleKeys.cancel.tr()),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  onConfirm();
+                },
+                child: Text(LocaleKeys.delete.tr()),
+              ),
+            ],
+          );
+        },
+      );
+    } else {}
   }
 }

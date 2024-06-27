@@ -62,8 +62,8 @@ class HabitsDefaultController extends _$HabitsDefaultController
   }
 
   @override
-  void showConfirmDeleteAlert(BuildContext context, Habit habit) {
-    habitsNavigationService.showConfirmDeleteAlert(context, () {
+  void showConfirmDeleteAlert(Habit habit) {
+    habitsNavigationService.showConfirmDeleteAlert(() {
       habitRepository.deleteHabit(habit);
     });
   }
