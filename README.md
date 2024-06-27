@@ -15,14 +15,22 @@ Yusto is a mobile application designed to help users establish, manage, and trac
 ### Habits
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="documents-assets/list-habits-checked.png" alt="" width="30%">
-    <img src="documents-assets/list-habits-unchecked.png" alt="" width="30%">
-    <img src="documents-assets/list-habits-settings.png" alt="" width="30%">
+    <img src="documents-assets/list-habits-checked.png" alt="" width="45%">
+    <img src="documents-assets/list-habits-settings.png" alt="" width="45%">
 </div>
 
 ### Habit Detail
 
+<div style="display: flex; justify-content: space-between;">
+    <img src="documents-assets/add-habits.png" alt="" width="45%">
+</div>
+
 ### Statistics
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="documents-assets/statistics-week.png" alt="" width="45%">
+    <img src="documents-assets/statistics-month.png" alt="" width="45%">
+</div>
 
 ## Architecture
 
