@@ -1,9 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/services/habit_detail_navigation_service.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_model.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../lang/locale_keys.g.dart';
 
 part 'habit_detail_controller.g.dart';
 
@@ -36,6 +39,8 @@ class HabitDetailDefaultController extends _$HabitDetailDefaultController
   void onSave() {
     if (state.isInEditMode) {
       if (id == null) {
+        habitDetailNavigationService
+            .showSnackBar(LocaleKeys.unknownErrorOccurred.tr());
         return;
       }
 

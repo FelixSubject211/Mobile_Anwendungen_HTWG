@@ -62,6 +62,24 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
           );
         },
       );
-    } else {}
+    } else {
+      showSnackBar(LocaleKeys.unknownErrorOccurred.tr());
+    }
+  }
+
+  @override
+  void showSnackBar(final String message) {
+    BuildContext? context =
+        _goRouter.routerDelegate.navigatorKey.currentContext;
+
+    if (context != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          content: Text(message),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
   }
 }
