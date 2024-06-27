@@ -46,6 +46,9 @@ class _NavigationState extends State<Navigation> {
   }
 
   List<Widget> _pages() {
-    return const <Widget>[Center(child: Habits()), Center(child: Statistics())];
+    return const <Widget>[
+      Center(child: Habits()),
+      Center(child: Statistics()),
+    ];
   }
 }

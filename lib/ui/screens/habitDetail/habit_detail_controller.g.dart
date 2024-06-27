@@ -7,7 +7,7 @@ part of 'habit_detail_controller.dart';
 // **************************************************************************
 
 String _$habitDetailDefaultControllerHash() =>
-    r'6212ae1a58dab1ea8ec50d9e33fce57e3ae92a4e';
+    r'4f79ac913ec386014516049fb374e9d7798f1a38';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,12 +34,12 @@ abstract class _$HabitDetailDefaultController
     extends BuildlessAutoDisposeNotifier<HabitDetailModel> {
   late final HabitDetailNavigationService habitDetailNavigationService;
   late final HabitRepository habitRepository;
-  late final Habit? habit;
+  late final int? id;
 
   HabitDetailModel build({
     required HabitDetailNavigationService habitDetailNavigationService,
     required HabitRepository habitRepository,
-    required Habit? habit,
+    required int? id,
   });
 }
 
@@ -57,12 +57,12 @@ class HabitDetailDefaultControllerFamily extends Family<HabitDetailModel> {
   HabitDetailDefaultControllerProvider call({
     required HabitDetailNavigationService habitDetailNavigationService,
     required HabitRepository habitRepository,
-    required Habit? habit,
+    required int? id,
   }) {
     return HabitDetailDefaultControllerProvider(
       habitDetailNavigationService: habitDetailNavigationService,
       habitRepository: habitRepository,
-      habit: habit,
+      id: id,
     );
   }
 
@@ -73,7 +73,7 @@ class HabitDetailDefaultControllerFamily extends Family<HabitDetailModel> {
     return call(
       habitDetailNavigationService: provider.habitDetailNavigationService,
       habitRepository: provider.habitRepository,
-      habit: provider.habit,
+      id: provider.id,
     );
   }
 
@@ -100,12 +100,12 @@ class HabitDetailDefaultControllerProvider
   HabitDetailDefaultControllerProvider({
     required HabitDetailNavigationService habitDetailNavigationService,
     required HabitRepository habitRepository,
-    required Habit? habit,
+    required int? id,
   }) : this._internal(
           () => HabitDetailDefaultController()
             ..habitDetailNavigationService = habitDetailNavigationService
             ..habitRepository = habitRepository
-            ..habit = habit,
+            ..id = id,
           from: habitDetailDefaultControllerProvider,
           name: r'habitDetailDefaultControllerProvider',
           debugGetCreateSourceHash:
@@ -117,7 +117,7 @@ class HabitDetailDefaultControllerProvider
               HabitDetailDefaultControllerFamily._allTransitiveDependencies,
           habitDetailNavigationService: habitDetailNavigationService,
           habitRepository: habitRepository,
-          habit: habit,
+          id: id,
         );
 
   HabitDetailDefaultControllerProvider._internal(
@@ -129,12 +129,12 @@ class HabitDetailDefaultControllerProvider
     required super.from,
     required this.habitDetailNavigationService,
     required this.habitRepository,
-    required this.habit,
+    required this.id,
   }) : super.internal();
 
   final HabitDetailNavigationService habitDetailNavigationService;
   final HabitRepository habitRepository;
-  final Habit? habit;
+  final int? id;
 
   @override
   HabitDetailModel runNotifierBuild(
@@ -143,7 +143,7 @@ class HabitDetailDefaultControllerProvider
     return notifier.build(
       habitDetailNavigationService: habitDetailNavigationService,
       habitRepository: habitRepository,
-      habit: habit,
+      id: id,
     );
   }
 
@@ -155,7 +155,7 @@ class HabitDetailDefaultControllerProvider
         () => create()
           ..habitDetailNavigationService = habitDetailNavigationService
           ..habitRepository = habitRepository
-          ..habit = habit,
+          ..id = id,
         from: from,
         name: null,
         dependencies: null,
@@ -163,7 +163,7 @@ class HabitDetailDefaultControllerProvider
         debugGetCreateSourceHash: null,
         habitDetailNavigationService: habitDetailNavigationService,
         habitRepository: habitRepository,
-        habit: habit,
+        id: id,
       ),
     );
   }
@@ -179,7 +179,7 @@ class HabitDetailDefaultControllerProvider
     return other is HabitDetailDefaultControllerProvider &&
         other.habitDetailNavigationService == habitDetailNavigationService &&
         other.habitRepository == habitRepository &&
-        other.habit == habit;
+        other.id == id;
   }
 
   @override
@@ -187,7 +187,7 @@ class HabitDetailDefaultControllerProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, habitDetailNavigationService.hashCode);
     hash = _SystemHash.combine(hash, habitRepository.hashCode);
-    hash = _SystemHash.combine(hash, habit.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -201,8 +201,8 @@ mixin HabitDetailDefaultControllerRef
   /// The parameter `habitRepository` of this provider.
   HabitRepository get habitRepository;
 
-  /// The parameter `habit` of this provider.
-  Habit? get habit;
+  /// The parameter `id` of this provider.
+  int? get id;
 }
 
 class _HabitDetailDefaultControllerProviderElement
@@ -218,7 +218,7 @@ class _HabitDetailDefaultControllerProviderElement
   HabitRepository get habitRepository =>
       (origin as HabitDetailDefaultControllerProvider).habitRepository;
   @override
-  Habit? get habit => (origin as HabitDetailDefaultControllerProvider).habit;
+  int? get id => (origin as HabitDetailDefaultControllerProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

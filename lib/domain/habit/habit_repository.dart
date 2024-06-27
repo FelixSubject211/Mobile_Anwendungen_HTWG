@@ -8,4 +8,5 @@ abstract class HabitRepository {
   void reorderHabit(int oldIndex, int newIndex);
   void deleteHabit(Habit habit);
   int nextIndex();
+  Habit? getById(int id);
 }

@@ -28,7 +28,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.3.3
+  build_runner: any
+  go_router_builder: any
+  build_verify: any
   objectbox_generator: any
   flutter_lints: ^2.0.0
   riverpod_generator: ^2.1.1

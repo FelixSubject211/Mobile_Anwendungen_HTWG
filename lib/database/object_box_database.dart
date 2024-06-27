@@ -83,4 +83,9 @@ class ObjectBoxDatabase extends Database {
         .fold(0, (prev, curr) => prev > curr ? prev : curr);
     return maxIndex + 1;
   }
+
+  @override
+  DatabaseHabit? getById(int id) {
+    return _habitBox.get(id);
+  }
 }

@@ -6,6 +6,7 @@ class CalendarWeekView extends StatefulWidget {
   final Widget Function(String weekLabel) headerBuilder;
   final Widget Function(String dayOfWeek) dayOfWeekLabelBuilder;
   final DateTime selectedDate;
+  final DateTime creationDate;
 
   const CalendarWeekView({
     super.key,
@@ -13,6 +14,7 @@ class CalendarWeekView extends StatefulWidget {
     required this.headerBuilder,
     required this.dayOfWeekLabelBuilder,
     required this.selectedDate,
+    required this.creationDate,
   });
 
   @override
@@ -34,9 +36,13 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
     });
   }
 
+  DateTime get _previousWeek {
+    return displayedWeekStart.subtract(const Duration(days: 7));
+  }
+
   void _goToPreviousWeek() {
     setState(() {
-      displayedWeekStart = displayedWeekStart.subtract(const Duration(days: 7));
+      displayedWeekStart = _previousWeek;
     });
   }
 
@@ -48,16 +54,17 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
   @override
   Widget build(BuildContext context) {
     final daysOfWeek = _calculateDaysOfWeek(displayedWeekStart);
-
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: _goToPreviousWeek,
-            ),
+            if (widget.creationDate.difference(_previousWeek) <=
+                Duration(days: widget.creationDate.weekday))
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: _goToPreviousWeek,
+              ),
             widget.headerBuilder(_formatWeekLabel(displayedWeekStart)),
             IconButton(
               icon: const Icon(Icons.arrow_forward),

@@ -1,6 +1,5 @@
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
-import 'package:mobile_anwendungen/domain/navigation/navigation_service_routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../go_router.dart';
@@ -27,7 +26,7 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   }
 
   @override
-  void showHabitDetail(Habit? habit) {
-    _goRouter.push(NavigationServiceRoutes.habitDetail, extra: habit);
+  void showHabitDetail(int? id, BuildContext context) {
+    HabitRoute(id: id).go(context);
   }
 }

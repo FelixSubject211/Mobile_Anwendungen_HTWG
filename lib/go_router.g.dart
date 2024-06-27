@@ -3,10 +3,77 @@
 part of 'go_router.dart';
 
 // **************************************************************************
+// GoRouterGenerator
+// **************************************************************************
+
+List<RouteBase> get $appRoutes => [
+      $homeScreenRoute,
+    ];
+
+RouteBase get $homeScreenRoute => GoRouteData.$route(
+      path: '/',
+      factory: $HomeScreenRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'habit',
+          factory: $HabitRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $HomeScreenRouteExtension on HomeScreenRoute {
+  static HomeScreenRoute _fromState(GoRouterState state) => HomeScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $HabitRouteExtension on HabitRoute {
+  static HabitRoute _fromState(GoRouterState state) => HabitRoute(
+        id: _$convertMapValue('id', state.uri.queryParameters, int.parse),
+      );
+
+  String get location => GoRouteData.$location(
+        '/habit',
+        queryParams: {
+          if (id != null) 'id': id!.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
+}
+
+// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'85bd548eb8784629d8a740e82f7c614586992427';
+String _$goRouterHash() => r'94d3286c354f54c0c869811702cb2327d4be303a';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)
