@@ -34,7 +34,7 @@ class Habits extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => controller.showHabitDetail(null),
+        onPressed: () => controller.showHabitDetail(null, context),
         tooltip: LocaleKeys.habitsFloatingActionButtonTooltip.tr(),
         child: const Icon(Icons.add),
       ),
@@ -46,8 +46,8 @@ class Habits extends ConsumerWidget {
     return habits.isEmpty
         ? _emptyState(context)
         : (isEditing
-            ? _buildEditableList(habits, ref)
-            : _buildList(habits, ref));
+            ? _buildEditableList(habits, ref, context)
+            : _buildList(habits, ref, context));
   }
 
   Widget _editButton(
@@ -61,17 +61,18 @@ class Habits extends ConsumerWidget {
         : Container();
   }
 
-  Widget _buildList(List<Habit> habits, WidgetRef ref) {
+  Widget _buildList(List<Habit> habits, WidgetRef ref, BuildContext context) {
     return ListView.builder(
       itemCount: habits.length,
       itemBuilder: (context, index) {
         final habit = habits[index];
-        return _habit(habit, _habitCheckbox(habit, ref), ref);
+        return _habit(habit, _habitCheckbox(habit, ref), ref, context);
       },
     );
   }
 
-  Widget _buildEditableList(List<Habit> habits, WidgetRef ref) {
+  Widget _buildEditableList(
+      List<Habit> habits, WidgetRef ref, BuildContext context) {
     final controller = ref.read(habitsControllerProvider);
 
     return ReorderableListView(
@@ -79,12 +80,14 @@ class Habits extends ConsumerWidget {
       proxyDecorator: (child, index, animation) => child,
       padding: const EdgeInsets.symmetric(vertical: 0),
       children: habits
-          .map((habit) => _habit(habit, _habitEditActions(habit, ref), ref))
+          .map((habit) => _habit(
+              habit, _habitEditActions(context, habit, ref), ref, context))
           .toList(),
     );
   }
 
-  Material _habit(Habit habit, Widget trailing, WidgetRef ref) {
+  Material _habit(
+      Habit habit, Widget trailing, WidgetRef ref, BuildContext context) {
     final controller = ref.read(habitsControllerProvider);
 
     return Material(
@@ -97,14 +100,14 @@ class Habits extends ConsumerWidget {
               ? const TextStyle(decoration: TextDecoration.lineThrough)
               : null,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 4),
         trailing: trailing,
         onTap: () {
           if (ref.read(habitsModelProvider).maybeWhen(
                 orElse: () => false,
                 loaded: (_, isEditing) => isEditing,
               )) {
-            controller.showHabitDetail(habit);
+            controller.showHabitDetail(habit.id, context);
           }
         },
         enabled: ref.read(habitsModelProvider).maybeWhen(
@@ -137,7 +140,7 @@ class Habits extends ConsumerWidget {
     );
   }
 
-  Row _habitEditActions(Habit habit, WidgetRef ref) {
+  Row _habitEditActions(BuildContext context, Habit habit, WidgetRef ref) {
     final controller = ref.read(habitsControllerProvider);
 
     return Row(
@@ -145,7 +148,9 @@ class Habits extends ConsumerWidget {
       children: [
         IconButton(
           icon: const Icon(Icons.delete_outline),
-          onPressed: () => controller.onDeleteHabit(habit),
+          onPressed: () {
+            controller.showConfirmDeleteAlert(habit);
+          },
         ),
         const Icon(Icons.drag_handle_sharp),
       ],
@@ -169,10 +174,11 @@ class Habits extends ConsumerWidget {
 }
 
 abstract class HabitsController {
-  void showHabitDetail(Habit? habit);
+  void showHabitDetail(int? id, BuildContext context);
   void onCompleteHabit(Habit habit);
   void onUnCompleteHabit(Habit habit);
   void onReorder(int oldIndex, int newIndex);
   void onDeleteHabit(Habit habit);
   void toggleEditing();
+  void showConfirmDeleteAlert(Habit habit);
 }

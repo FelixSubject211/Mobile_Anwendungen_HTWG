@@ -1,9 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/services/habit_detail_navigation_service.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_model.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../lang/locale_keys.g.dart';
 
 part 'habit_detail_controller.g.dart';
 
@@ -14,9 +17,12 @@ class HabitDetailDefaultController extends _$HabitDetailDefaultController
   HabitDetailModel build(
       {required final HabitDetailNavigationService habitDetailNavigationService,
       required final HabitRepository habitRepository,
-      required final Habit? habit}) {
-    return HabitDetailModel(
-        isInEditMode: habit != null, name: habit?.name ?? "");
+      required final int? id}) {
+    var name = '';
+    if (id != null) {
+      name = habitRepository.getById(id)?.name ?? '';
+    }
+    return HabitDetailModel(isInEditMode: id != null, name: name);
   }
 
   @override
@@ -32,6 +38,13 @@ class HabitDetailDefaultController extends _$HabitDetailDefaultController
   @override
   void onSave() {
     if (state.isInEditMode) {
+      if (id == null) {
+        habitDetailNavigationService
+            .showSnackBar(LocaleKeys.unknownErrorOccurred.tr());
+        return;
+      }
+
+      var habit = habitRepository.getById(id!);
       habit?.name = state.name;
       habitRepository.upsertHabit(habit!);
     } else {

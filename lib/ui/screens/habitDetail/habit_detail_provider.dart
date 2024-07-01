@@ -4,26 +4,25 @@ import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_controlle
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_model.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 
 part 'habit_detail_provider.g.dart';
 
 @riverpod
 HabitDetailController habitDetailController(
-    HabitDetailControllerRef ref, Habit? habit) {
+    HabitDetailControllerRef ref, int? id) {
   return ref.watch(habitDetailDefaultControllerProvider(
           habitDetailNavigationService:
               ref.watch(goRouterNavigationServiceProvider),
           habitRepository: ref.watch(habitRepositoryProvider),
-          habit: habit)
+          id: id)
       .notifier);
 }
 
 @riverpod
-HabitDetailModel habitDetailModel(HabitDetailModelRef ref, Habit? habit) {
+HabitDetailModel habitDetailModel(HabitDetailModelRef ref, int? id) {
   return ref.watch(habitDetailDefaultControllerProvider(
       habitDetailNavigationService:
           ref.watch(goRouterNavigationServiceProvider),
       habitRepository: ref.watch(habitRepositoryProvider),
-      habit: habit));
+      id: id));
 }

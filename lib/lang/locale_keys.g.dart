@@ -17,4 +17,8 @@ abstract class LocaleKeys {
   static const statisticsWeekSelection = 'statisticsWeekSelection';
   static const statisticsMonthSelection = 'statisticsMonthSelection';
   static const textIfItIsEmpty = 'textIfItIsEmpty';
+  static const confirmDeleteTitle = 'confirmDeleteTitle';
+  static const confirmDeleteMessage = 'confirmDeleteMessage';
+  static const delete = 'delete';
+  static const unknownErrorOccurred = 'unknownErrorOccurred';
 }
