@@ -5,6 +5,7 @@ import 'package:mobile_anwendungen/database/object_box_database.dart';
 import 'package:mobile_anwendungen/go_router.dart';
 import 'package:mobile_anwendungen/lang/codegen_loader.g.dart';
 import 'package:mobile_anwendungen/theme.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,13 +32,18 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp.router(
-      routerConfig: ref.watch(goRouterProvider),
-      supportedLocales: context.supportedLocales,
-      localizationsDelegates: context.localizationDelegates,
-      locale: context.locale,
-      theme: theme,
-      debugShowCheckedModeBanner: false,
-    );
+    return AdaptiveTheme(
+        light: lightTheme,
+        dark: darkTheme,
+        initial: AdaptiveThemeMode.light,
+        builder: (theme, darkTheme) => MaterialApp.router(
+              routerConfig: ref.watch(goRouterProvider),
+              supportedLocales: context.supportedLocales,
+              localizationsDelegates: context.localizationDelegates,
+              locale: context.locale,
+              theme: theme,
+              darkTheme: darkTheme,
+              debugShowCheckedModeBanner: false,
+            ));
   }
 }

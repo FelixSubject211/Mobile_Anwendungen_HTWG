@@ -24,6 +24,7 @@ dependencies:
   path_provider: ^2.0.0
   path: ^1.8.0
   collection: ^1.18.0
+  adaptive_theme: ^3.6.0
 
 dev_dependencies:
   flutter_test:
