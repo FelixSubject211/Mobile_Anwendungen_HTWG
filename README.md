@@ -13,26 +13,11 @@ Yusto is a mobile application designed to help users establish, manage, and trac
 ## Screens
 
 <div style="display: flex; justify-content: space-between; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">
-    <div style="text-align: center;">
-        <img src="documents-assets/list-habits-checked.png" alt="List of Habits Checked" style="width: 100px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-        <p>List of Habits Checked</p>
-    </div>
-    <div style="text-align: center;">
-        <img src="documents-assets/list-habits-settings.png" alt="List of Habits Settings" style="width: 100px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-        <p>List of Habits Settings</p>
-    </div>
-    <div style="text-align: center;">
-        <img src="documents-assets/add-habits.png" alt="Add Habits" style="width: 100px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-        <p>Add Habits</p>
-    </div>
-    <div style="text-align: center;">
-        <img src="documents-assets/statistics-week.png" alt="Weekly Statistics" style="width: 100px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-        <p>Weekly Statistics</p>
-    </div>
-    <div style="text-align: center;">
-        <img src="documents-assets/statistics-month.png" alt="Monthly Statistics" style="width: 100px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-        <p>Monthly Statistics</p>
-    </div>
+    <img src="documents-assets/list-habits-checked.png" alt="List of Habits Checked" style="width: 15%; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <img src="documents-assets/list-habits-settings.png" alt="List of Habits Settings" style="width: 15%; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <img src="documents-assets/add-habits.png" alt="Add Habits" style="width: 15%; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <img src="documents-assets/statistics-week.png" alt="Weekly Statistics" style="width: 15%; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <img src="documents-assets/statistics-month.png" alt="Monthly Statistics" style="width: 15%; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
 </div>
 
 ## Architecture
