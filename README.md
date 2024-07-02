@@ -10,9 +10,6 @@ Many people struggle to establish positive habits or break negative ones due to 
 
 ## Personas
 
-
-## Screens
-
 #### Health-Conscious Individual
 
 - **Goals:** Establish a routine for long-term well-being and monitor progress.
@@ -31,6 +28,7 @@ Many people struggle to establish positive habits or break negative ones due to 
 - **Challenges:** Handling heavy workloads and achieving work-life balance.
 - **Needs:** An easy-to-use platform to track habits and visualize progress to support both professional and personal goals.
 
+## Screens
 
 <div style="display: flex; justify-content: space-between; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">
     <img src="documents-assets/list-habits-checked.png" alt="List of Habits Checked" style="width: 15%; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
