@@ -25,6 +25,7 @@ dependencies:
   path: ^1.8.0
   collection: ^1.18.0
   adaptive_theme: ^3.6.0
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -52,3 +53,13 @@ flutter:
     - family: RobotoFlex
       fonts:
         - asset: assets/fonts/RobotoFlex-Regular.ttf
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  image: assets/icons/icon.png
+  color: "#ffffff"
+  android_12:
+    image: assets/icons/icon.png
+    color: "#ffffff"

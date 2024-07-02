@@ -29,7 +29,7 @@ class Statistics extends ConsumerWidget {
         loaded: (selectedButton, habits) => habits.isEmpty
             ? _emptyState(context)
             : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -164,15 +164,13 @@ class Statistics extends ConsumerWidget {
   }
 
   Widget _dayBuilder(DateTime date, bool isSelected, Habit habit) {
-    if (date.isBefore(habit.creationDate) &&
-        date.day < habit.creationDate.day) {
-      return Container();
-    }
-
     return Container(
       margin: const EdgeInsets.all(1),
       decoration: BoxDecoration(
-        color: habit.dayStateOn(date).getColor(),
+        color: date.isBefore(habit.creationDate) &&
+                date.day < habit.creationDate.day
+            ? Colors.black12
+            : habit.dayStateOn(date).getColor(),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Center(
