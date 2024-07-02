@@ -6,11 +6,31 @@ Yusto is a mobile application designed to help users establish, manage, and trac
 
 ## Problem Statement
 
+Many people struggle to establish positive habits or break negative ones due to a lack of consistency and motivation. This issue impacts personal well-being, productivity, and overall quality of life, often leading to frustration and deteriorating health. The problem is prevalent across various life areas, including work, personal health, and education, and affects individuals striving for better work-life balance and personal improvement.
 
 ## Personas
 
 
 ## Screens
+
+#### Health-Conscious Individual
+
+- **Goals:** Establish a routine for long-term well-being and monitor progress.
+- **Challenges:** Maintaining motivation and overcoming setbacks.
+- **Needs:** A simple tool to track and visualize healthy habits over time.
+
+#### Student
+
+- **Goals:** Manage time effectively and achieve academic success.
+- **Challenges:** Balancing study time with other activities and avoiding procrastination.
+- **Needs:** A straightforward way to track study habits and assess weekly or monthly progress.
+
+#### High-Performing Professional
+
+- **Goals:** Increase efficiency at work while maintaining personal satisfaction.
+- **Challenges:** Handling heavy workloads and achieving work-life balance.
+- **Needs:** An easy-to-use platform to track habits and visualize progress to support both professional and personal goals.
+
 
 <div style="display: flex; justify-content: space-between; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">
     <img src="documents-assets/list-habits-checked.png" alt="List of Habits Checked" style="width: 15%; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
