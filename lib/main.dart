@@ -41,7 +41,14 @@ class MyApp extends ConsumerWidget {
               supportedLocales: context.supportedLocales,
               localizationsDelegates: context.localizationDelegates,
               locale: context.locale,
-              theme: theme,
+              theme: theme.copyWith(
+                pageTransitionsTheme: const PageTransitionsTheme(
+                  builders: <TargetPlatform, PageTransitionsBuilder>{
+                    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                    TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+                  },
+                ),
+              ),
               darkTheme: darkTheme,
               debugShowCheckedModeBanner: false,
             ));
