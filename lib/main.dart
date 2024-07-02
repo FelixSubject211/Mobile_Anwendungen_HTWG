@@ -16,8 +16,8 @@ Future<void> main() async {
   runApp(
     EasyLocalization(
       path: 'assets/lang',
-      supportedLocales: const [Locale('de')],
-      fallbackLocale: const Locale('de'),
+      supportedLocales: const [Locale('en'), Locale('de')],
+      fallbackLocale: const Locale('en'),
       assetLoader: const CodegenLoader(),
       child: UncontrolledProviderScope(
         container: providerContainer,
