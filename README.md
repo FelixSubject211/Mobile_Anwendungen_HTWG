@@ -4,9 +4,11 @@
 
 Yusto is a mobile application designed to help users establish, manage, and track their daily habits. Users can add, edit, and monitor their progress through weekly and monthly views. Built with Flutter for an engaging user interface and Riverpod for efficient state management.
 
-## Problem Statement
+## Problem Statement and Solving
 
-Many people struggle to establish positive habits or break negative ones due to a lack of consistency and motivation. This issue impacts personal well-being, productivity, and overall quality of life, often leading to frustration and deteriorating health. The problem is prevalent across various life areas, including work, personal health, and education, and affects individuals striving for better work-life balance and personal improvement.
+The core issue addressed by Yusto is the widespread difficulty people face in establishing positive habits and breaking negative ones, despite understanding the benefits of such changes. This struggle is often due to a lack of consistency and motivation, compounded by the challenges of integrating new behaviors into a busy daily routine. These difficulties can lead to frustration, dissatisfaction, and a decline in both physical and mental health. This problem affects individuals across various domains, including work, personal life, health, and education, whenever they attempt to improve or change their habits for a healthier and more productive lifestyle.
+
+Yusto addresses this problem by providing a comprehensive habit-tracking solution. The app allows users to set, edit, and monitor their habits. By visualizing progress through weekly and monthly statistics, users can stay motivated and gain insights into their achievements, fostering a sense of accomplishment and encouraging continued effort toward habit formation and improvement.
 
 ## Personas
 
