@@ -1,0 +1,21 @@
+{
+  "save": "Save",
+  "error": "Error",
+  "noData": "No Data",
+  "edit": "Edit",
+  "finish": "Finish",
+  "cancel": "Cancel",
+  "habitsTitle": "Habits",
+  "habitsFloatingActionButtonTooltip": "Add Habit",
+  "habitDetailAddTitle": "Add Habit",
+  "habitDetailEditTitle": "Edit Habit",
+  "habitDetailNameLabelText": "Name",
+  "statisticsTitle": "Statistics",
+  "statisticsWeekSelection": "Week",
+  "statisticsMonthSelection": "Month",
+  "textIfItIsEmpty": "You have no habits yet",
+  "confirmDeleteTitle": "Delete Habit",
+  "confirmDeleteMessage": "Are you sure you want to delete this habit?",
+  "delete": "Delete",
+  "unknownErrorOccurred": "An unknown error occurred"
+}
