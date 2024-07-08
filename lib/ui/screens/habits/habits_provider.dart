@@ -5,7 +5,7 @@ import 'package:mobile_anwendungen/ui/screens/habits/habits_model.dart';
 import 'package:mobile_anwendungen/ui/screens/habits/habits_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'habits_providers.g.dart';
+part 'habits_provider.g.dart';
 
 @riverpod
 HabitsController habitsController(final HabitsControllerRef ref) => ref.watch(

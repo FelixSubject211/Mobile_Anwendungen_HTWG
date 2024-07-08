@@ -7,22 +7,31 @@ part of 'go_router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $homeScreenRoute,
+      $onboardingStartRoute,
     ];
 
-RouteBase get $homeScreenRoute => GoRouteData.$route(
+RouteBase get $onboardingStartRoute => GoRouteData.$route(
       path: '/',
-      factory: $HomeScreenRouteExtension._fromState,
+      factory: $OnboardingStartRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
           path: 'habit',
           factory: $HabitRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'onboarding/habits',
+          factory: $OnboardingHabitsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'onboarding/statistics',
+          factory: $OnboardingStatisticsRouteExtension._fromState,
+        ),
       ],
     );
 
-extension $HomeScreenRouteExtension on HomeScreenRoute {
-  static HomeScreenRoute _fromState(GoRouterState state) => HomeScreenRoute();
+extension $OnboardingStartRouteExtension on OnboardingStartRoute {
+  static OnboardingStartRoute _fromState(GoRouterState state) =>
+      OnboardingStartRoute();
 
   String get location => GoRouteData.$location(
         '/',
@@ -48,6 +57,42 @@ extension $HabitRouteExtension on HabitRoute {
         queryParams: {
           if (id != null) 'id': id!.toString(),
         },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $OnboardingHabitsRouteExtension on OnboardingHabitsRoute {
+  static OnboardingHabitsRoute _fromState(GoRouterState state) =>
+      OnboardingHabitsRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding/habits',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $OnboardingStatisticsRouteExtension on OnboardingStatisticsRoute {
+  static OnboardingStatisticsRoute _fromState(GoRouterState state) =>
+      OnboardingStatisticsRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding/statistics',
       );
 
   void go(BuildContext context) => context.go(location);

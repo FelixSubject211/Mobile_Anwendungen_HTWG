@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 final lightTheme = ThemeData(
   fontFamily: 'RobotoFlex',
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.white,
-  ),
+  appBarTheme:
+      const AppBarTheme(backgroundColor: Colors.white, titleSpacing: 16.0),
   scaffoldBackgroundColor: Colors.white,
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     shape: CircleBorder(),
@@ -26,7 +25,7 @@ final lightTheme = ThemeData(
 );
 
 final darkTheme = ThemeData.dark().copyWith(
-  floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    shape: CircleBorder(),
-  ),
-);
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      shape: CircleBorder(),
+    ),
+    appBarTheme: const AppBarTheme(titleSpacing: 16.0));

@@ -1,22 +1,48 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_anwendungen/domain/habit/onboarding_default_repository.dart';
 import 'package:mobile_anwendungen/ui/screens/navigation.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
+import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_habits_view.dart';
+import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_start_view.dart';
+import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_statistics_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'go_router.g.dart';
 
-@TypedGoRoute<HomeScreenRoute>(path: '/', routes: [
-  TypedGoRoute<HabitRoute>(
-    path: 'habit',
-  )
+@TypedGoRoute<OnboardingStartRoute>(path: '/', routes: [
+  TypedGoRoute<HabitRoute>(path: 'habit'),
+  TypedGoRoute<OnboardingHabitsRoute>(path: 'onboarding/habits'),
+  TypedGoRoute<OnboardingStatisticsRoute>(path: 'onboarding/statistics')
 ])
 @immutable
-class HomeScreenRoute extends GoRouteData {
+class OnboardingStartRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Navigation();
+    var onboardingRepository =
+        ProviderScope.containerOf(context).read(onboardingRepositoryProvider);
+
+    return onboardingRepository.isCompletedOnboarding()
+        ? const Navigation()
+        : const OnboardingStart();
+  }
+}
+
+@immutable
+class OnboardingHabitsRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const OnboardingHabits();
+  }
+}
+
+@immutable
+class OnboardingStatisticsRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const OnboardingStatistics();
   }
 }
 

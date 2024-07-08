@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/domain/habit/model/day_state.dart';
 import 'package:mobile_anwendungen/ui/screens/habits/habits_model.dart';
-import 'package:mobile_anwendungen/ui/screens/habits/habits_providers.dart';
+import 'package:mobile_anwendungen/ui/screens/habits/habits_provider.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 
@@ -53,10 +53,14 @@ class Habits extends ConsumerWidget {
   Widget _editButton(
       List<Habit> habits, bool isEditing, HabitsController controller) {
     return habits.isNotEmpty
-        ? IconButton(
-            icon: Icon(isEditing ? Icons.check : Icons.edit),
-            onPressed: controller.toggleEditing,
-            tooltip: isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+        ? Padding(
+            padding: const EdgeInsets.only(right: 6.0),
+            child: IconButton(
+              icon: Icon(isEditing ? Icons.check : Icons.edit),
+              onPressed: controller.toggleEditing,
+              tooltip:
+                  isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+            ),
           )
         : Container();
   }
@@ -100,7 +104,7 @@ class Habits extends ConsumerWidget {
               ? const TextStyle(decoration: TextDecoration.lineThrough)
               : null,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         trailing: trailing,
         onTap: () {
           if (ref.read(habitsModelProvider).maybeWhen(

@@ -5,6 +5,7 @@ import 'package:mobile_anwendungen/database/object_box_database.dart';
 import 'package:mobile_anwendungen/go_router.dart';
 import 'package:mobile_anwendungen/lang/codegen_loader.g.dart';
 import 'package:mobile_anwendungen/theme.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 
 Future<void> main() async {
@@ -51,6 +52,20 @@ class MyApp extends ConsumerWidget {
               ),
               darkTheme: darkTheme,
               debugShowCheckedModeBanner: false,
+              builder: (final _, final Widget? child) =>
+                  ResponsiveBreakpoints.builder(
+                child: child!,
+                breakpoints: <Breakpoint>[
+                  const Breakpoint(start: 0, end: 450, name: MOBILE),
+                  const Breakpoint(start: 451, end: 800, name: TABLET),
+                  const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+                  const Breakpoint(
+                    start: 1921,
+                    end: double.infinity,
+                    name: '4K',
+                  ),
+                ],
+              ),
             ));
   }
 }

@@ -10,4 +10,6 @@ abstract class Database {
   void deleteHabit(DatabaseHabit habit);
   int nextIndex();
   DatabaseHabit? getById(int id);
+  void completeOnboarding();
+  bool isCompletedOnboarding();
 }

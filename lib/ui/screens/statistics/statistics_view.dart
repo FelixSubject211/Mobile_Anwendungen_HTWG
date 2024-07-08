@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,24 +40,6 @@ class Statistics extends ConsumerWidget {
                   ],
                 ),
               ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          AdaptiveTheme.of(context).toggleThemeMode(useSystem: false);
-        },
-        tooltip: LocaleKeys.habitsFloatingActionButtonTooltip.tr(),
-        child: FutureBuilder<AdaptiveThemeMode?>(
-          future: AdaptiveTheme.getThemeMode(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.hasData && snapshot.data!.isLight) {
-              return const Icon(Icons.dark_mode);
-            } else {
-              return const Icon(Icons.light_mode);
-            }
-          },
-        ),
       ),
     );
   }

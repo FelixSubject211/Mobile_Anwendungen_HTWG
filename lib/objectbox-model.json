@@ -56,9 +56,28 @@
           "targetId": "4:387660998193724500"
         }
       ]
+    },
+    {
+      "id": "6:4414212329050873104",
+      "lastPropertyId": "2:934088922381030909",
+      "name": "DatabaseOnboarding",
+      "properties": [
+        {
+          "id": "1:907201226082343830",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:934088922381030909",
+          "name": "completed",
+          "type": 1
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "5:5037049250469846763",
+  "lastEntityId": "6:4414212329050873104",
   "lastIndexId": "1:1373669356522302806",
   "lastRelationId": "2:3167539005792856175",
   "lastSequenceId": "0:0",
