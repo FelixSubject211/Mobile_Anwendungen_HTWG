@@ -95,6 +95,6 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
 
   @override
   void showHome(BuildContext context) {
-    HomeScreenRoute().replace(context);
+    OnboardingStartRoute().replace(context);
   }
 }

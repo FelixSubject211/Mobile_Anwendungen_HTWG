@@ -12,7 +12,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'go_router.g.dart';
 
-@TypedGoRoute<OnboardingStartRoute>(path: '/')
+@TypedGoRoute<OnboardingStartRoute>(path: '/', routes: [
+  TypedGoRoute<HabitRoute>(path: 'habit'),
+  TypedGoRoute<OnboardingHabitsRoute>(path: 'onboarding/habits'),
+  TypedGoRoute<OnboardingStatisticsRoute>(path: 'onboarding/statistics')
+])
 @immutable
 class OnboardingStartRoute extends GoRouteData {
   @override
@@ -26,7 +30,6 @@ class OnboardingStartRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<OnboardingHabitsRoute>(path: '/onboarding/habits')
 @immutable
 class OnboardingHabitsRoute extends GoRouteData {
   @override
@@ -35,7 +38,6 @@ class OnboardingHabitsRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<OnboardingStatisticsRoute>(path: '/onboarding/statistics')
 @immutable
 class OnboardingStatisticsRoute extends GoRouteData {
   @override
@@ -44,16 +46,6 @@ class OnboardingStatisticsRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<HomeScreenRoute>(path: '/home')
-@immutable
-class HomeScreenRoute extends GoRouteData {
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const Navigation();
-  }
-}
-
-@TypedGoRoute<HabitRoute>(path: '/habit')
 @immutable
 class HabitRoute extends GoRouteData {
   final int? id;
