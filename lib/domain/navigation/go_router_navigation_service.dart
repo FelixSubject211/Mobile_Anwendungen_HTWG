@@ -82,4 +82,19 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
       );
     }
   }
+
+  @override
+  void showOnboardingHabits(BuildContext context) {
+    OnboardingHabitsRoute().go(context);
+  }
+
+  @override
+  void showOnboardingStatistics(BuildContext context) {
+    OnboardingStatisticsRoute().go(context);
+  }
+
+  @override
+  void showHome(BuildContext context) {
+    HomeScreenRoute().replace(context);
+  }
 }

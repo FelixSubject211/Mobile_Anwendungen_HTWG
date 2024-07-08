@@ -66,6 +66,14 @@ class CalendarMonthViewState extends State<CalendarMonthView> {
               IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _goToPreviousMonth,
+              )
+            else
+              const Opacity(
+                opacity: 0.0,
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: null,
+                ),
               ),
             widget.headerBuilder(
               DateFormat.MMMM(context.locale.toString()).format(displayedMonth),

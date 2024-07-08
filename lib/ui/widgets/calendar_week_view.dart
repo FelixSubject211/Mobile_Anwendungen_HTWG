@@ -64,6 +64,14 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
               IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _goToPreviousWeek,
+              )
+            else
+              const Opacity(
+                opacity: 0.0,
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: null,
+                ),
               ),
             widget.headerBuilder(_formatWeekLabel(displayedWeekStart)),
             IconButton(

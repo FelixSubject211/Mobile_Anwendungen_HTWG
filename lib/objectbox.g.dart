@@ -17,6 +17,7 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'database/model/database_completion_date.dart';
 import 'database/model/database_habit.dart';
+import 'database/model/database_onboarding.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -73,6 +74,25 @@ final _entities = <obx_int.ModelEntity>[
             name: 'completionDates',
             targetId: const obx_int.IdUid(4, 387660998193724500))
       ],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(6, 4414212329050873104),
+      name: 'DatabaseOnboarding',
+      lastPropertyId: const obx_int.IdUid(2, 934088922381030909),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 907201226082343830),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 934088922381030909),
+            name: 'completed',
+            type: 1,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
 ];
 
@@ -111,7 +131,7 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(5, 5037049250469846763),
+      lastEntityId: const obx_int.IdUid(6, 4414212329050873104),
       lastIndexId: const obx_int.IdUid(1, 1373669356522302806),
       lastRelationId: const obx_int.IdUid(2, 3167539005792856175),
       lastSequenceId: const obx_int.IdUid(0, 0),
@@ -209,6 +229,33 @@ obx_int.ModelDefinition getObjectBoxModel() {
               store,
               obx_int.RelInfo<DatabaseHabit>.toMany(2, object.id));
           return object;
+        }),
+    DatabaseOnboarding: obx_int.EntityDefinition<DatabaseOnboarding>(
+        model: _entities[2],
+        toOneRelations: (DatabaseOnboarding object) => [],
+        toManyRelations: (DatabaseOnboarding object) => {},
+        getId: (DatabaseOnboarding object) => object.id,
+        setId: (DatabaseOnboarding object, int id) {
+          object.id = id;
+        },
+        objectToFB: (DatabaseOnboarding object, fb.Builder fbb) {
+          fbb.startTable(3);
+          fbb.addInt64(0, object.id);
+          fbb.addBool(1, object.completed);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final completedParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 6, false);
+          final object =
+              DatabaseOnboarding(id: idParam, completed: completedParam);
+
+          return object;
         })
   };
 
@@ -248,4 +295,15 @@ class DatabaseHabit_ {
   static final completionDates =
       obx.QueryRelationToMany<DatabaseHabit, DatabaseCompletionDate>(
           _entities[1].relations[0]);
+}
+
+/// [DatabaseOnboarding] entity fields to define ObjectBox queries.
+class DatabaseOnboarding_ {
+  /// see [DatabaseOnboarding.id]
+  static final id =
+      obx.QueryIntegerProperty<DatabaseOnboarding>(_entities[2].properties[0]);
+
+  /// see [DatabaseOnboarding.completed]
+  static final completed =
+      obx.QueryBooleanProperty<DatabaseOnboarding>(_entities[2].properties[1]);
 }

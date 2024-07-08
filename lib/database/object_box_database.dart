@@ -1,4 +1,5 @@
 import 'package:mobile_anwendungen/database/database.dart';
+import 'package:mobile_anwendungen/database/model/database_onboarding.dart';
 import 'package:mobile_anwendungen/database/object_box.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:mobile_anwendungen/objectbox.g.dart';
@@ -16,6 +17,7 @@ Database objectBoxDatabase(
 class ObjectBoxDatabase extends Database {
   late final ObjectBox _objectBox;
   late final Box<DatabaseHabit> _habitBox;
+  late final Box<DatabaseOnboarding> _onboardingBox;
 
   ObjectBoxDatabase();
 
@@ -23,6 +25,7 @@ class ObjectBoxDatabase extends Database {
   Future<void> init() async {
     _objectBox = await ObjectBox.create();
     _habitBox = _objectBox.store.box<DatabaseHabit>();
+    _onboardingBox = _objectBox.store.box<DatabaseOnboarding>();
   }
 
   @override
@@ -87,5 +90,15 @@ class ObjectBoxDatabase extends Database {
   @override
   DatabaseHabit? getById(int id) {
     return _habitBox.get(id);
+  }
+
+  @override
+  void completeOnboarding() {
+    _onboardingBox.put(DatabaseOnboarding(completed: true));
+  }
+
+  @override
+  bool isCompletedOnboarding() {
+    return _onboardingBox.getAll().firstOrNull?.completed ?? false;
   }
 }
