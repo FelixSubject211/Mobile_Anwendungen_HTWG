@@ -20,5 +20,14 @@ abstract class  LocaleKeys {
   static const confirmDeleteMessage = 'confirmDeleteMessage';
   static const delete = 'delete';
   static const unknownErrorOccurred = 'unknownErrorOccurred';
+  static const onboardingStartTitle = 'onboardingStartTitle';
+  static const onboardingStartSubtitle = 'onboardingStartSubtitle';
+  static const onboardingStartButton = 'onboardingStartButton';
+  static const yustoLogo = 'yustoLogo';
+  static const onboardingHabitsTitle = 'onboardingHabitsTitle';
+  static const onboardingHabitsSubtitle = 'onboardingHabitsSubtitle';
+  static const onboardingStatisticsTitle = 'onboardingStatisticsTitle';
+  static const onboardingStatisticsSubtitle = 'onboardingStatisticsSubtitle';
+  static const yusto = 'yusto';
 
 }

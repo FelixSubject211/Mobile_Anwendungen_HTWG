@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_start_provider.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class OnboardingStart extends ConsumerWidget {
   const OnboardingStart({super.key});
@@ -26,13 +28,13 @@ class OnboardingStart extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 64.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 64.0),
                 child: Column(
                   children: [
                     Text(
-                      'Willkommen',
-                      style: TextStyle(
+                      LocaleKeys.onboardingStartTitle.tr(),
+                      style: const TextStyle(
                           fontSize: 32,
                           color: Colors.white,
                           shadows: [
@@ -44,8 +46,8 @@ class OnboardingStart extends ConsumerWidget {
                           ]),
                     ),
                     Text(
-                      'Zeit, gute Gewohnheiten zu entwickeln',
-                      style: TextStyle(
+                      LocaleKeys.onboardingStartSubtitle.tr(),
+                      style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                           shadows: [
@@ -59,15 +61,15 @@ class OnboardingStart extends ConsumerWidget {
                   ],
                 ),
               ),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(Icons.checklist,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                       size: 72.0,
-                      semanticLabel: 'Yusto Logo',
-                      shadows: [
+                      semanticLabel: LocaleKeys.yustoLogo.tr(),
+                      shadows: const [
                         Shadow(
                           offset: Offset(0, 4.0),
                           blurRadius: 4.0,
@@ -75,15 +77,17 @@ class OnboardingStart extends ConsumerWidget {
                         ),
                       ]),
                   Text(
-                    'YUSTO',
-                    style:
-                        TextStyle(fontSize: 32, color: Colors.white, shadows: [
-                      Shadow(
-                        offset: Offset(0, 4.0),
-                        blurRadius: 4.0,
-                        color: Color.fromARGB(64, 0, 0, 0),
-                      ),
-                    ]),
+                    LocaleKeys.yusto.tr(),
+                    style: const TextStyle(
+                        fontSize: 32,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            offset: Offset(0, 4.0),
+                            blurRadius: 4.0,
+                            color: Color.fromARGB(64, 0, 0, 0),
+                          ),
+                        ]),
                   )
                 ],
               ),
@@ -96,7 +100,7 @@ class OnboardingStart extends ConsumerWidget {
                       foregroundColor: Colors.indigo,
                       textStyle: const TextStyle(fontSize: 16),
                       fixedSize: const Size.fromWidth(128.0)),
-                  child: const Text('Start'),
+                  child: Text(LocaleKeys.onboardingStartButton.tr()),
                 ),
               ),
             ],

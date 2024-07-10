@@ -17,5 +17,14 @@
   "confirmDeleteTitle": "Gewohnheit Löschen",
   "confirmDeleteMessage": "Sind Sie sicher, dass Sie diese Gewohnheit löschen wollen?",
   "delete": "Löschen",
-  "unknownErrorOccurred": "Ein unbekannter Fehler ist aufgetreten"
+  "unknownErrorOccurred": "Ein unbekannter Fehler ist aufgetreten",
+  "onboardingStartTitle": "Willkommen",
+  "onboardingStartSubtitle": "Zeit, gute Gewohnheiten zu entwickeln",
+  "onboardingStartButton": "Start",
+  "yustoLogo": "Yusto Logo",
+  "onboardingHabitsTitle": "Verfolgen Sie ihre Ziele",
+  "onboardingHabitsSubtitle": "Erkunden Sie die App, finden Sie Ruhe, um gute Gewohnheiten zu erreichen",
+  "onboardingStatisticsTitle": "Nützliche Statistiken",
+  "onboardingStatisticsSubtitle": "Visualisieren Sie Ihren Fortschritt",
+  "yusto": "YUSTO"
 }

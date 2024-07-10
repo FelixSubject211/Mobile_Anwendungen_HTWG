@@ -33,7 +33,16 @@ class CodegenLoader extends AssetLoader{
   "confirmDeleteTitle": "Gewohnheit Löschen",
   "confirmDeleteMessage": "Sind Sie sicher, dass Sie diese Gewohnheit löschen wollen?",
   "delete": "Löschen",
-  "unknownErrorOccurred": "Ein unbekannter Fehler ist aufgetreten"
+  "unknownErrorOccurred": "Ein unbekannter Fehler ist aufgetreten",
+  "onboardingStartTitle": "Willkommen",
+  "onboardingStartSubtitle": "Zeit, gute Gewohnheiten zu entwickeln",
+  "onboardingStartButton": "Start",
+  "yustoLogo": "Yusto Logo",
+  "onboardingHabitsTitle": "Verfolgen Sie ihre Ziele",
+  "onboardingHabitsSubtitle": "Erkunden Sie die App, finden Sie Ruhe, um gute Gewohnheiten zu erreichen",
+  "onboardingStatisticsTitle": "Nützliche Statistiken",
+  "onboardingStatisticsSubtitle": "Visualisieren Sie Ihren Fortschritt",
+  "yusto": "YUSTO"
 };
 static const Map<String,dynamic> en = {
   "save": "Save",
@@ -54,7 +63,16 @@ static const Map<String,dynamic> en = {
   "confirmDeleteTitle": "Delete Habit",
   "confirmDeleteMessage": "Are you sure you want to delete this habit?",
   "delete": "Delete",
-  "unknownErrorOccurred": "An unknown error occurred"
+  "unknownErrorOccurred": "An unknown error occurred",
+  "onboardingStartTitle": "Welcome",
+  "onboardingStartSubtitle": "Time to develop good habits",
+  "onboardingStartButton": "Start",
+  "yustoLogo": "Yusto Logo",
+  "onboardingHabitsTitle": "Pursue your goals",
+  "onboardingHabitsSubtitle": "Explore the app, find peace of mind to achieve good habits",
+  "onboardingStatisticsTitle": "Useful statistics",
+  "onboardingStatisticsSubtitle": "Visualize your progress",
+  "yusto": "YUSTO"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

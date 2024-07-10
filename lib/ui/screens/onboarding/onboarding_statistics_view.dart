@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/ui/widgets/progress_button.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_statistics_provider.dart';
 
 class OnboardingStatistics extends ConsumerWidget {
@@ -17,22 +19,32 @@ class OnboardingStatistics extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/onboardingStatistics.png'),
-              const Padding(
-                padding: EdgeInsets.only(top: 32.0, left: 24.0),
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 445,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/onboardingStatistics.png',
+                      ),
+                      fit: BoxFit.fitWidth,
+                    ),
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 32.0, left: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Nützliche Statistiken',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      LocaleKeys.onboardingStatisticsTitle.tr(),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        'Visualisieren Sie Ihren Fortschritt.',
-                        style: TextStyle(fontSize: 12),
+                        LocaleKeys.onboardingStatisticsSubtitle.tr(),
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ),
                   ],

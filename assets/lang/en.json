@@ -17,5 +17,14 @@
   "confirmDeleteTitle": "Delete Habit",
   "confirmDeleteMessage": "Are you sure you want to delete this habit?",
   "delete": "Delete",
-  "unknownErrorOccurred": "An unknown error occurred"
+  "unknownErrorOccurred": "An unknown error occurred",
+  "onboardingStartTitle": "Welcome",
+  "onboardingStartSubtitle": "Time to develop good habits",
+  "onboardingStartButton": "Start",
+  "yustoLogo": "Yusto Logo",
+  "onboardingHabitsTitle": "Pursue your goals",
+  "onboardingHabitsSubtitle": "Explore the app, find peace of mind to achieve good habits",
+  "onboardingStatisticsTitle": "Useful statistics",
+  "onboardingStatisticsSubtitle": "Visualize your progress",
+  "yusto": "YUSTO"
 }

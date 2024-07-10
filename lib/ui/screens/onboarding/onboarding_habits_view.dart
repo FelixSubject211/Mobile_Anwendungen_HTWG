@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/ui/widgets/progress_button.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_habits_provider.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class OnboardingHabits extends ConsumerWidget {
   const OnboardingHabits({super.key});
@@ -17,22 +19,32 @@ class OnboardingHabits extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/onboardingHabits.png'),
-              const Padding(
-                padding: EdgeInsets.only(top: 32.0, left: 24.0),
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 406,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/onboardingHabits.png',
+                      ),
+                      fit: BoxFit.fitWidth,
+                    ),
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 32.0, left: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Verfolgen Sie ihre Ziele',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      LocaleKeys.onboardingHabitsTitle.tr(),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        'Erkunden Sie die App, finden Sie Ruhe, um gute Gewohnheiten zu erreichen',
-                        style: TextStyle(fontSize: 12),
+                        LocaleKeys.onboardingHabitsSubtitle.tr(),
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ),
                   ],
