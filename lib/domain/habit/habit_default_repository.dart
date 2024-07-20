@@ -11,7 +11,7 @@ import 'habit_repository.dart';
 part 'habit_default_repository.g.dart';
 
 @Riverpod(keepAlive: true)
-HabitDefaultRepository habitRepository(
+HabitRepository habitRepository(
   final HabitRepositoryRef ref,
 ) =>
     HabitDefaultRepository(database: ref.watch(objectBoxDatabaseProvider));
