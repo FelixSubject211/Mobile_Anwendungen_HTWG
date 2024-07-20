@@ -3,10 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
-import 'package:mobile_anwendungen/domain/habit/habit_repository.dart' as _i2;
-import 'package:mobile_anwendungen/domain/habit/model/habit.dart' as _i4;
+import 'package:mobile_anwendungen/database/database.dart' as _i2;
+import 'package:mobile_anwendungen/domain/habit/habit_default_repository.dart'
+    as _i3;
+import 'package:mobile_anwendungen/domain/habit/model/habit.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -22,25 +24,45 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [HabitRepository].
+class _FakeDatabase_0 extends _i1.SmartFake implements _i2.Database {
+  _FakeDatabase_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [HabitDefaultRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHabitRepository extends _i1.Mock implements _i2.HabitRepository {
-  MockHabitRepository() {
+class MockHabitDefaultRepository extends _i1.Mock
+    implements _i3.HabitDefaultRepository {
+  MockHabitDefaultRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Stream<List<_i4.Habit>> habits() => (super.noSuchMethod(
+  _i2.Database get database => (super.noSuchMethod(
+        Invocation.getter(#database),
+        returnValue: _FakeDatabase_0(
+          this,
+          Invocation.getter(#database),
+        ),
+      ) as _i2.Database);
+
+  @override
+  _i4.Stream<List<_i5.Habit>> habits() => (super.noSuchMethod(
         Invocation.method(
           #habits,
           [],
         ),
-        returnValue: _i3.Stream<List<_i4.Habit>>.empty(),
-      ) as _i3.Stream<List<_i4.Habit>>);
+        returnValue: _i4.Stream<List<_i5.Habit>>.empty(),
+      ) as _i4.Stream<List<_i5.Habit>>);
 
   @override
-  void upsertHabit(_i4.Habit? habit) => super.noSuchMethod(
+  void upsertHabit(_i5.Habit? habit) => super.noSuchMethod(
         Invocation.method(
           #upsertHabit,
           [habit],
@@ -49,7 +71,7 @@ class MockHabitRepository extends _i1.Mock implements _i2.HabitRepository {
       );
 
   @override
-  void completeHabit(_i4.Habit? habit) => super.noSuchMethod(
+  void completeHabit(_i5.Habit? habit) => super.noSuchMethod(
         Invocation.method(
           #completeHabit,
           [habit],
@@ -58,7 +80,7 @@ class MockHabitRepository extends _i1.Mock implements _i2.HabitRepository {
       );
 
   @override
-  void unCompleteHabit(_i4.Habit? habit) => super.noSuchMethod(
+  void unCompleteHabit(_i5.Habit? habit) => super.noSuchMethod(
         Invocation.method(
           #unCompleteHabit,
           [habit],
@@ -83,7 +105,7 @@ class MockHabitRepository extends _i1.Mock implements _i2.HabitRepository {
       );
 
   @override
-  void deleteHabit(_i4.Habit? habit) => super.noSuchMethod(
+  void deleteHabit(_i5.Habit? habit) => super.noSuchMethod(
         Invocation.method(
           #deleteHabit,
           [habit],
@@ -101,8 +123,8 @@ class MockHabitRepository extends _i1.Mock implements _i2.HabitRepository {
       ) as int);
 
   @override
-  _i4.Habit? getById(int? id) => (super.noSuchMethod(Invocation.method(
+  _i5.Habit? getById(int? id) => (super.noSuchMethod(Invocation.method(
         #getById,
         [id],
-      )) as _i4.Habit?);
+      )) as _i5.Habit?);
 }
