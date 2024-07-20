@@ -39,6 +39,7 @@ dev_dependencies:
   riverpod_generator: ^2.1.1
   klutter: ^3.0.2
   flutter_launcher_icons: "^0.13.1"
+  mockito: ^5.0.16
 
 dependency_overrides:
   intl: ^0.19.0
