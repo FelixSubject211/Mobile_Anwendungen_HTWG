@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mobile_anwendungen/domain/habit/habit_default_repository.dart';
+import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_service.dart';
 import 'package:mobile_anwendungen/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -13,16 +13,16 @@ import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_provider.
 import 'package:riverpod/riverpod.dart';
 
 // Generiere die Mock-Klassen
-@GenerateMocks([HabitRepository, GoRouter])
+@GenerateMocks([HabitRepository, GoRouterNavigationService])
 import 'habit_detail_controller_test.mocks.dart';
 
 void main() {
   late MockHabitRepository mockHabitRepository;
-  late MockGoRouter mockHabitDetailNavigationService;
+  late MockGoRouterNavigationService mockGoRouterNavigationService;
 
   setUp(() {
     mockHabitRepository = MockHabitRepository();
-    mockHabitDetailNavigationService = MockGoRouter();
+    mockGoRouterNavigationService = MockGoRouterNavigationService();
   });
 
   group('HabitDetailDefaultController', ()
@@ -39,7 +39,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterProvider.overrideWithValue(mockHabitDetailNavigationService),
+          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -54,7 +54,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterProvider.overrideWithValue(mockHabitDetailNavigationService),
+          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -69,7 +69,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterProvider.overrideWithValue(mockHabitDetailNavigationService),
+          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -85,7 +85,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterProvider.overrideWithValue(mockHabitDetailNavigationService),
+          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -93,7 +93,7 @@ void main() {
 
       controller.onCancel();
 
-      verify(mockHabitDetailNavigationService.pop()).called(1);
+      verify(mockGoRouterNavigationService.pop()).called(1);
     });
 
     test('onSave updates existing habit and calls pop', () {
@@ -102,7 +102,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterProvider.overrideWithValue(mockHabitDetailNavigationService),
+          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -111,7 +111,7 @@ void main() {
       controller.onSave();
 
       verify(mockHabitRepository.upsertHabit(habit)).called(1);
-      verify(mockHabitDetailNavigationService.pop()).called(1);
+      verify(mockGoRouterNavigationService.pop()).called(1);
       expect(habit.name, 'Updated Habit Name');
     });
 
@@ -121,7 +121,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterProvider.overrideWithValue(mockHabitDetailNavigationService),
+          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -130,7 +130,7 @@ void main() {
       controller.onSave();
 
       verify(mockHabitRepository.upsertHabit(any)).called(1);
-      verify(mockHabitDetailNavigationService.pop()).called(1);
+      verify(mockGoRouterNavigationService.pop()).called(1);
     });
   });
 }
