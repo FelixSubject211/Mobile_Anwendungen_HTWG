@@ -3,6 +3,8 @@
 appId: com.felix.htwg.mobile.anwendungen.mobile_anwendungen
 ---
 
+- runFlow:
+      file: onboarding_flow.yaml
 - assertVisible: "Habits"
 - tapOn:
       point: 95%,95%
