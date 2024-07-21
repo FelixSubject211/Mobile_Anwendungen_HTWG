@@ -7,6 +7,7 @@ abstract class  LocaleKeys {
   static const edit = 'edit';
   static const finish = 'finish';
   static const cancel = 'cancel';
+  static const progressButton = 'progressButton';
   static const habitsTitle = 'habitsTitle';
   static const habitsFloatingActionButtonTooltip = 'habitsFloatingActionButtonTooltip';
   static const habitDetailAddTitle = 'habitDetailAddTitle';

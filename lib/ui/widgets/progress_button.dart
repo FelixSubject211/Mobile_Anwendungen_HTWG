@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 import 'package:mobile_anwendungen/ui/widgets/custom_timer_painter.dart';
 
 class ProgressButton extends StatefulWidget {
@@ -58,6 +60,7 @@ class ProgressButtonState extends State<ProgressButton>
               builder: (context, child) {
                 return Icon(
                   Icons.arrow_forward,
+                  semanticLabel: LocaleKeys.progressButton.tr(),
                   color: controller.value == 0.0 ? Colors.indigo : Colors.grey,
                   size: 32,
                 );
