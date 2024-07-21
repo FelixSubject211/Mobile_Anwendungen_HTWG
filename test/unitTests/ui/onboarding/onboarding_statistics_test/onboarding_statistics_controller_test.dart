@@ -5,7 +5,6 @@ import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_servic
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_statistics_provider.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_statistics_controller.dart';
 import 'package:riverpod/riverpod.dart';
 
 @GenerateMocks([GoRouterNavigationService, OnboardingDefaultRepository])
