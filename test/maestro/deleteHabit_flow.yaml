@@ -1,0 +1,12 @@
+# flow.yaml
+
+appId: com.felix.htwg.mobile.anwendungen.mobile_anwendungen
+---
+
+- runFlow:
+    file: addHabit_flow.yaml
+- tapOn: "Edit"
+- tapOn: "Delete"
+- tapOn: "Delete"
+- assertNotVisible: "test"
+- assertVisible: "You have no habits yet"

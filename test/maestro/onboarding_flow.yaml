@@ -13,6 +13,5 @@ appId: com.felix.htwg.mobile.anwendungen.mobile_anwendungen
 - assertVisible: "Useful statistics"
 - waitForAnimationToEnd:
       timeout: 5000
-- tapOn:
-      point: 95%,95%
+- tapOn: "ProgressButton"
 - assertVisible: "You have no habits yet"

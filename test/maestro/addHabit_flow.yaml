@@ -2,7 +2,14 @@
 
 appId: com.felix.htwg.mobile.anwendungen.mobile_anwendungen
 ---
+
 - runFlow:
-       file: onboarding_flow.yaml
-- tapOn:
-      point: 95%,95%
+    file: onboarding_flow.yaml
+- tapOn: "Add Habit"
+- tapOn: "Name"
+- tapOn: "t"
+- tapOn: "e"
+- tapOn: "s"
+- tapOn: "t"
+- tapOn: "Save"
+- assertVisible: "test"

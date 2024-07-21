@@ -36,7 +36,10 @@ class Habits extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => controller.showHabitDetail(null, context),
         tooltip: LocaleKeys.habitsFloatingActionButtonTooltip.tr(),
-        child: const Icon(Icons.add),
+        child: Icon(
+            Icons.add,
+            semanticLabel: LocaleKeys.habitsFloatingActionButtonTooltip.tr(),
+        ),
       ),
     );
   }
@@ -56,7 +59,11 @@ class Habits extends ConsumerWidget {
         ? Padding(
             padding: const EdgeInsets.only(right: 6.0),
             child: IconButton(
-              icon: Icon(isEditing ? Icons.check : Icons.edit),
+              icon: Icon(
+                  isEditing ? Icons.check : Icons.edit,
+                  semanticLabel:
+                    isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
+              ),
               onPressed: controller.toggleEditing,
               tooltip:
                   isEditing ? LocaleKeys.finish.tr() : LocaleKeys.edit.tr(),
@@ -151,7 +158,10 @@ class Habits extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          icon: const Icon(Icons.delete_outline),
+          icon: Icon(
+              Icons.delete_outline,
+              semanticLabel: LocaleKeys.delete.tr(),
+          ),
           onPressed: () {
             controller.showConfirmDeleteAlert(habit);
           },

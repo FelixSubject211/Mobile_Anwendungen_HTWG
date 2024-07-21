@@ -35,11 +35,17 @@ class _NavigationState extends State<Navigation> {
   List<Widget> _navigation(ThemeData theme) {
     return <Widget>[
       NavigationDestination(
-        icon: const Icon(Icons.list),
+        icon: Icon(
+            Icons.list,
+            semanticLabel: LocaleKeys.habitsTitle.tr(),
+        ),
         label: LocaleKeys.habitsTitle.tr(),
       ),
       NavigationDestination(
-        icon: const Icon(Icons.leaderboard),
+        icon: Icon(
+            Icons.leaderboard,
+            semanticLabel: LocaleKeys.statisticsTitle.tr(),
+        ),
         label: LocaleKeys.statisticsTitle.tr(),
       ),
     ];

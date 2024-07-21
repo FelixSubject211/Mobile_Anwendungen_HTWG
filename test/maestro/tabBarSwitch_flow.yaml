@@ -1,0 +1,12 @@
+# flow.yaml
+
+appId: com.felix.htwg.mobile.anwendungen.mobile_anwendungen
+---
+
+- assertVisible: "Habits"
+- tapOn:
+      point: 95%,95%
+- assertVisible: "Statistics"
+- tapOn:
+      point: 0%,95%
+- assertVisible: "Habits"
