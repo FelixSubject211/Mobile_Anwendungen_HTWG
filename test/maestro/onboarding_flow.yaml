@@ -1,0 +1,18 @@
+# flow.yaml
+
+appId: com.felix.htwg.mobile.anwendungen.mobile_anwendungen
+---
+- clearState
+- launchApp
+- assertVisible: "Welcome"
+- tapOn: "Start"
+- assertVisible: "Pursue your goals"
+- waitForAnimationToEnd:
+    timeout: 5000
+- tapOn: "ProgressButton"
+- assertVisible: "Useful statistics"
+- waitForAnimationToEnd:
+      timeout: 5000
+- tapOn:
+      point: 95%,95%
+- assertVisible: "You have no habits yet"
