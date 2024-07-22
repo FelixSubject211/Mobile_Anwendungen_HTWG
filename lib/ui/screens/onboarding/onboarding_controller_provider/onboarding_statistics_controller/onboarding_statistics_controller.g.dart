@@ -7,7 +7,7 @@ part of 'onboarding_statistics_controller.dart';
 // **************************************************************************
 
 String _$onboardingStatisticsDefaultControllerHash() =>
-    r'c4f46c1c6644c0ecc3fd441032e9a332074598af';
+    r'10f5d6dfc4c182eda1e3945fb1846afb425b48c3';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,11 +34,11 @@ abstract class _$OnboardingStatisticsDefaultController
     extends BuildlessAutoDisposeNotifier<
         OnboardingStatisticsDefaultController?> {
   late final OnboardingNavigationService onboardingNavigationService;
-  late final OnboardingRepository onboardingRepository;
+  late final OnboardingService onboardingService;
 
   OnboardingStatisticsDefaultController? build({
     required OnboardingNavigationService onboardingNavigationService,
-    required OnboardingRepository onboardingRepository,
+    required OnboardingService onboardingService,
   });
 }
 
@@ -56,11 +56,11 @@ class OnboardingStatisticsDefaultControllerFamily
   /// See also [OnboardingStatisticsDefaultController].
   OnboardingStatisticsDefaultControllerProvider call({
     required OnboardingNavigationService onboardingNavigationService,
-    required OnboardingRepository onboardingRepository,
+    required OnboardingService onboardingService,
   }) {
     return OnboardingStatisticsDefaultControllerProvider(
       onboardingNavigationService: onboardingNavigationService,
-      onboardingRepository: onboardingRepository,
+      onboardingService: onboardingService,
     );
   }
 
@@ -70,7 +70,7 @@ class OnboardingStatisticsDefaultControllerFamily
   ) {
     return call(
       onboardingNavigationService: provider.onboardingNavigationService,
-      onboardingRepository: provider.onboardingRepository,
+      onboardingService: provider.onboardingService,
     );
   }
 
@@ -97,11 +97,11 @@ class OnboardingStatisticsDefaultControllerProvider
   /// See also [OnboardingStatisticsDefaultController].
   OnboardingStatisticsDefaultControllerProvider({
     required OnboardingNavigationService onboardingNavigationService,
-    required OnboardingRepository onboardingRepository,
+    required OnboardingService onboardingService,
   }) : this._internal(
           () => OnboardingStatisticsDefaultController()
             ..onboardingNavigationService = onboardingNavigationService
-            ..onboardingRepository = onboardingRepository,
+            ..onboardingService = onboardingService,
           from: onboardingStatisticsDefaultControllerProvider,
           name: r'onboardingStatisticsDefaultControllerProvider',
           debugGetCreateSourceHash:
@@ -113,7 +113,7 @@ class OnboardingStatisticsDefaultControllerProvider
           allTransitiveDependencies: OnboardingStatisticsDefaultControllerFamily
               ._allTransitiveDependencies,
           onboardingNavigationService: onboardingNavigationService,
-          onboardingRepository: onboardingRepository,
+          onboardingService: onboardingService,
         );
 
   OnboardingStatisticsDefaultControllerProvider._internal(
@@ -124,11 +124,11 @@ class OnboardingStatisticsDefaultControllerProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.onboardingNavigationService,
-    required this.onboardingRepository,
+    required this.onboardingService,
   }) : super.internal();
 
   final OnboardingNavigationService onboardingNavigationService;
-  final OnboardingRepository onboardingRepository;
+  final OnboardingService onboardingService;
 
   @override
   OnboardingStatisticsDefaultController? runNotifierBuild(
@@ -136,7 +136,7 @@ class OnboardingStatisticsDefaultControllerProvider
   ) {
     return notifier.build(
       onboardingNavigationService: onboardingNavigationService,
-      onboardingRepository: onboardingRepository,
+      onboardingService: onboardingService,
     );
   }
 
@@ -148,14 +148,14 @@ class OnboardingStatisticsDefaultControllerProvider
       override: OnboardingStatisticsDefaultControllerProvider._internal(
         () => create()
           ..onboardingNavigationService = onboardingNavigationService
-          ..onboardingRepository = onboardingRepository,
+          ..onboardingService = onboardingService,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         onboardingNavigationService: onboardingNavigationService,
-        onboardingRepository: onboardingRepository,
+        onboardingService: onboardingService,
       ),
     );
   }
@@ -170,14 +170,14 @@ class OnboardingStatisticsDefaultControllerProvider
   bool operator ==(Object other) {
     return other is OnboardingStatisticsDefaultControllerProvider &&
         other.onboardingNavigationService == onboardingNavigationService &&
-        other.onboardingRepository == onboardingRepository;
+        other.onboardingService == onboardingService;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, onboardingNavigationService.hashCode);
-    hash = _SystemHash.combine(hash, onboardingRepository.hashCode);
+    hash = _SystemHash.combine(hash, onboardingService.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -188,8 +188,8 @@ mixin OnboardingStatisticsDefaultControllerRef
   /// The parameter `onboardingNavigationService` of this provider.
   OnboardingNavigationService get onboardingNavigationService;
 
-  /// The parameter `onboardingRepository` of this provider.
-  OnboardingRepository get onboardingRepository;
+  /// The parameter `onboardingService` of this provider.
+  OnboardingService get onboardingService;
 }
 
 class _OnboardingStatisticsDefaultControllerProviderElement
@@ -204,9 +204,9 @@ class _OnboardingStatisticsDefaultControllerProviderElement
       (origin as OnboardingStatisticsDefaultControllerProvider)
           .onboardingNavigationService;
   @override
-  OnboardingRepository get onboardingRepository =>
+  OnboardingService get onboardingService =>
       (origin as OnboardingStatisticsDefaultControllerProvider)
-          .onboardingRepository;
+          .onboardingService;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

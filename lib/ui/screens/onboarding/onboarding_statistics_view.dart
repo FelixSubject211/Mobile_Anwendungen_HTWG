@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_anwendungen/ui/widgets/progress_button.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_statistics_provider.dart';
+import 'package:mobile_anwendungen/ui/screens/onboarding/'
+    'onboarding_controller_provider/onboarding_statistics_provider/'
+    'onboarding_statistics_provider.dart';
 
 class OnboardingStatistics extends ConsumerWidget {
   const OnboardingStatistics({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_anwendungen/domain/habit/onboarding_default_repository.dart';
+import 'package:mobile_anwendungen/domain/onboarding_service/onboarding_default_service.dart';
 import 'package:mobile_anwendungen/ui/screens/navigation.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_habits_view.dart';
@@ -22,7 +22,7 @@ class OnboardingStartRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     var onboardingRepository =
-        ProviderScope.containerOf(context).read(onboardingRepositoryProvider);
+        ProviderScope.containerOf(context).read(onboardingServiceProvider);
 
     return onboardingRepository.isCompletedOnboarding()
         ? const Navigation()
