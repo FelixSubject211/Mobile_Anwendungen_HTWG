@@ -7,10 +7,10 @@ import 'dart:ui' as _i5;
 
 import 'package:flutter/material.dart' as _i4;
 import 'package:mobile_anwendungen/database/database.dart' as _i2;
-import 'package:mobile_anwendungen/domain/habit/onboarding_default_repository.dart'
-    as _i6;
 import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_service.dart'
     as _i3;
+import 'package:mobile_anwendungen/domain/onboarding_service/onboarding_default_service.dart'
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -119,12 +119,12 @@ class MockGoRouterNavigationService extends _i1.Mock
       );
 }
 
-/// A class which mocks [OnboardingDefaultRepository].
+/// A class which mocks [OnboardingDefaultService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOnboardingDefaultRepository extends _i1.Mock
-    implements _i6.OnboardingDefaultRepository {
-  MockOnboardingDefaultRepository() {
+class MockOnboardingDefaultService extends _i1.Mock
+    implements _i6.OnboardingDefaultService {
+  MockOnboardingDefaultService() {
     _i1.throwOnMissingStub(this);
   }
 

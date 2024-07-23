@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_service.dart';
-import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_habits_provider.dart';
+import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_controller_provider'
+    '/onboarding_habits_provider/'
+    'onboarding_habits_provider.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod/riverpod.dart';

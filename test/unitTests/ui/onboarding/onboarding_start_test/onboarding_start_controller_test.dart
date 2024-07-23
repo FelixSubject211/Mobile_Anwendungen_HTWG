@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile_anwendungen/domain/habit/onboarding_default_repository.dart';
+import 'package:mobile_anwendungen/domain/onboarding_service/onboarding_default_service.dart';
 import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_service.dart';
-import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_start_provider.dart';
+import 'package:mobile_anwendungen/ui/screens/onboarding/'
+    'onboarding_controller_provider/onboarding_start_provider/'
+    'onboarding_start_provider.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod/riverpod.dart';
 
-@GenerateMocks([GoRouterNavigationService, OnboardingDefaultRepository])
+@GenerateMocks([GoRouterNavigationService, OnboardingDefaultService])
 import '../onboarding_start_test/onboarding_start_controller_test.mocks.dart';
 
 void main() {
   late MockGoRouterNavigationService mockGoRouterNavigationService;
-  late MockOnboardingDefaultRepository mockOnboardingRepository;
+  late MockOnboardingDefaultService mockOnboardingService;
 
   setUp(() {
     mockGoRouterNavigationService = MockGoRouterNavigationService();
-    mockOnboardingRepository = MockOnboardingDefaultRepository();
+    mockOnboardingService = MockOnboardingDefaultService();
   });
 
   group('OnboardingStartDefaultController', () {
@@ -24,7 +26,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
-          onboardingRepositoryProvider.overrideWithValue(mockOnboardingRepository),
+          onboardingServiceProvider.overrideWithValue(mockOnboardingService),
         ],
       );
 
