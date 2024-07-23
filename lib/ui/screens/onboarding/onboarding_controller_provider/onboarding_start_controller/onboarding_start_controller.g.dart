@@ -7,7 +7,7 @@ part of 'onboarding_start_controller.dart';
 // **************************************************************************
 
 String _$onboardingStartDefaultControllerHash() =>
-    r'38a2d4fd968ecc5c25334f4a4de9fc084ca434a0';
+    r'236812d2e4df8b602292b6988eb121d66f58d5ab';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,11 +33,11 @@ class _SystemHash {
 abstract class _$OnboardingStartDefaultController
     extends BuildlessAutoDisposeNotifier<OnboardingStartDefaultController?> {
   late final OnboardingNavigationService onboardingNavigationService;
-  late final OnboardingRepository onboardingRepository;
+  late final OnboardingService onboardingService;
 
   OnboardingStartDefaultController? build({
     required OnboardingNavigationService onboardingNavigationService,
-    required OnboardingRepository onboardingRepository,
+    required OnboardingService onboardingService,
   });
 }
 
@@ -55,11 +55,11 @@ class OnboardingStartDefaultControllerFamily
   /// See also [OnboardingStartDefaultController].
   OnboardingStartDefaultControllerProvider call({
     required OnboardingNavigationService onboardingNavigationService,
-    required OnboardingRepository onboardingRepository,
+    required OnboardingService onboardingService,
   }) {
     return OnboardingStartDefaultControllerProvider(
       onboardingNavigationService: onboardingNavigationService,
-      onboardingRepository: onboardingRepository,
+      onboardingService: onboardingService,
     );
   }
 
@@ -69,7 +69,7 @@ class OnboardingStartDefaultControllerFamily
   ) {
     return call(
       onboardingNavigationService: provider.onboardingNavigationService,
-      onboardingRepository: provider.onboardingRepository,
+      onboardingService: provider.onboardingService,
     );
   }
 
@@ -95,11 +95,11 @@ class OnboardingStartDefaultControllerProvider
   /// See also [OnboardingStartDefaultController].
   OnboardingStartDefaultControllerProvider({
     required OnboardingNavigationService onboardingNavigationService,
-    required OnboardingRepository onboardingRepository,
+    required OnboardingService onboardingService,
   }) : this._internal(
           () => OnboardingStartDefaultController()
             ..onboardingNavigationService = onboardingNavigationService
-            ..onboardingRepository = onboardingRepository,
+            ..onboardingService = onboardingService,
           from: onboardingStartDefaultControllerProvider,
           name: r'onboardingStartDefaultControllerProvider',
           debugGetCreateSourceHash:
@@ -110,7 +110,7 @@ class OnboardingStartDefaultControllerProvider
           allTransitiveDependencies:
               OnboardingStartDefaultControllerFamily._allTransitiveDependencies,
           onboardingNavigationService: onboardingNavigationService,
-          onboardingRepository: onboardingRepository,
+          onboardingService: onboardingService,
         );
 
   OnboardingStartDefaultControllerProvider._internal(
@@ -121,11 +121,11 @@ class OnboardingStartDefaultControllerProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.onboardingNavigationService,
-    required this.onboardingRepository,
+    required this.onboardingService,
   }) : super.internal();
 
   final OnboardingNavigationService onboardingNavigationService;
-  final OnboardingRepository onboardingRepository;
+  final OnboardingService onboardingService;
 
   @override
   OnboardingStartDefaultController? runNotifierBuild(
@@ -133,7 +133,7 @@ class OnboardingStartDefaultControllerProvider
   ) {
     return notifier.build(
       onboardingNavigationService: onboardingNavigationService,
-      onboardingRepository: onboardingRepository,
+      onboardingService: onboardingService,
     );
   }
 
@@ -144,14 +144,14 @@ class OnboardingStartDefaultControllerProvider
       override: OnboardingStartDefaultControllerProvider._internal(
         () => create()
           ..onboardingNavigationService = onboardingNavigationService
-          ..onboardingRepository = onboardingRepository,
+          ..onboardingService = onboardingService,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         onboardingNavigationService: onboardingNavigationService,
-        onboardingRepository: onboardingRepository,
+        onboardingService: onboardingService,
       ),
     );
   }
@@ -166,14 +166,14 @@ class OnboardingStartDefaultControllerProvider
   bool operator ==(Object other) {
     return other is OnboardingStartDefaultControllerProvider &&
         other.onboardingNavigationService == onboardingNavigationService &&
-        other.onboardingRepository == onboardingRepository;
+        other.onboardingService == onboardingService;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, onboardingNavigationService.hashCode);
-    hash = _SystemHash.combine(hash, onboardingRepository.hashCode);
+    hash = _SystemHash.combine(hash, onboardingService.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -184,8 +184,8 @@ mixin OnboardingStartDefaultControllerRef
   /// The parameter `onboardingNavigationService` of this provider.
   OnboardingNavigationService get onboardingNavigationService;
 
-  /// The parameter `onboardingRepository` of this provider.
-  OnboardingRepository get onboardingRepository;
+  /// The parameter `onboardingService` of this provider.
+  OnboardingService get onboardingService;
 }
 
 class _OnboardingStartDefaultControllerProviderElement
@@ -199,8 +199,8 @@ class _OnboardingStartDefaultControllerProviderElement
       (origin as OnboardingStartDefaultControllerProvider)
           .onboardingNavigationService;
   @override
-  OnboardingRepository get onboardingRepository =>
-      (origin as OnboardingStartDefaultControllerProvider).onboardingRepository;
+  OnboardingService get onboardingService =>
+      (origin as OnboardingStartDefaultControllerProvider).onboardingService;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

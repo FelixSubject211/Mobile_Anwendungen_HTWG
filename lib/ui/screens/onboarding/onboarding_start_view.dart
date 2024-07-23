@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_start_provider.dart';
+import 'package:mobile_anwendungen/ui/screens/onboarding/'
+    'onboarding_controller_provider/onboarding_start_provider/'
+    'onboarding_start_provider.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 

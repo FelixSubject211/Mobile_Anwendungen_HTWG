@@ -1,27 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'onboarding_default_repository.dart';
+part of 'onboarding_default_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$onboardingRepositoryHash() =>
-    r'5b0bb601358458eed232db9c8c3fe966f0a4fc4f';
+String _$onboardingServiceHash() => r'5988c99c851973d939938fc916f7f11a33735ba1';
 
-/// See also [onboardingRepository].
-@ProviderFor(onboardingRepository)
-final onboardingRepositoryProvider =
-    Provider<OnboardingDefaultRepository>.internal(
-  onboardingRepository,
-  name: r'onboardingRepositoryProvider',
+/// See also [onboardingService].
+@ProviderFor(onboardingService)
+final onboardingServiceProvider = Provider<OnboardingDefaultService>.internal(
+  onboardingService,
+  name: r'onboardingServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$onboardingRepositoryHash,
+      : _$onboardingServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef OnboardingRepositoryRef = ProviderRef<OnboardingDefaultRepository>;
+typedef OnboardingServiceRef = ProviderRef<OnboardingDefaultService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

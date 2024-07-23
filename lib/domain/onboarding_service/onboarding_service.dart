@@ -1,4 +1,4 @@
-abstract class OnboardingRepository {
+abstract class OnboardingService {
   void completeOnboarding();
   bool isCompletedOnboarding();
 }

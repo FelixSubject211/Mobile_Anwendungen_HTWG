@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_anwendungen/domain/habit/onboarding_repository.dart';
+import 'package:mobile_anwendungen/domain/onboarding_service/onboarding_service.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_start_view.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/services/onboarding_navigation_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,7 +14,7 @@ class OnboardingStartDefaultController
   OnboardingStartDefaultController? build(
           {required final OnboardingNavigationService
               onboardingNavigationService,
-          required final OnboardingRepository onboardingRepository}) =>
+          required final OnboardingService onboardingService}) =>
       null;
 
   @override
