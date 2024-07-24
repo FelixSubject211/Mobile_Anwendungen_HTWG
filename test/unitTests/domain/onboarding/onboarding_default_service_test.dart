@@ -6,14 +6,12 @@ import 'package:mockito/annotations.dart';
 
 import '../onboarding/onboarding_default_service_test.mocks.dart';
 
-// Generiere Mocks für die Database-Klasse
 @GenerateMocks([Database])
 void main() {
   late MockDatabase mockDatabase;
   late OnboardingDefaultService onboardingService;
 
   setUp(() {
-    // Initialisiere MockDatabase und OnboardingDefaultService
     mockDatabase = MockDatabase();
     onboardingService = OnboardingDefaultService(database: mockDatabase);
   });
