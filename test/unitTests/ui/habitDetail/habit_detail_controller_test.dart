@@ -1,18 +1,14 @@
-import 'dart:ui';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_anwendungen/domain/habit/habit_default_repository.dart';
 import 'package:mobile_anwendungen/domain/navigation/go_router_navigation_service.dart';
-import 'package:mobile_anwendungen/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mobile_anwendungen/domain/habit/habit_repository.dart';
 import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_model.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_provider.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Generiere die Mock-Klassen
 @GenerateMocks([HabitRepository, GoRouterNavigationService])
 import 'habit_detail_controller_test.mocks.dart';
 
@@ -25,8 +21,7 @@ void main() {
     mockGoRouterNavigationService = MockGoRouterNavigationService();
   });
 
-  group('HabitDetailDefaultController', ()
-  {
+  group('HabitDetailDefaultController', () {
     final habit = Habit(
       id: 1,
       name: 'Test Habit',
@@ -39,7 +34,8 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -54,7 +50,8 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -69,7 +66,8 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -85,7 +83,8 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -102,7 +101,8 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -121,7 +121,8 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           habitRepositoryProvider.overrideWithValue(mockHabitRepository),
-          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 

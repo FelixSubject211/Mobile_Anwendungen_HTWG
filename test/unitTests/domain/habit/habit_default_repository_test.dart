@@ -20,14 +20,14 @@ void main() {
   });
 
   group('HabitDefaultRepository', () {
-
     bool habitEqualsIgnoringCreationDate(Habit habit1, Habit habit2) {
       return habit1.id == habit2.id &&
           habit1.name == habit2.name &&
           habit1.index == habit2.index;
     }
 
-    Future<bool> containsHabitInStream(Stream<List<Habit>> stream, Habit habit) async {
+    Future<bool> containsHabitInStream(
+        Stream<List<Habit>> stream, Habit habit) async {
       await for (var habitList in stream) {
         if (habitList.any((h) => habitEqualsIgnoringCreationDate(h, habit))) {
           return true;
@@ -49,11 +49,10 @@ void main() {
       );
 
       final dbHabit = DatabaseHabit(
-        id: habit.id,
-        name: habit.name,
-        index: habit.index,
-        creationDate: habit.creationDate.millisecondsSinceEpoch
-      );
+          id: habit.id,
+          name: habit.name,
+          index: habit.index,
+          creationDate: habit.creationDate.millisecondsSinceEpoch);
 
       when(mockDatabase.listHabits()).thenReturn([dbHabit]);
 
@@ -61,7 +60,8 @@ void main() {
       repository.upsertHabit(habit);
 
       // Assert
-      final containsHabit = await containsHabitInStream(repository.habits(), habit);
+      final containsHabit =
+          await containsHabitInStream(repository.habits(), habit);
 
       expect(containsHabit, isTrue);
 
@@ -82,11 +82,10 @@ void main() {
       );
 
       final dbHabit = DatabaseHabit(
-        id: habit.id,
-        name: habit.name,
-        index: habit.index,
-        creationDate: habit.creationDate.millisecondsSinceEpoch
-      );
+          id: habit.id,
+          name: habit.name,
+          index: habit.index,
+          creationDate: habit.creationDate.millisecondsSinceEpoch);
 
       when(mockDatabase.listHabits()).thenReturn([dbHabit]);
 
@@ -94,14 +93,16 @@ void main() {
       repository.completeHabit(habit);
 
       // Assert
-      final containsHabit = await containsHabitInStream(repository.habits(), habit);
+      final containsHabit =
+          await containsHabitInStream(repository.habits(), habit);
 
       expect(containsHabit, isTrue);
 
       verify(mockDatabase.completeHabit(any)).called(1);
     });
 
-    test('should stream updated habits when unCompleteHabit is called', () async {
+    test('should stream updated habits when unCompleteHabit is called',
+        () async {
       // Arrange
       final creationDate = DateTime.now();
       final habit = Habit(
@@ -113,11 +114,10 @@ void main() {
       );
 
       final dbHabit = DatabaseHabit(
-        id: habit.id,
-        name: habit.name,
-        index: habit.index,
-        creationDate: habit.creationDate.millisecondsSinceEpoch
-      );
+          id: habit.id,
+          name: habit.name,
+          index: habit.index,
+          creationDate: habit.creationDate.millisecondsSinceEpoch);
 
       when(mockDatabase.listHabits()).thenReturn([dbHabit]);
 
@@ -125,7 +125,8 @@ void main() {
       repository.unCompleteHabit(habit);
 
       // Assert
-      final containsHabit = await containsHabitInStream(repository.habits(), habit);
+      final containsHabit =
+          await containsHabitInStream(repository.habits(), habit);
 
       expect(containsHabit, isTrue);
 
@@ -175,17 +176,15 @@ void main() {
 
       final dbHabits = [
         DatabaseHabit(
-          id: habit1.id,
-          name: habit1.name,
-          index: habit1.index,
-          creationDate: habit1.creationDate.millisecondsSinceEpoch
-        ),
+            id: habit1.id,
+            name: habit1.name,
+            index: habit1.index,
+            creationDate: habit1.creationDate.millisecondsSinceEpoch),
         DatabaseHabit(
-          id: habit2.id,
-          name: habit2.name,
-          index: habit2.index,
-          creationDate: habit2.creationDate.millisecondsSinceEpoch
-        ),
+            id: habit2.id,
+            name: habit2.name,
+            index: habit2.index,
+            creationDate: habit2.creationDate.millisecondsSinceEpoch),
       ];
 
       when(mockDatabase.listHabits()).thenReturn(dbHabits);
@@ -220,11 +219,10 @@ void main() {
       );
 
       final dbHabit = DatabaseHabit(
-        id: habit.id,
-        name: habit.name,
-        index: habit.index,
-        creationDate: habit.creationDate.millisecondsSinceEpoch
-      );
+          id: habit.id,
+          name: habit.name,
+          index: habit.index,
+          creationDate: habit.creationDate.millisecondsSinceEpoch);
 
       when(mockDatabase.getById(habit.id)).thenReturn(dbHabit);
 
@@ -236,6 +234,5 @@ void main() {
       expect(habitEqualsIgnoringCreationDate(fetchedHabit!, habit), isTrue);
       verify(mockDatabase.getById(habit.id)).called(1);
     });
-
   });
 }

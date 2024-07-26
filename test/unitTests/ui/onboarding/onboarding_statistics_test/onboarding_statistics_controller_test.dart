@@ -7,7 +7,7 @@ import 'package:mobile_anwendungen/ui/screens/onboarding/'
     'onboarding_statistics_provider.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @GenerateMocks([GoRouterNavigationService, OnboardingDefaultService])
 import '../onboarding_statistics_test/onboarding_statistics_controller_test.mocks.dart';
@@ -25,7 +25,8 @@ void main() {
     test('onNext completes onboarding and shows home', () {
       final container = ProviderContainer(
         overrides: [
-          goRouterNavigationServiceProvider.overrideWithValue(mockOnboardingNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockOnboardingNavigationService),
           onboardingServiceProvider.overrideWithValue(mockOnboardingService),
         ],
       );

@@ -36,7 +36,8 @@ void main() {
       mockHabitsController.showHabitDetail(habit.id, mockBuildContext);
 
       // Assert
-      verify(mockHabitsController.showHabitDetail(habit.id, mockBuildContext)).called(1);
+      verify(mockHabitsController.showHabitDetail(habit.id, mockBuildContext))
+          .called(1);
     });
 
     test('onCompleteHabit calls the method with correct parameters', () {

@@ -36,15 +36,15 @@ class _NavigationState extends State<Navigation> {
     return <Widget>[
       NavigationDestination(
         icon: Icon(
-            Icons.list,
-            semanticLabel: LocaleKeys.habitsTitle.tr(),
+          Icons.list,
+          semanticLabel: LocaleKeys.habitsTitle.tr(),
         ),
         label: LocaleKeys.habitsTitle.tr(),
       ),
       NavigationDestination(
         icon: Icon(
-            Icons.leaderboard,
-            semanticLabel: LocaleKeys.statisticsTitle.tr(),
+          Icons.leaderboard,
+          semanticLabel: LocaleKeys.statisticsTitle.tr(),
         ),
         label: LocaleKeys.statisticsTitle.tr(),
       ),

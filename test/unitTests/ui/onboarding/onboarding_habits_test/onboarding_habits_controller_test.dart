@@ -6,7 +6,7 @@ import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_controller_p
     'onboarding_habits_provider.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @GenerateMocks([GoRouterNavigationService])
 import '../onboarding_habits_test/onboarding_habits_controller_test.mocks.dart';
@@ -22,7 +22,8 @@ void main() {
     test('onNext calls showOnboardingStatistics', () {
       final container = ProviderContainer(
         overrides: [
-          goRouterNavigationServiceProvider.overrideWithValue(mockGoRouterNavigationService),
+          goRouterNavigationServiceProvider
+              .overrideWithValue(mockGoRouterNavigationService),
         ],
       );
 
@@ -31,7 +32,8 @@ void main() {
 
       controller.onNext(context);
 
-      verify(mockGoRouterNavigationService.showOnboardingStatistics(context)).called(1);
+      verify(mockGoRouterNavigationService.showOnboardingStatistics(context))
+          .called(1);
     });
   });
 }
