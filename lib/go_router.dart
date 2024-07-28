@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_anwendungen/domain/onboarding_service/onboarding_default_service.dart';
-import 'package:mobile_anwendungen/ui/screens/navigation.dart';
+import 'package:mobile_anwendungen/ui/widgets/navigation.dart';
 import 'package:mobile_anwendungen/ui/screens/habitDetail/habit_detail_view.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_habits_view.dart';
 import 'package:mobile_anwendungen/ui/screens/onboarding/onboarding_start_view.dart';
