@@ -7,7 +7,7 @@ import 'package:mobile_anwendungen/domain/habit/model/habit.dart';
 import 'package:mobile_anwendungen/lang/locale_keys.g.dart';
 import 'package:mobile_anwendungen/ui/screens/statistics/statistics_model.dart';
 import 'package:mobile_anwendungen/ui/screens/statistics/statistics_provider.dart';
-import 'package:mobile_anwendungen/ui/widgets/calendar_view.dart';
+import 'package:mobile_anwendungen/ui/widgets/calendar_month_view.dart';
 import 'package:mobile_anwendungen/ui/widgets/calendar_week_view.dart';
 import 'package:mobile_anwendungen/ui/widgets/selection_button.dart';
 
@@ -54,8 +54,8 @@ class Statistics extends ConsumerWidget {
                     _buildSelectionButtons(context, selectedButton, controller),
                     const SizedBox(height: 20),
                     selectedButton == LocaleKeys.statisticsWeekSelection.tr()
-                        ? _weekStatistic(context, habits)
-                        : _monthStatistic(context, habits),
+                        ? _weekStatistic(habits)
+                        : _monthStatistic(habits),
                   ],
                 ),
               ),
@@ -86,7 +86,7 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _weekStatistic(BuildContext context, List<Habit> habits) {
+  Widget _weekStatistic(List<Habit> habits) {
     final startOfWeek =
         DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
 
@@ -126,7 +126,7 @@ class Statistics extends ConsumerWidget {
     );
   }
 
-  Widget _monthStatistic(BuildContext context, List<Habit> habits) {
+  Widget _monthStatistic(List<Habit> habits) {
     return Expanded(
       child: ListView.builder(
         itemCount: habits.length,
@@ -217,15 +217,17 @@ class Statistics extends ConsumerWidget {
 
   Widget _emptyState(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/images/emptyStatistics.png'),
-          Text(
-            LocaleKeys.textIfItIsEmpty.tr(),
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/emptyStatistics.png'),
+            Text(
+              LocaleKeys.textIfItIsEmpty.tr(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
       ),
     );
   }

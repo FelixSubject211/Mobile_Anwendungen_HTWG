@@ -173,15 +173,17 @@ class Habits extends ConsumerWidget {
 
   Widget _emptyState(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/images/empty.png'),
-          Text(
-            LocaleKeys.textIfItIsEmpty.tr(),
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/empty.png'),
+            Text(
+              LocaleKeys.textIfItIsEmpty.tr(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
       ),
     );
   }

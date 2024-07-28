@@ -56,29 +56,33 @@ class CalendarWeekViewState extends State<CalendarWeekView> {
     final daysOfWeek = _calculateDaysOfWeek(displayedWeekStart);
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            if (widget.creationDate.difference(_previousWeek) <=
-                Duration(days: widget.creationDate.weekday))
-              IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: _goToPreviousWeek,
-              )
-            else
-              const Opacity(
-                opacity: 0.0,
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: null,
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              if (widget.creationDate.difference(_previousWeek) <=
+                  Duration(days: widget.creationDate.weekday))
+                IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: _goToPreviousWeek,
+                )
+              else
+                const Opacity(
+                  opacity: 0.0,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: null,
+                  ),
                 ),
+              widget.headerBuilder(_formatWeekLabel(displayedWeekStart)),
+              IconButton(
+                icon: const Icon(Icons.arrow_forward),
+                onPressed: _goToNextWeek,
               ),
-            widget.headerBuilder(_formatWeekLabel(displayedWeekStart)),
-            IconButton(
-              icon: const Icon(Icons.arrow_forward),
-              onPressed: _goToNextWeek,
-            ),
-          ],
+            ],
+          ),
         ),
         _buildCalendar(daysOfWeek, widget.selectedDate),
       ],
