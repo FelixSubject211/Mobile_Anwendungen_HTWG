@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const save = 'save';
   static const error = 'error';
   static const noData = 'noData';
@@ -9,8 +9,7 @@ abstract class LocaleKeys {
   static const cancel = 'cancel';
   static const progressButton = 'progressButton';
   static const habitsTitle = 'habitsTitle';
-  static const habitsFloatingActionButtonTooltip =
-      'habitsFloatingActionButtonTooltip';
+  static const habitsFloatingActionButtonTooltip = 'habitsFloatingActionButtonTooltip';
   static const habitDetailAddTitle = 'habitDetailAddTitle';
   static const habitDetailEditTitle = 'habitDetailEditTitle';
   static const habitDetailNameLabelText = 'habitDetailNameLabelText';
@@ -31,4 +30,5 @@ abstract class LocaleKeys {
   static const onboardingStatisticsTitle = 'onboardingStatisticsTitle';
   static const onboardingStatisticsSubtitle = 'onboardingStatisticsSubtitle';
   static const yusto = 'yusto';
+
 }
