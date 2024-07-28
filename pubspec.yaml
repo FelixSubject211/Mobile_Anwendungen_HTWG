@@ -40,6 +40,7 @@ dev_dependencies:
   klutter: ^3.0.2
   flutter_launcher_icons: "^0.13.1"
   mockito: ^5.0.16
+  shared_preferences: ^2.2.3
 
 dependency_overrides:
   intl: ^0.19.0
