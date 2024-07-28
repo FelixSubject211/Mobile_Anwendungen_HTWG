@@ -30,6 +30,12 @@ class ProgressButtonState extends State<ProgressButton>
   }
 
   @override
+  dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
